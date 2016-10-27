@@ -2,7 +2,17 @@ var Greeter = React.createClass({
   getDefaultProps: function () {
     return {
       name: 'Stranger',
-      message: 'I am not impressed by your performance'
+      message: 'I am not impressed by your performance',
+      startingAddress: '123 Main St',
+      departureAirport: 'PDX',
+      flightNumber: 'US123'
+    };
+  },
+  getInitialState: function () {
+    return {
+      startingAddress: this.props.startingAddress,
+      departureAirport: this.props.departureAirport,
+      flightNumber: this.props.flightNumber
     };
   },
   onButtonClick: function (e) {
@@ -12,14 +22,19 @@ var Greeter = React.createClass({
     var departureAirport = this.refs.departureAirport.value;
     var flightNumber = this.refs.flightNumber.value;
 
-    alert(startingAddress);
-    alert(departureAirport);
-    alert(flightNumber);
+    this.setState({
+      startingAddress: startingAddress,
+      departureAirport: departureAirport,
+      flightNumber: flightNumber
+    });
   },
 
   render: function () {
     var name = this.props.name;
     var message = this.props.message;
+    var startingAddress = this.state.startingAddress;
+    var departureAirport = this.state.departureAirport;
+    var flightNumber = this.state.flightNumber;
 
     return (
       <div>
@@ -33,10 +48,18 @@ var Greeter = React.createClass({
 
           <button>Submit</button>
         </form>
+
+        <div>
+          <h2>Your details:</h2>
+          <h3>{startingAddress}</h3>
+          <h3>{departureAirport}</h3>
+          <h3>{flightNumber}</h3>
+        </div>
       </div>
     );
   }
 });
+
 
 ReactDOM.render(
   <Greeter/>,
