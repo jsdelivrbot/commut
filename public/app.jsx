@@ -18,15 +18,29 @@ var Greeter = React.createClass({
   onButtonClick: function (e) {
     e.preventDefault();
 
-    var startingAddress = this.refs.startingAddress.value;
-    var departureAirport = this.refs.departureAirport.value;
-    var flightNumber = this.refs.flightNumber.value;
+    var startAddRef = this.refs.startingAddress;
+    var depAirRef = this.refs.departureAirport;
+    var flightNumRef = this.refs.flightNumber;
 
-    this.setState({
-      startingAddress: startingAddress,
-      departureAirport: departureAirport,
-      flightNumber: flightNumber
-    });
+    var startingAddress = startAddRef.value;
+    var departureAirport = depAirRef.value;
+    var flightNumber = flightNumRef.value;
+
+    if (typeof startingAddress === 'string' && startingAddress.length > 0) {
+      this.setState({
+        startingAddress: startingAddress
+      });
+    }
+    if (typeof departureAirport === 'string' && departureAirport.length > 0) {
+      this.setState({
+        departureAirport: departureAirport
+      });
+    }
+    if (typeof flightNumber === 'string' && flightNumber.length > 0) {
+      this.setState({
+        flightNumber: flightNumber
+      });
+    }
   },
 
   render: function () {
