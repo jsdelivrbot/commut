@@ -25,9 +25,6 @@ var Greeter = React.createClass({
     this.setState(updates);
   },
   render: function () {
-    var startingAddress = this.state.startingAddress;
-    var departureAirport = this.state.departureAirport;
-    var flightNumber = this.state.flightNumber;
 
     return (
       <div>
@@ -37,10 +34,11 @@ var Greeter = React.createClass({
 
         <div>
           <h2>Your details:</h2>
-          <h3>{startingAddress}</h3>
-          <h3>{departureAirport}</h3>
-          <h3>{flightNumber}</h3>
+          <h3>{this.state.startingAddress}</h3>
+          <h3>{this.state.departureAirport}</h3>
+          <h3>{this.state.flightNumber}</h3>
         </div>
+
         <Results/>
       </div>
 

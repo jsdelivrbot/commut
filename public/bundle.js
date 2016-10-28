@@ -95,17 +95,17 @@
 	        React.createElement(
 	          'h3',
 	          null,
-	          startingAddress
+	          this.state.startingAddress
 	        ),
 	        React.createElement(
 	          'h3',
 	          null,
-	          departureAirport
+	          this.state.departureAirport
 	        ),
 	        React.createElement(
 	          'h3',
 	          null,
-	          flightNumber
+	          this.state.flightNumber
 	        )
 	      ),
 	      React.createElement(Results, null)
