@@ -48,6 +48,8 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
+	var Hero = __webpack_require__(159);
+	var Form = __webpack_require__(160);
 
 	var Greeter = React.createClass({
 	  displayName: 'Greeter',
@@ -68,37 +70,10 @@
 	      flightNumber: this.props.flightNumber
 	    };
 	  },
-	  onButtonClick: function onButtonClick(e) {
-	    e.preventDefault();
-
-	    var startAddRef = this.refs.startingAddress;
-	    var depAirRef = this.refs.departureAirport;
-	    var flightNumRef = this.refs.flightNumber;
-
-	    var startingAddress = startAddRef.value;
-	    var departureAirport = depAirRef.value;
-	    var flightNumber = flightNumRef.value;
-
-	    if (typeof startingAddress === 'string' && startingAddress.length > 0) {
-	      this.setState({
-	        startingAddress: startingAddress
-	      });
-	    }
-	    if (typeof departureAirport === 'string' && departureAirport.length > 0) {
-	      this.setState({
-	        departureAirport: departureAirport
-	      });
-	    }
-	    if (typeof flightNumber === 'string' && flightNumber.length > 0) {
-	      this.setState({
-	        flightNumber: flightNumber
-	      });
-	    }
+	  handleNewInput: function handleNewInput(updates) {
+	    this.setState(updates);
 	  },
-
 	  render: function render() {
-	    var name = this.props.name;
-	    var message = this.props.message;
 	    var startingAddress = this.state.startingAddress;
 	    var departureAirport = this.state.departureAirport;
 	    var flightNumber = this.state.flightNumber;
@@ -106,29 +81,8 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(
-	        'h1',
-	        null,
-	        'Welcome to comm\xFCt, ',
-	        name
-	      ),
-	      React.createElement(
-	        'p',
-	        null,
-	        message
-	      ),
-	      React.createElement(
-	        'form',
-	        { onSubmit: this.onButtonClick },
-	        React.createElement('input', { type: 'text', ref: 'startingAddress' }),
-	        React.createElement('input', { type: 'text', ref: 'departureAirport' }),
-	        React.createElement('input', { type: 'text', ref: 'flightNumber' }),
-	        React.createElement(
-	          'button',
-	          null,
-	          'Submit'
-	        )
-	      ),
+	      React.createElement(Hero, null),
+	      React.createElement(Form, { onNewInput: this.handleNewInput }),
 	      React.createElement(
 	        'div',
 	        null,
@@ -19852,6 +19806,102 @@
 
 	module.exports = __webpack_require__(3);
 
+
+/***/ },
+/* 159 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	//Where the hero image goes
+	var Hero = React.createClass({
+	  displayName: 'Hero',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Welcome to comm\xFCt'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Hero;
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Form = React.createClass({
+	  displayName: 'Form',
+
+	  onFormSubmit: function onFormSubmit(e) {
+	    e.preventDefault();
+
+	    var updates = {};
+	    var startAddRef = this.refs.startingAddress;
+	    var depAirRef = this.refs.departureAirport;
+	    var flightNumRef = this.refs.flightNumber;
+
+	    var startingAddress = startAddRef.value;
+	    var departureAirport = depAirRef.value;
+	    var flightNumber = flightNumRef.value;
+
+	    if (startingAddress.length > 0) {
+	      this.refs.startingAddress = '';
+	      updates.startingAddress = startingAddress;
+	    }
+	    if (departureAirport.length > 0) {
+	      this.refs.departureAirport = '';
+	      updates.departureAirport = departureAirport;
+	    }
+	    if (flightNumber.length > 0) {
+	      this.refs.flightNumber = '';
+	      updates.flightNumber = flightNumber;
+	    }
+
+	    this.props.onNewInput(updates);
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      'form',
+	      { onSubmit: this.onFormSubmit },
+	      React.createElement(
+	        'div',
+	        null,
+	        React.createElement('input', { type: 'text', ref: 'startingAddress', placeholder: 'Starting Address' })
+	      ),
+	      React.createElement(
+	        'div',
+	        null,
+	        React.createElement('input', { type: 'text', ref: 'departureAirport', placeholder: 'Departure Airport' })
+	      ),
+	      React.createElement(
+	        'div',
+	        null,
+	        React.createElement('input', { type: 'text', ref: 'flightNumber', placeholder: 'Flight Number' })
+	      ),
+	      React.createElement(
+	        'button',
+	        null,
+	        'Submit'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Form;
 
 /***/ }
 /******/ ]);
