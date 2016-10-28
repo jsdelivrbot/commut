@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Hero = require('./components/Hero');
 var Form = require('./components/Form');
+var Results = require('./components/Results');
 
 var Greeter = React.createClass({
   getDefaultProps: function () {
@@ -40,6 +41,7 @@ var Greeter = React.createClass({
           <h3>{departureAirport}</h3>
           <h3>{flightNumber}</h3>
         </div>
+        <Results/>
       </div>
 
     );

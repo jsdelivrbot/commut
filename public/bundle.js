@@ -50,6 +50,7 @@
 	var ReactDOM = __webpack_require__(158);
 	var Hero = __webpack_require__(159);
 	var Form = __webpack_require__(160);
+	var Results = __webpack_require__(161);
 
 	var Greeter = React.createClass({
 	  displayName: 'Greeter',
@@ -106,7 +107,8 @@
 	          null,
 	          flightNumber
 	        )
-	      )
+	      ),
+	      React.createElement(Results, null)
 	    );
 	  }
 	});
@@ -19902,6 +19904,32 @@
 	});
 
 	module.exports = Form;
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Results = React.createClass({
+	  displayName: 'Results',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h3',
+	        null,
+	        'MATTY ENTER YOUR INFO HERE!'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Results;
 
 /***/ }
 /******/ ]);
