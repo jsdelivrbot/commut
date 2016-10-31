@@ -13,7 +13,8 @@ module.exports = {
       CommutMessage: 'app/components/CommutMessage.jsx',
       Help: 'app/components/Help.jsx',
       Main: 'app/components/Main.jsx',
-      Nav: 'app/components/Nav.jsx'
+      Nav: 'app/components/Nav.jsx',
+      TSA: 'app/api/TSA.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },
