@@ -12,7 +12,9 @@ module.exports = {
       Main: 'app/components/Main.jsx',
       Results: 'app/components/Results.jsx',
       Details: 'app/components/Details.jsx',
-      Help: 'app/components/Help.jsx'
+      Help: 'app/components/Help.jsx',
+      About: 'app/components/About.jsx',
+      ResultsAPI: 'app/components/ResultsAPI.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },

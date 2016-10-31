@@ -1,10 +1,6 @@
 var React = require('react');
-var Main = require('Main');
-var Results = require('Results');
-var Nav = require('Nav');
-var Help = require('Help');
-var About = require('About');
-var ResultsAPI = require('ResultsAPI');
+var Hero = require('Hero');
+var Results = require('Results')
 
 var Form = React.createClass({
   onFormSubmit: function (e) {
@@ -52,7 +48,6 @@ var Form = React.createClass({
         </div>
 
         <button>Submit</button>
-        <ResultsAPI/>
       </form>
     );
   }

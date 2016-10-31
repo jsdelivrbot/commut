@@ -1,21 +1,20 @@
 var React = require('react');
+var Main = require('Main');
 var Form = require('Form');
-var Results = require('Results');
 var Nav = require('Nav');
 var Details = require('Details');
-var Main = require('Main');
+var Help = require('Help');
 var About = require('About');
-var ResultsAPI = require('ResultsAPI');
+var Results = require('Results');
 
-//Where the hero image goes
-var Help = React.createClass({
+var ResultsAPI = React.createClass({
   render: function () {
     return (
       <div>
-        <h3>Help section</h3>
+        <h3>MATTY ENTER YOUR INFO HERE!</h3>
       </div>
     );
   }
 });
 
-module.exports = Help;
+module.exports = ResultsAPI;

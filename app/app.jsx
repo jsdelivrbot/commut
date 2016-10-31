@@ -9,7 +9,8 @@ var Results = require('Results');
 var Nav = require('Nav');
 var Details = require('Details');
 var Help = require('Help');
-
+var About = require('About');
+var ResultsAPI = require('ResultsAPI');
 
 var Greeter = React.createClass({
   getDefaultProps: function () {
@@ -60,6 +61,7 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
       <Route path="help" component={Help}/>
+      <Route path="about" component={About}/>
       <IndexRoute component={Form}/>
     </Route>
   </Router>,

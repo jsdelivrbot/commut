@@ -63,6 +63,8 @@
 	var Nav = __webpack_require__(219);
 	var Details = __webpack_require__(221);
 	var Help = __webpack_require__(220);
+	var About = __webpack_require__(222);
+	var ResultsAPI = __webpack_require__(223);
 
 	var Greeter = React.createClass({
 	  displayName: 'Greeter',
@@ -131,6 +133,7 @@
 	    Route,
 	    { path: '/', component: Main },
 	    React.createElement(Route, { path: 'help', component: Help }),
+	    React.createElement(Route, { path: 'about', component: About }),
 	    React.createElement(IndexRoute, { component: Form })
 	  )
 	), document.getElementById('app'));
@@ -24920,6 +24923,8 @@
 	var Results = __webpack_require__(218);
 	var Nav = __webpack_require__(219);
 	var Help = __webpack_require__(220);
+	var About = __webpack_require__(222);
+	var ResultsAPI = __webpack_require__(223);
 
 	//Where the hero image goes
 	var Main = React.createClass({
@@ -24953,6 +24958,8 @@
 	var Results = __webpack_require__(218);
 	var Nav = __webpack_require__(219);
 	var Help = __webpack_require__(220);
+	var About = __webpack_require__(222);
+	var ResultsAPI = __webpack_require__(223);
 
 	var Form = React.createClass({
 	  displayName: 'Form',
@@ -25008,7 +25015,8 @@
 	        'button',
 	        null,
 	        'Submit'
-	      )
+	      ),
+	      React.createElement(ResultsAPI, null)
 	    );
 	  }
 	});
@@ -25027,6 +25035,8 @@
 	var Nav = __webpack_require__(219);
 	var Details = __webpack_require__(221);
 	var Help = __webpack_require__(220);
+	var About = __webpack_require__(222);
+	var ResultsAPI = __webpack_require__(223);
 
 	var Results = React.createClass({
 	  displayName: 'Results',
@@ -25035,12 +25045,13 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(Details, null),
 	      React.createElement(
 	        'h3',
 	        null,
-	        'MATTY ENTER YOUR INFO HERE!'
-	      )
+	        'Results'
+	      ),
+	      React.createElement(Details, null),
+	      React.createElement(ResultsAPI, null)
 	    );
 	  }
 	});
@@ -25058,11 +25069,14 @@
 	var Results = __webpack_require__(218);
 	var Main = __webpack_require__(216);
 	var Help = __webpack_require__(220);
+	var About = __webpack_require__(222);
+	var ResultsAPI = __webpack_require__(223);
 
 	//ES6 destructuring
 
 	var _require = __webpack_require__(159),
-	    Link = _require.Link;
+	    Link = _require.Link,
+	    IndexLink = _require.IndexLink;
 
 	//Where the hero image goes
 
@@ -25080,15 +25094,21 @@
 	        'Nav component'
 	      ),
 	      React.createElement(
-	        Link,
-	        { to: '/' },
+	        IndexLink,
+	        { to: '/', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
 	        'Calculate your comm\xFCt'
 	      ),
 	      React.createElement('br', null),
 	      React.createElement(
 	        Link,
-	        { to: '/help' },
+	        { to: '/help', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
 	        'Help'
+	      ),
+	      React.createElement('br', null),
+	      React.createElement(
+	        Link,
+	        { to: '/about', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
+	        'About'
 	      )
 	    );
 	  }
@@ -25108,6 +25128,9 @@
 	var Nav = __webpack_require__(219);
 	var Details = __webpack_require__(221);
 	var Main = __webpack_require__(216);
+	var About = __webpack_require__(222);
+	var ResultsAPI = __webpack_require__(223);
+
 	//Where the hero image goes
 	var Help = React.createClass({
 	  displayName: 'Help',
@@ -25119,7 +25142,7 @@
 	      React.createElement(
 	        'h3',
 	        null,
-	        'Help'
+	        'Help section'
 	      )
 	    );
 	  }
@@ -25138,6 +25161,8 @@
 	var Results = __webpack_require__(218);
 	var Nav = __webpack_require__(219);
 	var Help = __webpack_require__(220);
+	var About = __webpack_require__(222);
+	var ResultsAPI = __webpack_require__(223);
 
 	//Where the hero image goes
 	var Details = React.createClass({
@@ -25181,6 +25206,71 @@
 	});
 
 	module.exports = Details;
+
+/***/ },
+/* 222 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Form = __webpack_require__(217);
+	var Results = __webpack_require__(218);
+	var Nav = __webpack_require__(219);
+	var Help = __webpack_require__(220);
+	var ResultsAPI = __webpack_require__(223);
+
+	//Where the hero image goes
+	var About = React.createClass({
+	  displayName: 'About',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h3',
+	        null,
+	        'About section'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = About;
+
+/***/ },
+/* 223 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Main = __webpack_require__(216);
+	var Form = __webpack_require__(217);
+	var Nav = __webpack_require__(219);
+	var Details = __webpack_require__(221);
+	var Help = __webpack_require__(220);
+	var About = __webpack_require__(222);
+	var Results = __webpack_require__(218);
+
+	var ResultsAPI = React.createClass({
+	  displayName: 'ResultsAPI',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h3',
+	        null,
+	        'MATTY ENTER YOUR INFO HERE!'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = ResultsAPI;
 
 /***/ }
 /******/ ]);

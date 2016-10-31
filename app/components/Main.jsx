@@ -3,6 +3,8 @@ var Form = require('Form');
 var Results = require('Results');
 var Nav = require('Nav');
 var Help = require('Help');
+var About = require('About');
+var ResultsAPI = require('ResultsAPI');
 
 //Where the hero image goes
 var Main = React.createClass({
