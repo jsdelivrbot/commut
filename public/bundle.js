@@ -57,9 +57,12 @@
 	    IndexRoute = _require.IndexRoute,
 	    hashHistory = _require.hashHistory;
 
-	var Hero = __webpack_require__(216);
+	var Main = __webpack_require__(216);
 	var Form = __webpack_require__(217);
 	var Results = __webpack_require__(218);
+	var Nav = __webpack_require__(219);
+	var Details = __webpack_require__(221);
+	var Help = __webpack_require__(220);
 
 	var Greeter = React.createClass({
 	  displayName: 'Greeter',
@@ -88,7 +91,7 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(Hero, null),
+	      React.createElement(Main, null),
 	      React.createElement(Form, { onNewInput: this.handleNewInput }),
 	      React.createElement(
 	        'div',
@@ -124,7 +127,12 @@
 	React.createElement(
 	  Router,
 	  { history: hashHistory },
-	  React.createElement(Route, { path: '/', component: Hero })
+	  React.createElement(
+	    Route,
+	    { path: '/', component: Main },
+	    React.createElement(Route, { path: 'help', component: Help }),
+	    React.createElement(IndexRoute, { component: Form })
+	  )
 	), document.getElementById('app'));
 
 /***/ },
@@ -24910,25 +24918,29 @@
 	var React = __webpack_require__(1);
 	var Form = __webpack_require__(217);
 	var Results = __webpack_require__(218);
+	var Nav = __webpack_require__(219);
+	var Help = __webpack_require__(220);
 
 	//Where the hero image goes
-	var Hero = React.createClass({
-	  displayName: 'Hero',
+	var Main = React.createClass({
+	  displayName: 'Main',
 
 	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      null,
+	      React.createElement(Nav, null),
 	      React.createElement(
 	        'h1',
 	        null,
 	        'Welcome to comm\xFCt'
-	      )
+	      ),
+	      this.props.children
 	    );
 	  }
 	});
 
-	module.exports = Hero;
+	module.exports = Main;
 
 /***/ },
 /* 217 */
@@ -24937,8 +24949,10 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Hero = __webpack_require__(216);
+	var Main = __webpack_require__(216);
 	var Results = __webpack_require__(218);
+	var Nav = __webpack_require__(219);
+	var Help = __webpack_require__(220);
 
 	var Form = React.createClass({
 	  displayName: 'Form',
@@ -25008,8 +25022,11 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Hero = __webpack_require__(216);
+	var Main = __webpack_require__(216);
 	var Form = __webpack_require__(217);
+	var Nav = __webpack_require__(219);
+	var Details = __webpack_require__(221);
+	var Help = __webpack_require__(220);
 
 	var Results = React.createClass({
 	  displayName: 'Results',
@@ -25018,6 +25035,7 @@
 	    return React.createElement(
 	      'div',
 	      null,
+	      React.createElement(Details, null),
 	      React.createElement(
 	        'h3',
 	        null,
@@ -25028,6 +25046,141 @@
 	});
 
 	module.exports = Results;
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Form = __webpack_require__(217);
+	var Results = __webpack_require__(218);
+	var Main = __webpack_require__(216);
+	var Help = __webpack_require__(220);
+
+	//ES6 destructuring
+
+	var _require = __webpack_require__(159),
+	    Link = _require.Link;
+
+	//Where the hero image goes
+
+
+	var Nav = React.createClass({
+	  displayName: 'Nav',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h2',
+	        null,
+	        'Nav component'
+	      ),
+	      React.createElement(
+	        Link,
+	        { to: '/' },
+	        'Calculate your comm\xFCt'
+	      ),
+	      React.createElement('br', null),
+	      React.createElement(
+	        Link,
+	        { to: '/help' },
+	        'Help'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Nav;
+
+/***/ },
+/* 220 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Form = __webpack_require__(217);
+	var Results = __webpack_require__(218);
+	var Nav = __webpack_require__(219);
+	var Details = __webpack_require__(221);
+	var Main = __webpack_require__(216);
+	//Where the hero image goes
+	var Help = React.createClass({
+	  displayName: 'Help',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h3',
+	        null,
+	        'Help'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Help;
+
+/***/ },
+/* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Form = __webpack_require__(217);
+	var Results = __webpack_require__(218);
+	var Nav = __webpack_require__(219);
+	var Help = __webpack_require__(220);
+
+	//Where the hero image goes
+	var Details = React.createClass({
+	  displayName: 'Details',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h3',
+	        null,
+	        'Details: Soon to come'
+	      ),
+	      '//DOES NOT WORK YET // ',
+	      React.createElement(
+	        'h2',
+	        null,
+	        'Your details:'
+	      ),
+	      '// ',
+	      React.createElement(
+	        'h3',
+	        null,
+	        this.state.startingAddress
+	      ),
+	      '// ',
+	      React.createElement(
+	        'h3',
+	        null,
+	        this.state.departureAirport
+	      ),
+	      '// ',
+	      React.createElement(
+	        'h3',
+	        null,
+	        this.state.flightNumber
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Details;
 
 /***/ }
 /******/ ]);

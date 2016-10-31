@@ -3,11 +3,13 @@ var ReactDOM = require('react-dom');
 
 //Object destructuring that comes from ES6
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
-
-
-var Hero = require('Hero');
+var Main = require('Main');
 var Form = require('Form');
 var Results = require('Results');
+var Nav = require('Nav');
+var Details = require('Details');
+var Help = require('Help');
+
 
 var Greeter = React.createClass({
   getDefaultProps: function () {
@@ -34,7 +36,7 @@ var Greeter = React.createClass({
     return (
       <div>
 
-        <Hero/>
+        <Main/>
         <Form onNewInput={this.handleNewInput}/>
 
       <div>
@@ -56,8 +58,9 @@ var Greeter = React.createClass({
 ReactDOM.render(
   // <Greeter/>,
   <Router history={hashHistory}>
-    <Route path="/" component={Hero}>
-
+    <Route path="/" component={Main}>
+      <Route path="help" component={Help}/>
+      <IndexRoute component={Form}/>
     </Route>
   </Router>,
   document.getElementById('app')

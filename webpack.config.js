@@ -7,9 +7,12 @@ module.exports = {
   resolve: {
     root: __dirname,
     alias: {
+      Nav: 'app/components/Nav.jsx',
       Form: 'app/components/Form.jsx',
-      Hero: 'app/components/Hero.jsx',
-      Results: 'app/components/Results.jsx'
+      Main: 'app/components/Main.jsx',
+      Results: 'app/components/Results.jsx',
+      Details: 'app/components/Details.jsx',
+      Help: 'app/components/Help.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },
