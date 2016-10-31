@@ -1,4 +1,6 @@
 var React = require('react');
+var Form = require('./Form');
+var Results = require('./Results')
 
 //Where the hero image goes
 var Hero = React.createClass({

@@ -1,4 +1,6 @@
 var React = require('react');
+var Hero = require('./Hero');
+var Form = require('./Form')
 
 
 var Results = React.createClass({
