@@ -48,7 +48,7 @@ var Greeter = React.createClass({
       </div>
 
 
-        <Results/>
+      <Results/>
       </div>
 
     );
