@@ -1,11 +1,9 @@
 var React = require('react');
-var Form = require('Form');
-var Results = require('Results');
+var CommutForm = require('CommutForm');
 var Nav = require('Nav');
 var Help = require('Help');
-var ResultsAPI = require('ResultsAPI');
+var CommutMessage = require('CommutMessage');
 
-//Where the hero image goes
 var About = React.createClass({
   render: function () {
     return (

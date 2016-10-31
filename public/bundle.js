@@ -58,71 +58,45 @@
 	    hashHistory = _require.hashHistory;
 
 	var Main = __webpack_require__(216);
-	var Form = __webpack_require__(217);
-	var Results = __webpack_require__(218);
-	var Nav = __webpack_require__(219);
-	var Details = __webpack_require__(221);
-	var Help = __webpack_require__(220);
-	var About = __webpack_require__(222);
-	var ResultsAPI = __webpack_require__(223);
+	var Commut = __webpack_require__(222);
+	var Nav = __webpack_require__(217);
+	var Help = __webpack_require__(219);
+	var About = __webpack_require__(220);
 
-	var Greeter = React.createClass({
-	  displayName: 'Greeter',
+	// var Greeter = React.createClass({
+	//   getDefaultProps: function () {
+	//     return {
+	//       name: 'Stranger',
+	//       message: 'I am not impressed by your performance',
+	//       startingAddress: '123 Main St',
+	//       departureAirport: 'PDX',
+	//       flightNumber: 'US123'
+	//     };
+	//   },
+	//   getInitialState: function () {
+	//     return {
+	//       startingAddress: this.props.startingAddress,
+	//       departureAirport: this.props.departureAirport,
+	//       flightNumber: this.props.flightNumber
+	//     };
+	//   },
+	//   handleNewInput: function (updates) {
+	//     this.setState(updates);
+	//   },
+	//   render: function () {
+	//
+	//     return (
+	//       <div>
+	//
+	//         <Main/>
+	//         <Form onNewInput={this.handleNewInput}/>
+	//
+	//       <Results/>
+	//       </div>
+	//     );
+	//   }
+	// });
 
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      name: 'Stranger',
-	      message: 'I am not impressed by your performance',
-	      startingAddress: '123 Main St',
-	      departureAirport: 'PDX',
-	      flightNumber: 'US123'
-	    };
-	  },
-	  getInitialState: function getInitialState() {
-	    return {
-	      startingAddress: this.props.startingAddress,
-	      departureAirport: this.props.departureAirport,
-	      flightNumber: this.props.flightNumber
-	    };
-	  },
-	  handleNewInput: function handleNewInput(updates) {
-	    this.setState(updates);
-	  },
-	  render: function render() {
-
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(Main, null),
-	      React.createElement(Form, { onNewInput: this.handleNewInput }),
-	      React.createElement(
-	        'div',
-	        null,
-	        React.createElement(
-	          'h2',
-	          null,
-	          'Your details:'
-	        ),
-	        React.createElement(
-	          'h3',
-	          null,
-	          this.state.startingAddress
-	        ),
-	        React.createElement(
-	          'h3',
-	          null,
-	          this.state.departureAirport
-	        ),
-	        React.createElement(
-	          'h3',
-	          null,
-	          this.state.flightNumber
-	        )
-	      ),
-	      React.createElement(Results, null)
-	    );
-	  }
-	});
 
 	ReactDOM.render(
 	// <Greeter/>,
@@ -134,7 +108,7 @@
 	    { path: '/', component: Main },
 	    React.createElement(Route, { path: 'help', component: Help }),
 	    React.createElement(Route, { path: 'about', component: About }),
-	    React.createElement(IndexRoute, { component: Form })
+	    React.createElement(IndexRoute, { component: Commut })
 	  )
 	), document.getElementById('app'));
 
@@ -24919,17 +24893,16 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Form = __webpack_require__(217);
-	var Results = __webpack_require__(218);
-	var Nav = __webpack_require__(219);
-	var Help = __webpack_require__(220);
-	var About = __webpack_require__(222);
-	var ResultsAPI = __webpack_require__(223);
+	var Nav = __webpack_require__(217);
 
 	//Where the hero image goes
 	var Main = React.createClass({
 	  displayName: 'Main',
 
+	  handleSearch: function handleSearch(startingAddress, departureAirport, flightNumber) {
+	    alert(startingAddress);
+	    alert(departureAirport);
+	  },
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -24954,132 +24927,17 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
+	var CommutForm = __webpack_require__(218);
 	var Main = __webpack_require__(216);
-	var Results = __webpack_require__(218);
-	var Nav = __webpack_require__(219);
-	var Help = __webpack_require__(220);
-	var About = __webpack_require__(222);
-	var ResultsAPI = __webpack_require__(223);
-
-	var Form = React.createClass({
-	  displayName: 'Form',
-
-	  onFormSubmit: function onFormSubmit(e) {
-	    e.preventDefault();
-
-	    var updates = {};
-	    var startAddRef = this.refs.startingAddress;
-	    var depAirRef = this.refs.departureAirport;
-	    var flightNumRef = this.refs.flightNumber;
-
-	    var startingAddress = startAddRef.value;
-	    var departureAirport = depAirRef.value;
-	    var flightNumber = flightNumRef.value;
-
-	    if (startingAddress.length > 0) {
-	      this.refs.startingAddress = '';
-	      updates.startingAddress = startingAddress;
-	    }
-	    if (departureAirport.length > 0) {
-	      this.refs.departureAirport = '';
-	      updates.departureAirport = departureAirport;
-	    }
-	    if (flightNumber.length > 0) {
-	      this.refs.flightNumber = '';
-	      updates.flightNumber = flightNumber;
-	    }
-
-	    this.props.onNewInput(updates);
-	  },
-
-	  render: function render() {
-	    return React.createElement(
-	      'form',
-	      { onSubmit: this.onFormSubmit },
-	      React.createElement(
-	        'div',
-	        null,
-	        React.createElement('input', { type: 'text', ref: 'startingAddress', placeholder: 'Starting Address' })
-	      ),
-	      React.createElement(
-	        'div',
-	        null,
-	        React.createElement('input', { type: 'text', ref: 'departureAirport', placeholder: 'Departure Airport' })
-	      ),
-	      React.createElement(
-	        'div',
-	        null,
-	        React.createElement('input', { type: 'text', ref: 'flightNumber', placeholder: 'Flight Number' })
-	      ),
-	      React.createElement(
-	        'button',
-	        null,
-	        'Submit'
-	      ),
-	      React.createElement(ResultsAPI, null)
-	    );
-	  }
-	});
-
-	module.exports = Form;
-
-/***/ },
-/* 218 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var Main = __webpack_require__(216);
-	var Form = __webpack_require__(217);
-	var Nav = __webpack_require__(219);
-	var Details = __webpack_require__(221);
-	var Help = __webpack_require__(220);
-	var About = __webpack_require__(222);
-	var ResultsAPI = __webpack_require__(223);
-
-	var Results = React.createClass({
-	  displayName: 'Results',
-
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'h3',
-	        null,
-	        'Results'
-	      ),
-	      React.createElement(Details, null),
-	      React.createElement(ResultsAPI, null)
-	    );
-	  }
-	});
-
-	module.exports = Results;
-
-/***/ },
-/* 219 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var Form = __webpack_require__(217);
-	var Results = __webpack_require__(218);
-	var Main = __webpack_require__(216);
-	var Help = __webpack_require__(220);
-	var About = __webpack_require__(222);
-	var ResultsAPI = __webpack_require__(223);
+	var Help = __webpack_require__(219);
+	var About = __webpack_require__(220);
+	var CommutMessage = __webpack_require__(221);
 
 	//ES6 destructuring
 
 	var _require = __webpack_require__(159),
 	    Link = _require.Link,
 	    IndexLink = _require.IndexLink;
-
-	//Where the hero image goes
-
 
 	var Nav = React.createClass({
 	  displayName: 'Nav',
@@ -25117,21 +24975,66 @@
 	module.exports = Nav;
 
 /***/ },
-/* 220 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Form = __webpack_require__(217);
-	var Results = __webpack_require__(218);
-	var Nav = __webpack_require__(219);
-	var Details = __webpack_require__(221);
-	var Main = __webpack_require__(216);
-	var About = __webpack_require__(222);
-	var ResultsAPI = __webpack_require__(223);
 
-	//Where the hero image goes
+	var CommutForm = React.createClass({
+	  displayName: 'CommutForm',
+
+	  onFormSubmit: function onFormSubmit(e) {
+	    e.preventDefault();
+
+	    var startingAddress = this.refs.startingAddress.value;
+	    var departureAirport = this.refs.departureAirport.value;
+	    var flightNumber = this.refs.flightNumber.value;
+
+	    if (startingAddress.length > 0) {
+	      this.refs.startingAddress.value = '';
+	      this.prop.onSearch(startingAddress);
+	    }
+	    if (departureAirport.length > 0) {
+	      this.refs.departureAirport.value = '';
+	      this.prop.onSearch(departureAirport);
+	    }
+	    if (flightNumber.length > 0) {
+	      this.refs.flightNumber.value = '';
+	      this.prop.onSearch(flightNumber);
+	    }
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'form',
+	      { onSubmit: this.onFormSubmit },
+	      React.createElement(
+	        'div',
+	        null,
+	        React.createElement('input', { type: 'text', ref: 'startingAddress', placeholder: 'Starting Address' }),
+	        React.createElement('input', { type: 'text', ref: 'departureAirport', placeholder: 'Departure Airport' }),
+	        React.createElement('input', { type: 'text', ref: 'flightNumber', placeholder: 'Flight Number' })
+	      ),
+	      React.createElement(
+	        'button',
+	        null,
+	        'Submit'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = CommutForm;
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
 	var Help = React.createClass({
 	  displayName: 'Help',
 
@@ -25151,76 +25054,17 @@
 	module.exports = Help;
 
 /***/ },
-/* 221 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Form = __webpack_require__(217);
-	var Results = __webpack_require__(218);
-	var Nav = __webpack_require__(219);
-	var Help = __webpack_require__(220);
-	var About = __webpack_require__(222);
-	var ResultsAPI = __webpack_require__(223);
+	var CommutForm = __webpack_require__(218);
+	var Nav = __webpack_require__(217);
+	var Help = __webpack_require__(219);
+	var CommutMessage = __webpack_require__(221);
 
-	//Where the hero image goes
-	var Details = React.createClass({
-	  displayName: 'Details',
-
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'h3',
-	        null,
-	        'Details: Soon to come'
-	      ),
-	      '//DOES NOT WORK YET // ',
-	      React.createElement(
-	        'h2',
-	        null,
-	        'Your details:'
-	      ),
-	      '// ',
-	      React.createElement(
-	        'h3',
-	        null,
-	        this.state.startingAddress
-	      ),
-	      '// ',
-	      React.createElement(
-	        'h3',
-	        null,
-	        this.state.departureAirport
-	      ),
-	      '// ',
-	      React.createElement(
-	        'h3',
-	        null,
-	        this.state.flightNumber
-	      )
-	    );
-	  }
-	});
-
-	module.exports = Details;
-
-/***/ },
-/* 222 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var Form = __webpack_require__(217);
-	var Results = __webpack_require__(218);
-	var Nav = __webpack_require__(219);
-	var Help = __webpack_require__(220);
-	var ResultsAPI = __webpack_require__(223);
-
-	//Where the hero image goes
 	var About = React.createClass({
 	  displayName: 'About',
 
@@ -25240,37 +25084,104 @@
 	module.exports = About;
 
 /***/ },
-/* 223 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Main = __webpack_require__(216);
-	var Form = __webpack_require__(217);
-	var Nav = __webpack_require__(219);
-	var Details = __webpack_require__(221);
-	var Help = __webpack_require__(220);
-	var About = __webpack_require__(222);
-	var Results = __webpack_require__(218);
 
-	var ResultsAPI = React.createClass({
-	  displayName: 'ResultsAPI',
+	var CommutMessage = React.createClass({
+	  displayName: 'CommutMessage',
 
 	  render: function render() {
+	    var _props = this.props,
+	        startingAddress = _props.startingAddress,
+	        departureAirport = _props.departureAirport,
+	        flightNumber = _props.flightNumber;
+
+
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h2',
+	        null,
+	        'Your details:'
+	      ),
+	      React.createElement(
+	        'h3',
+	        null,
+	        'Start: ',
+	        startingAddress
+	      ),
+	      React.createElement(
+	        'h3',
+	        null,
+	        'Departing from: ',
+	        departureAirport
+	      ),
+	      React.createElement(
+	        'h3',
+	        null,
+	        'Flight Number: ',
+	        flightNumber
+	      )
+	    );
+	  }
+	});
+
+	module.exports = CommutMessage;
+
+/***/ },
+/* 222 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var CommutForm = __webpack_require__(218);
+	var CommutMessage = __webpack_require__(221);
+
+	var Commut = React.createClass({
+	  displayName: 'Commut',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      startingAddress: '123 Main St',
+	      departureAirport: 'PDX',
+	      flightNumber: 'UA123'
+	    };
+	  },
+	  handleSearch: function handleSearch(startingAddress) {
+	    this.setState({
+	      startingAddress: startingAddress,
+	      departureAirport: departureAirport,
+	      flightNumber: flightNumber
+	    });
+	  },
+	  render: function render() {
+	    var _state = this.state,
+	        startingAddress = _state.startingAddress,
+	        departureAirport = _state.departureAirport,
+	        flightNumber = _state.flightNumber;
+
+
 	    return React.createElement(
 	      'div',
 	      null,
 	      React.createElement(
 	        'h3',
 	        null,
-	        'MATTY ENTER YOUR INFO HERE!'
-	      )
+	        'Commut Component'
+	      ),
+	      React.createElement(CommutForm, { onSearch: this.handleSearch }),
+	      React.createElement(CommutMessage, { startingAddress: startingAddress, departureAirport: departureAirport, flightNumber: flightNumber })
 	    );
 	  }
 	});
 
-	module.exports = ResultsAPI;
+	module.exports = Commut;
 
 /***/ }
 /******/ ]);

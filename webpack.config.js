@@ -7,14 +7,13 @@ module.exports = {
   resolve: {
     root: __dirname,
     alias: {
-      Nav: 'app/components/Nav.jsx',
-      Form: 'app/components/Form.jsx',
-      Main: 'app/components/Main.jsx',
-      Results: 'app/components/Results.jsx',
-      Details: 'app/components/Details.jsx',
-      Help: 'app/components/Help.jsx',
       About: 'app/components/About.jsx',
-      ResultsAPI: 'app/components/ResultsAPI.jsx'
+      Commut: 'app/components/Commut.jsx',
+      CommutForm: 'app/components/CommutForm.jsx',
+      CommutMessage: 'app/components/CommutMessage.jsx',
+      Help: 'app/components/Help.jsx',
+      Main: 'app/components/Main.jsx',
+      Nav: 'app/components/Nav.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },
