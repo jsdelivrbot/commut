@@ -25127,9 +25127,13 @@
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      startingAddress: this.props.startingAddress,
-	      departureAirport: this.props.departureAirport,
-	      flightNumber: this.props.flightNumber
+	      isLoading: false,
+	      startingAddress: '123 Main St',
+	      departureAirport: 'PDX',
+	      flightNumber: 'US123',
+	      apiVar1: "Foo",
+	      apiVar2: "Bar",
+	      apiVar3: "Baz"
 	    };
 	  },
 	  handleNewData: function handleNewData(updates) {
@@ -25141,6 +25145,10 @@
 	        startingAddress = _state.startingAddress,
 	        departureAirport = _state.departureAirport,
 	        flightNumber = _state.flightNumber;
+	    var _state2 = this.state,
+	        apiVar1 = _state2.apiVar1,
+	        apiVar2 = _state2.apiVar2,
+	        apiVar3 = _state2.apiVar3;
 
 
 	    return React.createElement(
@@ -25153,7 +25161,7 @@
 	      ),
 	      React.createElement(CommutForm, { onNewData: this.handleNewData }),
 	      React.createElement(CommutMessage, { startingAddress: startingAddress, departureAirport: departureAirport, flightNumber: flightNumber }),
-	      React.createElement(CommutResults, null)
+	      React.createElement(CommutResults, { apiVar1: apiVar1, apiVar2: apiVar2, apiVar3: apiVar3 })
 	    );
 	  }
 	});
@@ -25172,6 +25180,11 @@
 	    displayName: 'CommutResults',
 
 	    render: function render() {
+	        var _props = this.props,
+	            apiVar1 = _props.apiVar1,
+	            apiVar2 = _props.apiVar2,
+	            apiVar3 = _props.apiVar3;
+
 	        return React.createElement(
 	            'div',
 	            null,
@@ -25183,7 +25196,17 @@
 	            React.createElement(
 	                'h3',
 	                null,
-	                'X'
+	                apiVar1
+	            ),
+	            React.createElement(
+	                'h3',
+	                null,
+	                apiVar2
+	            ),
+	            React.createElement(
+	                'h3',
+	                null,
+	                apiVar3
 	            )
 	        );
 	    }

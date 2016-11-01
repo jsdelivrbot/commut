@@ -7,9 +7,13 @@ var CommutResults = require('CommutResults');
 var Commut = React.createClass({
   getInitialState: function () {
     return {
-      startingAddress: this.props.startingAddress,
-      departureAirport: this.props.departureAirport,
-      flightNumber: this.props.flightNumber
+      isLoading: false,
+      startingAddress: '123 Main St',
+      departureAirport: 'PDX',
+      flightNumber: 'US123',
+      apiVar1: "Foo",
+      apiVar2: "Bar",
+      apiVar3: "Baz",
     }
   },
   handleNewData: function (updates) {
@@ -19,12 +23,14 @@ var Commut = React.createClass({
   render: function () {
     var {startingAddress, departureAirport, flightNumber} = this.state;
 
+    var {apiVar1, apiVar2, apiVar3} = this.state;
+
     return (
       <div>
         <h3>Commut Component</h3>
         <CommutForm onNewData={this.handleNewData}/>
         <CommutMessage startingAddress={startingAddress} departureAirport={departureAirport} flightNumber={flightNumber}/>
-        <CommutResults/>
+        <CommutResults apiVar1={apiVar1} apiVar2={apiVar2} apiVar3={apiVar3}/>
       </div>
     )
   }
