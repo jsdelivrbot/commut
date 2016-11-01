@@ -9,6 +9,10 @@ var Nav = require('Nav');
 var Help = require('Help');
 var About = require('About');
 
+//Load foundation that will be refactored later on
+require('style!css!foundation-sites/dist/foundation.min.css')
+$(document).foundation();
+
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
