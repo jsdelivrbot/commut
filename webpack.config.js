@@ -11,6 +11,7 @@ module.exports = {
       Commut: 'app/components/Commut.jsx',
       CommutForm: 'app/components/CommutForm.jsx',
       CommutMessage: 'app/components/CommutMessage.jsx',
+      CommutResults: 'app/components/CommutResults.jsx',
       Help: 'app/components/Help.jsx',
       Main: 'app/components/Main.jsx',
       Nav: 'app/components/Nav.jsx',

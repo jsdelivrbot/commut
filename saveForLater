@@ -1,3 +1,15 @@
+// var that = this;
+//
+// TSA.getTSA(departureAirport).then(function (departureAirport) {
+//   that.setState({
+//     startingAddress: startingAddress,
+//     departureAirport: departureAirport,
+//     flightNumber: flightNumber
+//   });
+// }, function (errorMessage) {
+//   alert(errorMessage);
+// });
+
 // var Greeter = React.createClass({
 //   getDefaultProps: function () {
 //     return {

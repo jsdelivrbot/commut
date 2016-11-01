@@ -4,22 +4,28 @@ var CommutForm = React.createClass({
   onFormSubmit: function (e) {
     e.preventDefault();
 
+    var updates = {};
+
     var startingAddress = this.refs.startingAddress.value;
     var departureAirport = this.refs.departureAirport.value;
     var flightNumber = this.refs.flightNumber.value;
 
     if (startingAddress.length > 0) {
       this.refs.startingAddress.value = '';
-      this.props.onSearch(startingAddress);
+      // this.props.onSearch(startingAddress);
+      updates.startingAddress = startingAddress;
     }
     if (departureAirport.length > 0) {
       this.refs.departureAirport.value = '';
-      this.props.onSearch(departureAirport);
+      // this.props.onSearch(departureAirport);
+      updates.departureAirport = departureAirport;
     }
     if (flightNumber.length > 0) {
       this.refs.flightNumber.value = '';
-      this.props.onSearch(flightNumber);
+      // this.props.onSearch(flightNumber);
+      updates.flightNumber = flightNumber;
     }
+    this.props.onNewData(updates);
 
   },
   render: function () {

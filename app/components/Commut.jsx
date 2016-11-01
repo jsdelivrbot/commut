@@ -1,37 +1,30 @@
 var React = require('react');
 var CommutForm = require('CommutForm');
 var CommutMessage = require('CommutMessage');
-var TSA = require('TSA');
+var CommutResults = require('CommutResults');
+// var TSA = require('TSA');
 
 var Commut = React.createClass({
   getInitialState: function () {
     return {
-      startingAddress: '123 Main St',
-      departureAirport: 'PDX',
-      flightNumber: 'UA123'
+      startingAddress: this.props.startingAddress,
+      departureAirport: this.props.departureAirport,
+      flightNumber: this.props.flightNumber
     }
   },
-  handleSearch: function (startingAddress, departureAirport, flightNumber) {
-    var that = this;
+  handleNewData: function (updates) {
+      this.setState(updates);
+    },
 
-    TSA.getTSA(departureAirport).then(function (departureAirport) {
-      that.setState({
-        startingAddress: startingAddress,
-        departureAirport: departureAirport,
-        flightNumber: flightNumber
-      });
-    }, function (errorMessage) {
-      alert(errorMessage);
-    });
-  },
   render: function () {
     var {startingAddress, departureAirport, flightNumber} = this.state;
 
     return (
       <div>
         <h3>Commut Component</h3>
-        <CommutForm onSearch={this.handleSearch}/>
+        <CommutForm onNewData={this.handleNewData}/>
         <CommutMessage startingAddress={startingAddress} departureAirport={departureAirport} flightNumber={flightNumber}/>
+        <CommutResults/>
       </div>
     )
   }

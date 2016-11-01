@@ -1,9 +1,9 @@
 var React = require('react');
 var CommutForm = require('CommutForm');
+var CommutMessage = require('CommutMessage');
 var Main = require('Main');
 var Help = require('Help');
 var About = require('About');
-var CommutMessage = require('CommutMessage');
 
 //ES6 destructuring
 var {Link, IndexLink} = require('react-router');
