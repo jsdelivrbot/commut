@@ -8,6 +8,7 @@ var Commut = require('Commut');
 var Nav = require('Nav');
 var Help = require('Help');
 var About = require('About');
+var WeatherMessage = require('WeatherMessage');
 
 //Load foundation that will be refactored later on
 require('style!css!foundation-sites/dist/foundation.min.css')

@@ -110,13 +110,14 @@
 	var Nav = __webpack_require__(224);
 	var Help = __webpack_require__(227);
 	var About = __webpack_require__(228);
+	var WeatherMessage = __webpack_require__(231);
 
 	//Load foundation that will be refactored later on
-	__webpack_require__(231);
+	__webpack_require__(232);
 	$(document).foundation();
 
 	//App css
-	__webpack_require__(235);
+	__webpack_require__(236);
 
 	ReactDOM.render(React.createElement(
 	  Router,
@@ -25041,7 +25042,7 @@
 
 	    if (startingAddress.length > 0) {
 	      this.refs.startingAddress.value = '';
-	      // this.props.onSearch(startingAddress);
+	      this.props.onSearch(startingAddress);
 	      updates.startingAddress = startingAddress;
 	    }
 	    if (departureAirport.length > 0) {
@@ -25320,6 +25321,7 @@
 	var CommutForm = __webpack_require__(225);
 	var CommutMessage = __webpack_require__(226);
 	var CommutResults = __webpack_require__(230);
+	var WeatherMessage = __webpack_require__(231);
 	// var TSA = require('TSA');
 
 	var Commut = React.createClass({
@@ -25333,11 +25335,18 @@
 	      flightNumber: 'US123',
 	      apiVar1: "Foo",
 	      apiVar2: "Bar",
-	      apiVar3: "Baz"
+	      apiVar3: "Baz",
+	      temp: 88
 	    };
 	  },
 	  handleNewData: function handleNewData(updates) {
 	    this.setState(updates);
+	  },
+	  handleSearch: function handleSearch(startingAddress) {
+	    this.setState({
+	      startingAddress: startingAddress,
+	      temp: 23
+	    });
 	  },
 
 	  render: function render() {
@@ -25349,6 +25358,9 @@
 	        apiVar1 = _state2.apiVar1,
 	        apiVar2 = _state2.apiVar2,
 	        apiVar3 = _state2.apiVar3;
+	    var _state3 = this.state,
+	        temp = _state3.temp,
+	        startingAddress = _state3.startingAddress;
 
 
 	    return React.createElement(
@@ -25360,7 +25372,7 @@
 	        React.createElement(
 	          'div',
 	          { className: 'large-4 columns' },
-	          React.createElement(CommutForm, { onNewData: this.handleNewData })
+	          React.createElement(CommutForm, { onNewData: this.handleNewData, onSearch: this.handleSearch })
 	        ),
 	        React.createElement(
 	          'div',
@@ -25374,6 +25386,11 @@
 	            'div',
 	            { className: 'large-4 columns' },
 	            React.createElement(CommutResults, { apiVar1: apiVar1, apiVar2: apiVar2, apiVar3: apiVar3 })
+	          ),
+	          React.createElement(
+	            'div',
+	            null,
+	            React.createElement(WeatherMessage, { temp: temp, startingAddress: startingAddress })
 	          )
 	        )
 	      )
@@ -25433,13 +25450,48 @@
 /* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var React = __webpack_require__(8);
+
+	var WeatherMessage = React.createClass({
+	  displayName: 'WeatherMessage',
+
+	  render: function render() {
+	    var _props = this.props,
+	        temp = _props.temp,
+	        startingAddress = _props.startingAddress;
+
+
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h4',
+	        null,
+	        'It is currently ',
+	        temp,
+	        ' degrees at ',
+	        startingAddress,
+	        '.'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = WeatherMessage;
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(232);
+	var content = __webpack_require__(233);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(234)(content, {});
+	var update = __webpack_require__(235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -25456,10 +25508,10 @@
 	}
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(233)();
+	exports = module.exports = __webpack_require__(234)();
 	// imports
 
 
@@ -25470,7 +25522,7 @@
 
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports) {
 
 	/*
@@ -25526,7 +25578,7 @@
 
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -25780,16 +25832,16 @@
 
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(236);
+	var content = __webpack_require__(237);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(234)(content, {});
+	var update = __webpack_require__(235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -25806,10 +25858,10 @@
 	}
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(233)();
+	exports = module.exports = __webpack_require__(234)();
 	// imports
 
 

@@ -12,7 +12,7 @@ var CommutForm = React.createClass({
 
     if (startingAddress.length > 0) {
       this.refs.startingAddress.value = '';
-      // this.props.onSearch(startingAddress);
+      this.props.onSearch(startingAddress);
       updates.startingAddress = startingAddress;
     }
     if (departureAirport.length > 0) {
