@@ -25266,6 +25266,26 @@
 	              null,
 	              React.createElement(
 	                'a',
+	                { href: 'https://github.com/reactjs/redux' },
+	                'Redux'
+	              ),
+	              ' - Redux is a predictable state container for JavaScript apps.'
+	            ),
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement(
+	                'a',
+	                { href: 'https://github.com/nodejs/node' },
+	                'Node.js'
+	              ),
+	              ' - Node.js is a JavaScript runtime built on Chrome\'s V8 JavaScript engine.'
+	            ),
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement(
+	                'a',
 	                { href: 'https://developers.google.com/maps/' },
 	                'Google Maps API'
 	              ),

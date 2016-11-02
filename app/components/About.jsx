@@ -27,6 +27,12 @@ var About = React.createClass({
                   Front-End framework used.
               </li>
               <li>
+                <a href="https://github.com/reactjs/redux">Redux</a> - Redux is a predictable state container for JavaScript apps.
+              </li>
+              <li>
+                <a href="https://github.com/nodejs/node">Node.js</a> - Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+              </li>
+              <li>
                 <a href="https://developers.google.com/maps/">Google Maps API</a> - Google Maps API was used to search road traffic and direction data.
               </li>
               <li>
