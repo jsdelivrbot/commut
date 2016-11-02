@@ -6,10 +6,10 @@ var CommutMessage = React.createClass({
 
     return (
       <div>
-        <h2>Your details:</h2>
-        <h3>Start: {startingAddress}</h3>
-        <h3>Departing from: {departureAirport}</h3>
-        <h3>Flight Number: {flightNumber}</h3>
+        <h4>Your details:</h4>
+        <h6>Start: {startingAddress}</h6>
+        <h6>Departing from: {departureAirport}</h6>
+        <h6>Flight Number: {flightNumber}</h6>
       </div>
     )
   }

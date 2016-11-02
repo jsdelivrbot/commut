@@ -24927,16 +24927,11 @@
 	      null,
 	      React.createElement(Nav, null),
 	      React.createElement(
-	        'h1',
-	        null,
-	        'Welcome to comm\xFCt'
-	      ),
-	      React.createElement(
 	        'div',
 	        { className: 'row' },
 	        React.createElement(
 	          'div',
-	          { className: 'columns medium-6 large-4 small-centered' },
+	          { className: 'columns small-centered' },
 	          this.props.children
 	        )
 	      )
@@ -24971,28 +24966,49 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'top-bar' },
 	      React.createElement(
-	        'h2',
-	        null,
-	        'Nav component'
+	        'div',
+	        { className: 'top-bar-left' },
+	        React.createElement(
+	          'ul',
+	          { className: 'menu', 'data-dropdown-menu': true },
+	          React.createElement(
+	            'li',
+	            { className: 'menu-text' },
+	            React.createElement(
+	              IndexLink,
+	              { to: '/', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
+	              'comm\xFCt'
+	            )
+	          )
+	        )
 	      ),
 	      React.createElement(
-	        IndexLink,
-	        { to: '/', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
-	        'Calculate your comm\xFCt'
-	      ),
-	      React.createElement('br', null),
-	      React.createElement(
-	        Link,
-	        { to: '/help', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
-	        'Help'
-	      ),
-	      React.createElement('br', null),
-	      React.createElement(
-	        Link,
-	        { to: '/about', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
-	        'About'
+	        'div',
+	        { className: 'top-bar-right' },
+	        React.createElement(
+	          'ul',
+	          { className: 'menu' },
+	          React.createElement(
+	            'li',
+	            null,
+	            React.createElement(
+	              Link,
+	              { to: '/about', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
+	              'About'
+	            )
+	          ),
+	          React.createElement(
+	            'li',
+	            null,
+	            React.createElement(
+	              Link,
+	              { to: '/help', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
+	              'Help'
+	            )
+	          )
+	        )
 	      )
 	    );
 	  }
@@ -25042,6 +25058,11 @@
 	      'div',
 	      null,
 	      React.createElement(
+	        'h3',
+	        null,
+	        'Calculate your comm\xFCt'
+	      ),
+	      React.createElement(
 	        'form',
 	        { onSubmit: this.onFormSubmit },
 	        React.createElement(
@@ -25061,7 +25082,7 @@
 	        ),
 	        React.createElement(
 	          'button',
-	          null,
+	          { className: 'button small' },
 	          'Submit'
 	        )
 	      )
@@ -25093,24 +25114,24 @@
 	      'div',
 	      null,
 	      React.createElement(
-	        'h2',
+	        'h4',
 	        null,
 	        'Your details:'
 	      ),
 	      React.createElement(
-	        'h3',
+	        'h6',
 	        null,
 	        'Start: ',
 	        startingAddress
 	      ),
 	      React.createElement(
-	        'h3',
+	        'h6',
 	        null,
 	        'Departing from: ',
 	        departureAirport
 	      ),
 	      React.createElement(
-	        'h3',
+	        'h6',
 	        null,
 	        'Flight Number: ',
 	        flightNumber
@@ -25174,18 +25195,75 @@
 	      'div',
 	      null,
 	      React.createElement(
-	        'h3',
-	        null,
-	        'About section'
+	        'h1',
+	        { className: 'text-center' },
+	        'About'
 	      ),
 	      React.createElement(
 	        'p',
 	        null,
-	        'Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic. Gumbo beet greens corn soko endive gumbo gourd.',
-	        React.createElement('br', null),
-	        'Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.',
-	        React.createElement('br', null),
-	        'Turnip greens yarrow ricebean rutabaga endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter purslane kale. Celery potato scallion desert raisin horseradish spinach carrot soko. Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea. Brussels sprout coriander water chestnut gourd swiss chard wakame kohlrabi beetroot carrot watercress. Corn amaranth salsify bunya nuts nori azuki bean chickweed potato bell pepper artichoke.'
+	        'This is a commuting application build on React. ',
+	        React.createElement(
+	          'a',
+	          { href: 'https://github.com/mwilkin' },
+	          'Matt Wilkin'
+	        ),
+	        ' and ',
+	        React.createElement(
+	          'a',
+	          { href: 'https://github.com/maskrap' },
+	          'Sam Park'
+	        ),
+	        ' built this app during their five-week internship at DevelopmentNow.'
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        'Here are some of the tools we used:'
+	      ),
+	      React.createElement(
+	        'ul',
+	        null,
+	        React.createElement(
+	          'li',
+	          null,
+	          React.createElement(
+	            'a',
+	            { href: 'https://facebook.github.io/react' },
+	            'React'
+	          ),
+	          ' - This was the JavaScript framework used.'
+	        ),
+	        React.createElement(
+	          'li',
+	          null,
+	          React.createElement(
+	            'a',
+	            { href: 'https://github.com/zurb/foundation-sites' },
+	            'Foundation'
+	          ),
+	          ' - This was the Front-End framework used.'
+	        ),
+	        React.createElement(
+	          'li',
+	          null,
+	          React.createElement(
+	            'a',
+	            { href: 'https://developers.google.com/maps/' },
+	            'Google Maps API'
+	          ),
+	          ' - Google Maps API was used to search road traffic and direction data.'
+	        ),
+	        React.createElement(
+	          'li',
+	          null,
+	          React.createElement(
+	            'a',
+	            { href: 'https://developer.flightstats.com/api-docs/flightstatus/v2' },
+	            'FlightStats API'
+	          ),
+	          ' - FlightStats API was used to search flight information data.'
+	        )
 	      )
 	    );
 	  }
@@ -25238,13 +25316,24 @@
 	      'div',
 	      null,
 	      React.createElement(
-	        'h3',
-	        null,
-	        'Commut Component'
+	        'div',
+	        { className: 'small-4 columns' },
+	        React.createElement(CommutForm, { onNewData: this.handleNewData })
 	      ),
-	      React.createElement(CommutForm, { onNewData: this.handleNewData }),
-	      React.createElement(CommutMessage, { startingAddress: startingAddress, departureAirport: departureAirport, flightNumber: flightNumber }),
-	      React.createElement(CommutResults, { apiVar1: apiVar1, apiVar2: apiVar2, apiVar3: apiVar3 })
+	      React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'div',
+	          { className: 'small-2 columns' },
+	          React.createElement(CommutMessage, { startingAddress: startingAddress, departureAirport: departureAirport, flightNumber: flightNumber })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'small-6 columns' },
+	          React.createElement(CommutResults, { apiVar1: apiVar1, apiVar2: apiVar2, apiVar3: apiVar3 })
+	        )
+	      )
 	    );
 	  }
 	});
@@ -25272,22 +25361,22 @@
 	            'div',
 	            null,
 	            React.createElement(
-	                'h2',
+	                'h4',
 	                null,
 	                'Your results:'
 	            ),
 	            React.createElement(
-	                'h3',
+	                'h6',
 	                null,
 	                apiVar1
 	            ),
 	            React.createElement(
-	                'h3',
+	                'h6',
 	                null,
 	                apiVar2
 	            ),
 	            React.createElement(
-	                'h3',
+	                'h6',
 	                null,
 	                apiVar3
 	            )
