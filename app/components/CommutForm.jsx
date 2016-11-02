@@ -43,7 +43,6 @@ var CommutForm = React.createClass({
           <div>
             <input type="text" ref="flightNumber" placeholder="Flight Number"/>
           </div>
-            <button>Submit</button>
 
           <button className="button small">Submit</button>
         </form>

@@ -26,18 +26,20 @@ var Commut = React.createClass({
     var {apiVar1, apiVar2, apiVar3} = this.state;
 
     return (
-      <div>
-        <div className="small-4 columns">
+      <div className="row">
+        <div className="small-12 large-expand columns">
+        <div className="large-4 columns">
           <CommutForm onNewData={this.handleNewData}/>
         </div>
         <div>
-          <div className="small-2 columns">
+          <div className="large-4 columns">
             <CommutMessage startingAddress={startingAddress} departureAirport={departureAirport} flightNumber={flightNumber}/>
           </div>
-          <div className="small-6 columns">
+          <div className="large-4 columns">
             <CommutResults apiVar1={apiVar1} apiVar2={apiVar2} apiVar3={apiVar3}/>
           </div>
         </div>
+      </div>
       </div>
     )
   }

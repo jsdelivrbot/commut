@@ -24978,8 +24978,8 @@
 	            { className: 'menu-text' },
 	            React.createElement(
 	              IndexLink,
-	              { to: '/', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
-	              'comm\xFCt'
+	              { to: '/', activeClassName: 'active' },
+	              React.createElement('img', { src: 'http://i.imgur.com/8ZW2fKD.png', alt: 'logo', className: 'img-responsive' })
 	            )
 	          )
 	        )
@@ -25146,28 +25146,36 @@
 /* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var React = __webpack_require__(8);
 
 	var Help = React.createClass({
-	  displayName: 'Help',
+	  displayName: "Help",
 
 	  render: function render() {
 	    return React.createElement(
-	      'div',
+	      "div",
 	      null,
 	      React.createElement(
-	        'h3',
-	        null,
-	        'Help section'
-	      ),
-	      React.createElement(
-	        'p',
-	        null,
-	        'Beetroot water spinach okra water chestnut ricebean pea catsear courgette summer purslane. Water spinach arugula pea tatsoi aubergine spring onion bush tomato kale radicchio turnip chicory salsify pea sprouts fava bean. Dandelion zucchini burdock yarrow chickpea dandelion sorrel courgette turnip greens tigernut soybean radish artichoke wattle seed endive groundnut broccoli arugula.',
-	        React.createElement('br', null),
-	        'Soko radicchio bunya nuts gram dulse silver beet parsnip napa cabbage lotus root sea lettuce brussels sprout cabbage. Catsear cauliflower garbanzo yarrow salsify chicory garlic bell pepper napa cabbage lettuce tomato kale arugula melon sierra leone bologi rutabaga tigernut. Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic. J\xEDcama garlic courgette coriander radicchio plantain scallion cauliflower fava bean desert raisin spring onion chicory bunya nuts. Sea lettuce water spinach gram fava bean leek dandelion silver beet eggplant bush tomato.'
+	        "div",
+	        { className: "row" },
+	        React.createElement(
+	          "div",
+	          { className: "small-4 columns small-centered" },
+	          React.createElement(
+	            "h3",
+	            null,
+	            "Help section"
+	          ),
+	          React.createElement(
+	            "p",
+	            null,
+	            "Beetroot water spinach okra water chestnut ricebean pea catsear courgette summer purslane. Water spinach arugula pea tatsoi aubergine spring onion bush tomato kale radicchio turnip chicory salsify pea sprouts fava bean. Dandelion zucchini burdock yarrow chickpea dandelion sorrel courgette turnip greens tigernut soybean radish artichoke wattle seed endive groundnut broccoli arugula.",
+	            React.createElement("br", null),
+	            "Soko radicchio bunya nuts gram dulse silver beet parsnip napa cabbage lotus root sea lettuce brussels sprout cabbage. Catsear cauliflower garbanzo yarrow salsify chicory garlic bell pepper napa cabbage lettuce tomato kale arugula melon sierra leone bologi rutabaga tigernut. Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic. J\xEDcama garlic courgette coriander radicchio plantain scallion cauliflower fava bean desert raisin spring onion chicory bunya nuts. Sea lettuce water spinach gram fava bean leek dandelion silver beet eggplant bush tomato."
+	          )
+	        )
 	      )
 	    );
 	  }
@@ -25195,74 +25203,82 @@
 	      'div',
 	      null,
 	      React.createElement(
-	        'h1',
-	        { className: 'text-center' },
-	        'About'
-	      ),
-	      React.createElement(
-	        'p',
-	        null,
-	        'This is a commuting application build on React. ',
+	        'div',
+	        { className: 'row' },
 	        React.createElement(
-	          'a',
-	          { href: 'https://github.com/mwilkin' },
-	          'Matt Wilkin'
-	        ),
-	        ' and ',
-	        React.createElement(
-	          'a',
-	          { href: 'https://github.com/maskrap' },
-	          'Sam Park'
-	        ),
-	        ' built this app during their five-week internship at DevelopmentNow.'
-	      ),
-	      React.createElement(
-	        'p',
-	        null,
-	        'Here are some of the tools we used:'
-	      ),
-	      React.createElement(
-	        'ul',
-	        null,
-	        React.createElement(
-	          'li',
-	          null,
+	          'div',
+	          { className: 'small-4 columns small-centered' },
 	          React.createElement(
-	            'a',
-	            { href: 'https://facebook.github.io/react' },
-	            'React'
+	            'h1',
+	            { className: 'text-center' },
+	            'About'
 	          ),
-	          ' - This was the JavaScript framework used.'
-	        ),
-	        React.createElement(
-	          'li',
-	          null,
 	          React.createElement(
-	            'a',
-	            { href: 'https://github.com/zurb/foundation-sites' },
-	            'Foundation'
+	            'p',
+	            null,
+	            'This is a commuting application build on React. ',
+	            React.createElement(
+	              'a',
+	              { href: 'https://github.com/mwilkin' },
+	              'Matt Wilkin'
+	            ),
+	            ' and ',
+	            React.createElement(
+	              'a',
+	              { href: 'https://github.com/maskrap' },
+	              'Sam Park'
+	            ),
+	            ' built this app during their five-week internship at DevelopmentNow.'
 	          ),
-	          ' - This was the Front-End framework used.'
-	        ),
-	        React.createElement(
-	          'li',
-	          null,
 	          React.createElement(
-	            'a',
-	            { href: 'https://developers.google.com/maps/' },
-	            'Google Maps API'
+	            'p',
+	            null,
+	            'Here are some of the tools we used:'
 	          ),
-	          ' - Google Maps API was used to search road traffic and direction data.'
-	        ),
-	        React.createElement(
-	          'li',
-	          null,
 	          React.createElement(
-	            'a',
-	            { href: 'https://developer.flightstats.com/api-docs/flightstatus/v2' },
-	            'FlightStats API'
-	          ),
-	          ' - FlightStats API was used to search flight information data.'
+	            'ul',
+	            null,
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement(
+	                'a',
+	                { href: 'https://facebook.github.io/react' },
+	                'React'
+	              ),
+	              ' - This was the JavaScript framework used.'
+	            ),
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement(
+	                'a',
+	                { href: 'https://github.com/zurb/foundation-sites' },
+	                'Foundation'
+	              ),
+	              ' - This was the Front-End framework used.'
+	            ),
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement(
+	                'a',
+	                { href: 'https://developers.google.com/maps/' },
+	                'Google Maps API'
+	              ),
+	              ' - Google Maps API was used to search road traffic and direction data.'
+	            ),
+	            React.createElement(
+	              'li',
+	              null,
+	              React.createElement(
+	                'a',
+	                { href: 'https://developer.flightstats.com/api-docs/flightstatus/v2' },
+	                'FlightStats API'
+	              ),
+	              ' - FlightStats API was used to search flight information data.'
+	            )
+	          )
 	        )
 	      )
 	    );
@@ -25314,24 +25330,28 @@
 
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'row' },
 	      React.createElement(
 	        'div',
-	        { className: 'small-4 columns' },
-	        React.createElement(CommutForm, { onNewData: this.handleNewData })
-	      ),
-	      React.createElement(
-	        'div',
-	        null,
+	        { className: 'small-12 large-expand columns' },
 	        React.createElement(
 	          'div',
-	          { className: 'small-2 columns' },
-	          React.createElement(CommutMessage, { startingAddress: startingAddress, departureAirport: departureAirport, flightNumber: flightNumber })
+	          { className: 'large-4 columns' },
+	          React.createElement(CommutForm, { onNewData: this.handleNewData })
 	        ),
 	        React.createElement(
 	          'div',
-	          { className: 'small-6 columns' },
-	          React.createElement(CommutResults, { apiVar1: apiVar1, apiVar2: apiVar2, apiVar3: apiVar3 })
+	          null,
+	          React.createElement(
+	            'div',
+	            { className: 'large-4 columns' },
+	            React.createElement(CommutMessage, { startingAddress: startingAddress, departureAirport: departureAirport, flightNumber: flightNumber })
+	          ),
+	          React.createElement(
+	            'div',
+	            { className: 'large-4 columns' },
+	            React.createElement(CommutResults, { apiVar1: apiVar1, apiVar2: apiVar2, apiVar3: apiVar3 })
+	          )
 	        )
 	      )
 	    );
