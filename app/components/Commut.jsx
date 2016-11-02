@@ -26,7 +26,7 @@ var Commut = React.createClass({
     //We're setting that to this because the "this" binding get's lost when we set setState below. Setting that to this, fixes that temporarily
     var that = this;
 
-    openWeatherMap.getTemp(startingAddress).then(function (startingAddress) {
+    openWeatherMap.getTemp(startingAddress).then(function (temp) {
       that.setState({
         startingAddress: startingAddress,
         temp: temp

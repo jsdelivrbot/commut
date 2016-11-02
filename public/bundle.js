@@ -25347,7 +25347,7 @@
 	    //We're setting that to this because the "this" binding get's lost when we set setState below. Setting that to this, fixes that temporarily
 	    var that = this;
 
-	    openWeatherMap.getTemp(startingAddress).then(function (startingAddress) {
+	    openWeatherMap.getTemp(startingAddress).then(function (temp) {
 	      that.setState({
 	        startingAddress: startingAddress,
 	        temp: temp
@@ -25498,7 +25498,7 @@
 	var axios = __webpack_require__(233);
 
 	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-	var OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?APPID=51807f5a50c3dd6563dfb8063fb5d626@units=imperial';
+	var OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?appid=2322c06b77f4cfea39eab4b831f47e55&units=imperial';
 
 	//
 	module.exports = {
