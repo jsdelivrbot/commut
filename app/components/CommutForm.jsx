@@ -31,6 +31,7 @@ var CommutForm = React.createClass({
   render: function () {
     return (
       <div>
+        <h3>Calculate your commüt</h3>
         <form onSubmit={this.onFormSubmit}>
 
           <div>
@@ -43,6 +44,8 @@ var CommutForm = React.createClass({
             <input type="text" ref="flightNumber" placeholder="Flight Number"/>
           </div>
             <button>Submit</button>
+
+          <button className="button small">Submit</button>
         </form>
       </div>
     );

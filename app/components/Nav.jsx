@@ -12,14 +12,23 @@ var {Link, IndexLink} = require('react-router');
 var Nav = React.createClass({
   render: function () {
     return (
-      <div>
-        <h2>Nav component</h2>
-        <IndexLink to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Calculate your commüt</IndexLink>
-        <br></br>
-        <Link to="/help" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Help</Link>
-        <br></br>
-        <Link to="/about" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>About</Link>
-      </div>
+        <div className="top-bar">
+          <div className="top-bar-left">
+            <ul className="menu" data-dropdown-menu>
+              <li className="menu-text"><IndexLink to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>commüt</IndexLink></li>
+            </ul>
+          </div>
+          <div className="top-bar-right">
+            <ul className="menu">
+              <li>
+                <Link to="/about" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>About</Link>
+              </li>
+              <li>
+                <Link to="/help" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Help</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
     );
   }
 });
