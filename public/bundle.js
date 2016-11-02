@@ -115,6 +115,9 @@
 	__webpack_require__(231);
 	$(document).foundation();
 
+	//App css
+	__webpack_require__(235);
+
 	ReactDOM.render(React.createElement(
 	  Router,
 	  { history: hashHistory },
@@ -24979,7 +24982,7 @@
 	            React.createElement(
 	              IndexLink,
 	              { to: '/', activeClassName: 'active' },
-	              React.createElement('img', { src: 'http://i.imgur.com/8ZW2fKD.png', alt: 'logo', className: 'img-responsive' })
+	              'comm\xFCt'
 	            )
 	          )
 	        )
@@ -25058,8 +25061,8 @@
 	      'div',
 	      null,
 	      React.createElement(
-	        'h3',
-	        null,
+	        'h4',
+	        { className: 'page-title' },
 	        'Calculate your comm\xFCt'
 	      ),
 	      React.createElement(
@@ -25096,12 +25099,12 @@
 /* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var React = __webpack_require__(8);
 
 	var CommutMessage = React.createClass({
-	  displayName: 'CommutMessage',
+	  displayName: "CommutMessage",
 
 	  render: function render() {
 	    var _props = this.props,
@@ -25111,29 +25114,29 @@
 
 
 	    return React.createElement(
-	      'div',
+	      "div",
 	      null,
 	      React.createElement(
-	        'h4',
-	        null,
-	        'Your details:'
+	        "h5",
+	        { className: "page-title" },
+	        "Your details:"
 	      ),
 	      React.createElement(
-	        'h6',
+	        "h6",
 	        null,
-	        'Start: ',
+	        "Start: ",
 	        startingAddress
 	      ),
 	      React.createElement(
-	        'h6',
+	        "h6",
 	        null,
-	        'Departing from: ',
+	        "Departing from: ",
 	        departureAirport
 	      ),
 	      React.createElement(
-	        'h6',
+	        "h6",
 	        null,
-	        'Flight Number: ',
+	        "Flight Number: ",
 	        flightNumber
 	      )
 	    );
@@ -25364,12 +25367,12 @@
 /* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var React = __webpack_require__(8);
 
 	var CommutResults = React.createClass({
-	    displayName: 'CommutResults',
+	    displayName: "CommutResults",
 
 	    render: function render() {
 	        var _props = this.props,
@@ -25378,25 +25381,25 @@
 	            apiVar3 = _props.apiVar3;
 
 	        return React.createElement(
-	            'div',
+	            "div",
 	            null,
 	            React.createElement(
-	                'h4',
-	                null,
-	                'Your results:'
+	                "h5",
+	                { className: "page-title" },
+	                "Your results:"
 	            ),
 	            React.createElement(
-	                'h6',
+	                "h6",
 	                null,
 	                apiVar1
 	            ),
 	            React.createElement(
-	                'h6',
+	                "h6",
 	                null,
 	                apiVar2
 	            ),
 	            React.createElement(
-	                'h6',
+	                "h6",
 	                null,
 	                apiVar3
 	            )
@@ -25754,6 +25757,46 @@
 		if(oldSrc)
 			URL.revokeObjectURL(oldSrc);
 	}
+
+
+/***/ },
+/* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(236);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(234)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./app.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./app.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(233)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".page-title {\n  margin-top: 1.5rem;\n  margin-bottom: 1.5rem;\n}\n", ""]);
+
+	// exports
 
 
 /***/ }

@@ -31,7 +31,7 @@ var CommutForm = React.createClass({
   render: function () {
     return (
       <div>
-        <h3>Calculate your commüt</h3>
+        <h4 className="page-title">Calculate your commüt</h4>
         <form onSubmit={this.onFormSubmit}>
 
           <div>

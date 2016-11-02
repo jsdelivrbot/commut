@@ -30,7 +30,8 @@ module.exports = {
       Help: 'app/components/Help.jsx',
       Main: 'app/components/Main.jsx',
       Nav: 'app/components/Nav.jsx',
-      TSA: 'app/api/TSA.jsx'
+      TSA: 'app/api/TSA.jsx',
+      applicationStyles: 'app/styles/app.css'
     },
     extensions: ['', '.js', '.jsx']
   },
