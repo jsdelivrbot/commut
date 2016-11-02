@@ -3,6 +3,7 @@ var CommutForm = require('CommutForm');
 var CommutMessage = require('CommutMessage');
 var CommutResults = require('CommutResults');
 var WeatherMessage = require('WeatherMessage');
+var openWeatherMap = require('openWeatherMap');
 // var TSA = require('TSA');
 
 var Commut = React.createClass({
@@ -22,9 +23,16 @@ var Commut = React.createClass({
     this.setState(updates);
   },
   handleSearch: function (startingAddress) {
-    this.setState({
-      startingAddress: startingAddress,
-      temp: 23
+    //We're setting that to this because the "this" binding get's lost when we set setState below. Setting that to this, fixes that temporarily
+    var that = this;
+
+    openWeatherMap.getTemp(startingAddress).then(function (startingAddress) {
+      that.setState({
+        startingAddress: startingAddress,
+        temp: temp
+      });
+    }, function (errorMessage) {
+        alert(errorMessage);
     });
   },
 
