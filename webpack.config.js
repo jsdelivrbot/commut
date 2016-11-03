@@ -33,6 +33,10 @@ module.exports = {
       Nav: 'app/components/Nav.jsx',
       TSA: 'app/api/TSA.jsx',
       openWeatherMap: 'app/api/openWeatherMap.jsx',
+      tsa_precheck: 'app/api/tsa_precheck.jsx',
+      tsa_wait_time: 'app/api/tsa_wait_time.jsx',
+      TsaWaitTimeMessage: 'app/components/TsaWaitTimeMessage.jsx',
+      TsaPrecheckMessage: 'app/components/TsaPrecheckMessage.jsx',
       applicationStyles: 'app/styles/app.css'
     },
     extensions: ['', '.js', '.jsx']

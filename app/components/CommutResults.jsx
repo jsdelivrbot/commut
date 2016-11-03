@@ -14,6 +14,10 @@ var CommutResults = React.createClass({
               <h6>{apiVar3}</h6>
               <h6 className="details">Temperature at destination: </h6>
               <h6>{apiVar4}</h6>
+              <h6 className="details">TSA PreCheck: </h6>
+              <h6>Yes or No</h6>
+              <h6 className="details">TSA Wait Time: </h6>
+              <h6>TBD</h6>
           </div>
       )
   }

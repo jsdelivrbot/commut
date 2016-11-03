@@ -4,7 +4,10 @@ var CommutMessage = require('CommutMessage');
 var CommutResults = require('CommutResults');
 var WeatherMessage = require('WeatherMessage');
 var openWeatherMap = require('openWeatherMap');
-// var TSA = require('TSA');
+var tsa_precheck = require('tsa_precheck');
+var tsa_wait_time = require('tsa_wait_time');
+var TsaWaitTimeMessage = require('TsaWaitTimeMessage');
+var TsaPrecheckMessage = require('TsaPrecheckMessage');
 
 var Commut = React.createClass({
   getInitialState: function () {
@@ -57,6 +60,8 @@ var Commut = React.createClass({
             </div>
             <div className="large-4 columns">
               <CommutResults apiVar1={apiVar1} apiVar2={apiVar2} apiVar3={apiVar3} apiVar4={apiVar4}/>
+              <TsaPrecheckMessage/>
+              <TsaWaitTimeMessage/>
             </div>
           </div>
         </div>
