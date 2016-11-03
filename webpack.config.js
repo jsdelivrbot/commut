@@ -29,8 +29,11 @@ module.exports = {
       CommutResults: 'app/components/CommutResults.jsx',
       Help: 'app/components/Help.jsx',
       Main: 'app/components/Main.jsx',
+      WeatherMessage: 'app/components/WeatherMessage.jsx',
       Nav: 'app/components/Nav.jsx',
-      TSA: 'app/api/TSA.jsx'
+      TSA: 'app/api/TSA.jsx',
+      openWeatherMap: 'app/api/openWeatherMap.jsx',
+      applicationStyles: 'app/styles/app.css'
     },
     extensions: ['', '.js', '.jsx']
   },

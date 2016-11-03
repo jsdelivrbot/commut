@@ -12,7 +12,7 @@ var CommutForm = React.createClass({
 
     if (startingAddress.length > 0) {
       this.refs.startingAddress.value = '';
-      // this.props.onSearch(startingAddress);
+      this.props.onSearch(startingAddress);
       updates.startingAddress = startingAddress;
     }
     if (departureAirport.length > 0) {
@@ -31,7 +31,7 @@ var CommutForm = React.createClass({
   render: function () {
     return (
       <div>
-        <h3>Calculate your commüt</h3>
+        <h4 className="page-title">Calculate your commüt</h4>
         <form onSubmit={this.onFormSubmit}>
 
           <div>

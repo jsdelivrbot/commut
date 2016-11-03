@@ -17,7 +17,7 @@ var Nav = React.createClass({
             <ul className="menu" data-dropdown-menu>
               <li className="menu-text">
                 <IndexLink to="/" activeClassName="active">
-                  <img src="http://i.imgur.com/8ZW2fKD.png" alt="logo" className="img-responsive"/>
+                  commüt
                 </IndexLink>
               </li>
             </ul>
