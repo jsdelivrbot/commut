@@ -27,3 +27,7 @@ ReactDOM.render(
   </Router>,
   document.getElementById('app')
 );
+
+
+//Redux
+require('./redux-commut.jsx');

@@ -33,10 +33,19 @@ var About = React.createClass({
                 <a href="https://github.com/nodejs/node">Node.js</a> - Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.
               </li>
               <li>
+                <a href="http://webpack.github.io/">Webpack</a> - Webpack is a module bundler that turns modules with dependencies into static assets.
+              </li>
+              <li>
+                <a href="http://babeljs.io/">Babel</a> - Babel is a JavaScript compiler. We used Babel to convert JSX syntax.
+              </li>
+              <li>
                 <a href="https://developers.google.com/maps/">Google Maps API</a> - Google Maps API was used to search road traffic and direction data.
               </li>
               <li>
                 <a href="https://developer.flightstats.com/api-docs/flightstatus/v2">FlightStats API</a> - FlightStats API was used to search flight information data.
+              </li>
+              <li>
+                <a href="https://developer.flightstats.com/api-docs/flightstatus/v2">OpenWeatherMap API</a> - OpenWeatherMap API was used to pull in weather data.
               </li>
             </ul>
           </div>
