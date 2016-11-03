@@ -24930,7 +24930,7 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'back-img' },
 	      React.createElement(Nav, null),
 	      React.createElement(
 	        'div',
@@ -27834,7 +27834,7 @@
 
 
 	// module
-	exports.push([module.id, ".page-title {\n  margin-top: 1.5rem;\n  margin-bottom: 1.5rem;\n}\n\n.details {\n  font-weight: bold;\n}\n", ""]);
+	exports.push([module.id, ".back-img {\n  content : \"\";\n  display: block;\n  position: absolute;\n  top: 0;\n  left: 0;\n  background-image: url(\"http://i.imgur.com/97i7CvG.jpg\");\n  opacity: 0.9;\n  width: 100%;\n  height: 100%;\n  z-index: -1;\n  background-repeat: no-repeat;\n  background-attachment: fixed;\n}\n\nnav {\n  opacity: .2;\n}\n\n.page-title {\n  margin-top: 1.5rem;\n  margin-bottom: 1.5rem;\n}\n\n.details {\n  font-weight: bold;\n}\n", ""]);
 
 	// exports
 

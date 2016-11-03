@@ -5,7 +5,7 @@ var Nav = require('Nav');
 var Main = React.createClass({
   render: function () {
     return (
-      <div>
+      <div className="back-img">
         <Nav/>
         <div className="row">
           <div className="columns small-centered">
