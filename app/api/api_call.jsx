@@ -1,3 +1,4 @@
+/*
 var mysql = require('mysql');
 var connection = mysql.createConnection({
   host     : 'localhost',
@@ -15,3 +16,4 @@ connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
 });
 
 connection.end();
+*/
