@@ -13,10 +13,11 @@ var Commut = React.createClass({
       startingAddress: '123 Main St',
       departureAirport: 'PDX',
       flightNumber: 'US123',
-      apiVar1: "Foo",
-      apiVar2: "Bar",
-      apiVar3: "Baz",
-      temp: 88
+      apiVar1: "34 minutes",
+      apiVar2: "0-10 minutes",
+      apiVar3: "44 minutes",
+      apiVar4: "47°F",
+      temp: 53
     }
   },
   handleNewData: function (updates) {
@@ -39,7 +40,7 @@ var Commut = React.createClass({
   render: function () {
     var {startingAddress, departureAirport, flightNumber} = this.state;
 
-    var {apiVar1, apiVar2, apiVar3} = this.state;
+    var {apiVar1, apiVar2, apiVar3, apiVar4} = this.state;
 
     var {temp, startingAddress} = this.state;
 
@@ -52,12 +53,10 @@ var Commut = React.createClass({
           <div>
             <div className="large-4 columns">
               <CommutMessage startingAddress={startingAddress} departureAirport={departureAirport} flightNumber={flightNumber}/>
+              <WeatherMessage temp={temp} startingAddress={startingAddress}/>
             </div>
             <div className="large-4 columns">
-              <CommutResults apiVar1={apiVar1} apiVar2={apiVar2} apiVar3={apiVar3}/>
-            </div>
-            <div>
-              <WeatherMessage temp={temp} startingAddress={startingAddress}/>
+              <CommutResults apiVar1={apiVar1} apiVar2={apiVar2} apiVar3={apiVar3} apiVar4={apiVar4}/>
             </div>
           </div>
         </div>

@@ -25124,20 +25124,32 @@
 	      ),
 	      React.createElement(
 	        "h6",
+	        { className: "details" },
+	        "Start: "
+	      ),
+	      React.createElement(
+	        "h6",
 	        null,
-	        "Start: ",
 	        startingAddress
 	      ),
 	      React.createElement(
 	        "h6",
-	        null,
-	        "Departing from: ",
-	        departureAirport
+	        { className: "details" },
+	        "Departing from:"
 	      ),
 	      React.createElement(
 	        "h6",
 	        null,
-	        "Flight Number: ",
+	        departureAirport
+	      ),
+	      React.createElement(
+	        "h6",
+	        { className: "details" },
+	        "Flight Number:"
+	      ),
+	      React.createElement(
+	        "h6",
+	        null,
 	        flightNumber
 	      )
 	    );
@@ -25334,10 +25346,11 @@
 	      startingAddress: '123 Main St',
 	      departureAirport: 'PDX',
 	      flightNumber: 'US123',
-	      apiVar1: "Foo",
-	      apiVar2: "Bar",
-	      apiVar3: "Baz",
-	      temp: 88
+	      apiVar1: "34 minutes",
+	      apiVar2: "0-10 minutes",
+	      apiVar3: "44 minutes",
+	      apiVar4: "47°F",
+	      temp: 53
 	    };
 	  },
 	  handleNewData: function handleNewData(updates) {
@@ -25365,7 +25378,8 @@
 	    var _state2 = this.state,
 	        apiVar1 = _state2.apiVar1,
 	        apiVar2 = _state2.apiVar2,
-	        apiVar3 = _state2.apiVar3;
+	        apiVar3 = _state2.apiVar3,
+	        apiVar4 = _state2.apiVar4;
 	    var _state3 = this.state,
 	        temp = _state3.temp,
 	        startingAddress = _state3.startingAddress;
@@ -25388,17 +25402,13 @@
 	          React.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            React.createElement(CommutMessage, { startingAddress: startingAddress, departureAirport: departureAirport, flightNumber: flightNumber })
+	            React.createElement(CommutMessage, { startingAddress: startingAddress, departureAirport: departureAirport, flightNumber: flightNumber }),
+	            React.createElement(WeatherMessage, { temp: temp, startingAddress: startingAddress })
 	          ),
 	          React.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            React.createElement(CommutResults, { apiVar1: apiVar1, apiVar2: apiVar2, apiVar3: apiVar3 })
-	          ),
-	          React.createElement(
-	            'div',
-	            null,
-	            React.createElement(WeatherMessage, { temp: temp, startingAddress: startingAddress })
+	            React.createElement(CommutResults, { apiVar1: apiVar1, apiVar2: apiVar2, apiVar3: apiVar3, apiVar4: apiVar4 })
 	          )
 	        )
 	      )
@@ -25423,7 +25433,8 @@
 	        var _props = this.props,
 	            apiVar1 = _props.apiVar1,
 	            apiVar2 = _props.apiVar2,
-	            apiVar3 = _props.apiVar3;
+	            apiVar3 = _props.apiVar3,
+	            apiVar4 = _props.apiVar4;
 
 	        return React.createElement(
 	            "div",
@@ -25435,8 +25446,18 @@
 	            ),
 	            React.createElement(
 	                "h6",
+	                { className: "details" },
+	                "Travel time: "
+	            ),
+	            React.createElement(
+	                "h6",
 	                null,
 	                apiVar1
+	            ),
+	            React.createElement(
+	                "h6",
+	                { className: "details" },
+	                "Delay time: "
 	            ),
 	            React.createElement(
 	                "h6",
@@ -25445,8 +25466,23 @@
 	            ),
 	            React.createElement(
 	                "h6",
+	                { className: "details" },
+	                "Total commute time: "
+	            ),
+	            React.createElement(
+	                "h6",
 	                null,
 	                apiVar3
+	            ),
+	            React.createElement(
+	                "h6",
+	                { className: "details" },
+	                "Temperature at destination: "
+	            ),
+	            React.createElement(
+	                "h6",
+	                null,
+	                apiVar4
 	            )
 	        );
 	    }
@@ -25458,12 +25494,12 @@
 /* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var React = __webpack_require__(8);
 
 	var WeatherMessage = React.createClass({
-	  displayName: 'WeatherMessage',
+	  displayName: "WeatherMessage",
 
 	  render: function render() {
 	    var _props = this.props,
@@ -25472,16 +25508,22 @@
 
 
 	    return React.createElement(
-	      'div',
+	      "div",
 	      null,
 	      React.createElement(
-	        'h4',
+	        "div",
 	        null,
-	        'It is currently ',
-	        temp,
-	        ' degrees at ',
-	        startingAddress,
-	        '.'
+	        React.createElement(
+	          "h6",
+	          { className: "details" },
+	          "Current temperature: "
+	        ),
+	        React.createElement(
+	          "h6",
+	          null,
+	          temp,
+	          "\xB0F"
+	        )
 	      )
 	    );
 	  }
@@ -27387,7 +27429,7 @@
 
 
 	// module
-	exports.push([module.id, ".page-title {\n  margin-top: 1.5rem;\n  margin-bottom: 1.5rem;\n}\n", ""]);
+	exports.push([module.id, ".page-title {\n  margin-top: 1.5rem;\n  margin-bottom: 1.5rem;\n}\n\n.details {\n  font-weight: bold;\n}\n", ""]);
 
 	// exports
 

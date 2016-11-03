@@ -6,9 +6,10 @@ var WeatherMessage = React.createClass({
 
     return (
       <div>
-        <h4>
-          It is currently {temp} degrees at {startingAddress}.
-        </h4>
+        <div>
+          <h6 className="details">Current temperature: </h6>
+          <h6>{temp}&deg;F</h6>
+        </div>
       </div>
     );
   }
