@@ -19,12 +19,14 @@ $(document).foundation();
 //App css
 require('style!css!applicationStyles')
 
+
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
       <Route path="help" component={Help}/>
       <Route path="about" component={About}/>
       <IndexRoute component={Commut}/>
+      <Map/>
     </Route>
   </Router>,
   document.getElementById('app')
