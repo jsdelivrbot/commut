@@ -24924,27 +24924,22 @@
 	var React = __webpack_require__(8);
 	var Nav = __webpack_require__(224);
 
-	//Where the hero image goes
-	var Main = React.createClass({
-	  displayName: 'Main',
-
-	  render: function render() {
-	    return React.createElement(
+	var Main = function Main(props) {
+	  return React.createElement(
+	    'div',
+	    { className: 'back-img' },
+	    React.createElement(Nav, null),
+	    React.createElement(
 	      'div',
-	      { className: 'back-img' },
-	      React.createElement(Nav, null),
+	      { className: 'row' },
 	      React.createElement(
 	        'div',
-	        { className: 'row' },
-	        React.createElement(
-	          'div',
-	          { className: 'columns small-centered' },
-	          this.props.children
-	        )
+	        { className: 'columns small-centered' },
+	        props.children
 	      )
-	    );
-	  }
-	});
+	    )
+	  );
+	};
 
 	module.exports = Main;
 
@@ -25103,57 +25098,51 @@
 
 	var React = __webpack_require__(8);
 
-	var CommutMessage = React.createClass({
-	  displayName: "CommutMessage",
+	var CommutMessage = function CommutMessage(_ref) {
+	  var startingAddress = _ref.startingAddress,
+	      departureAirport = _ref.departureAirport,
+	      flightNumber = _ref.flightNumber;
 
-	  render: function render() {
-	    var _props = this.props,
-	        startingAddress = _props.startingAddress,
-	        departureAirport = _props.departureAirport,
-	        flightNumber = _props.flightNumber;
-
-
-	    return React.createElement(
-	      "div",
+	  return React.createElement(
+	    "div",
+	    null,
+	    React.createElement(
+	      "h5",
+	      { className: "page-title" },
+	      "Your details:"
+	    ),
+	    React.createElement(
+	      "h6",
+	      { className: "details" },
+	      "Start: "
+	    ),
+	    React.createElement(
+	      "h6",
 	      null,
-	      React.createElement(
-	        "h5",
-	        { className: "page-title" },
-	        "Your details:"
-	      ),
-	      React.createElement(
-	        "h6",
-	        { className: "details" },
-	        "Start: "
-	      ),
-	      React.createElement(
-	        "h6",
-	        null,
-	        startingAddress
-	      ),
-	      React.createElement(
-	        "h6",
-	        { className: "details" },
-	        "Departing from:"
-	      ),
-	      React.createElement(
-	        "h6",
-	        null,
-	        departureAirport
-	      ),
-	      React.createElement(
-	        "h6",
-	        { className: "details" },
-	        "Flight Number:"
-	      ),
-	      React.createElement(
-	        "h6",
-	        null,
-	        flightNumber
-	      )
-	    );
-	  }
-	});
+	      startingAddress
+	    ),
+	    React.createElement(
+	      "h6",
+	      { className: "details" },
+	      "Departing from:"
+	    ),
+	    React.createElement(
+	      "h6",
+	      null,
+	      departureAirport
+	    ),
+	    React.createElement(
+	      "h6",
+	      { className: "details" },
+	      "Flight Number:"
+	    ),
+	    React.createElement(
+	      "h6",
+	      null,
+	      flightNumber
+	    )
+	  );
+	};
 
 	module.exports = CommutMessage;
 
@@ -25439,87 +25428,82 @@
 
 	var React = __webpack_require__(8);
 
-	var CommutResults = React.createClass({
-	    displayName: "CommutResults",
+	var CommutResults = function CommutResults(_ref) {
+	  var apiVar1 = _ref.apiVar1,
+	      apiVar2 = _ref.apiVar2,
+	      apiVar3 = _ref.apiVar3,
+	      apiVar4 = _ref.apiVar4;
 
-	    render: function render() {
-	        var _props = this.props,
-	            apiVar1 = _props.apiVar1,
-	            apiVar2 = _props.apiVar2,
-	            apiVar3 = _props.apiVar3,
-	            apiVar4 = _props.apiVar4;
-
-	        return React.createElement(
-	            "div",
-	            null,
-	            React.createElement(
-	                "h5",
-	                { className: "page-title" },
-	                "Your results:"
-	            ),
-	            React.createElement(
-	                "h6",
-	                { className: "details" },
-	                "Travel time: "
-	            ),
-	            React.createElement(
-	                "h6",
-	                null,
-	                apiVar1
-	            ),
-	            React.createElement(
-	                "h6",
-	                { className: "details" },
-	                "Delay time: "
-	            ),
-	            React.createElement(
-	                "h6",
-	                null,
-	                apiVar2
-	            ),
-	            React.createElement(
-	                "h6",
-	                { className: "details" },
-	                "Total commute time: "
-	            ),
-	            React.createElement(
-	                "h6",
-	                null,
-	                apiVar3
-	            ),
-	            React.createElement(
-	                "h6",
-	                { className: "details" },
-	                "Temperature at destination: "
-	            ),
-	            React.createElement(
-	                "h6",
-	                null,
-	                apiVar4
-	            ),
-	            React.createElement(
-	                "h6",
-	                { className: "details" },
-	                "TSA PreCheck: "
-	            ),
-	            React.createElement(
-	                "h6",
-	                null,
-	                "Yes or No"
-	            ),
-	            React.createElement(
-	                "h6",
-	                { className: "details" },
-	                "TSA Wait Time: "
-	            ),
-	            React.createElement(
-	                "h6",
-	                null,
-	                "TBD"
-	            )
-	        );
-	    }
-	});
+	  return React.createElement(
+	    "div",
+	    null,
+	    React.createElement(
+	      "h5",
+	      { className: "page-title" },
+	      "Your results:"
+	    ),
+	    React.createElement(
+	      "h6",
+	      { className: "details" },
+	      "Travel time: "
+	    ),
+	    React.createElement(
+	      "h6",
+	      null,
+	      apiVar1
+	    ),
+	    React.createElement(
+	      "h6",
+	      { className: "details" },
+	      "Delay time: "
+	    ),
+	    React.createElement(
+	      "h6",
+	      null,
+	      apiVar2
+	    ),
+	    React.createElement(
+	      "h6",
+	      { className: "details" },
+	      "Total commute time: "
+	    ),
+	    React.createElement(
+	      "h6",
+	      null,
+	      apiVar3
+	    ),
+	    React.createElement(
+	      "h6",
+	      { className: "details" },
+	      "Temperature at destination: "
+	    ),
+	    React.createElement(
+	      "h6",
+	      null,
+	      apiVar4
+	    ),
+	    React.createElement(
+	      "h6",
+	      { className: "details" },
+	      "TSA PreCheck: "
+	    ),
+	    React.createElement(
+	      "h6",
+	      null,
+	      "Yes or No"
+	    ),
+	    React.createElement(
+	      "h6",
+	      { className: "details" },
+	      "TSA Wait Time: "
+	    ),
+	    React.createElement(
+	      "h6",
+	      null,
+	      "TBD"
+	    )
+	  );
+	};
 
 	module.exports = CommutResults;
 
@@ -25531,36 +25515,30 @@
 
 	var React = __webpack_require__(8);
 
-	var WeatherMessage = React.createClass({
-	  displayName: "WeatherMessage",
+	var WeatherMessage = function WeatherMessage(_ref) {
+	  var temp = _ref.temp,
+	      startingAddress = _ref.startingAddress;
 
-	  render: function render() {
-	    var _props = this.props,
-	        temp = _props.temp,
-	        startingAddress = _props.startingAddress;
-
-
-	    return React.createElement(
+	  return React.createElement(
+	    "div",
+	    null,
+	    React.createElement(
 	      "div",
 	      null,
 	      React.createElement(
-	        "div",
+	        "h6",
+	        { className: "details" },
+	        "Current temperature: "
+	      ),
+	      React.createElement(
+	        "h6",
 	        null,
-	        React.createElement(
-	          "h6",
-	          { className: "details" },
-	          "Current temperature: "
-	        ),
-	        React.createElement(
-	          "h6",
-	          null,
-	          temp,
-	          "\xB0F"
-	        )
+	        temp,
+	        "\xB0F"
 	      )
-	    );
-	  }
-	});
+	    )
+	  );
+	};
 
 	module.exports = WeatherMessage;
 
@@ -27389,17 +27367,9 @@
 
 	var React = __webpack_require__(8);
 
-	var TsaWaitTimeMessage = React.createClass({
-	  displayName: 'TsaWaitTimeMessage',
-
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement('div', null)
-	    );
-	  }
-	});
+	var TsaWaitTimeMessage = function TsaWaitTimeMessage(props) {
+	  return React.createElement('div', null);
+	};
 
 	module.exports = TsaWaitTimeMessage;
 
@@ -27411,17 +27381,9 @@
 
 	var React = __webpack_require__(8);
 
-	var TsaPrecheckMessage = React.createClass({
-	  displayName: 'TsaPrecheckMessage',
-
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement('div', null)
-	    );
-	  }
-	});
+	var TsaPrecheckMessage = function TsaPrecheckMessage(props) {
+	  return React.createElement('div', null);
+	};
 
 	module.exports = TsaPrecheckMessage;
 
