@@ -113,7 +113,6 @@
 	var WeatherMessage = __webpack_require__(231);
 	var TsaPrecheckMessage = __webpack_require__(261);
 	var TsaWaitTimeMessage = __webpack_require__(260);
-
 	//Load foundation that will be refactored later on
 	__webpack_require__(262);
 	$(document).foundation();
@@ -129,8 +128,7 @@
 	    { path: '/', component: Main },
 	    React.createElement(Route, { path: 'help', component: Help }),
 	    React.createElement(Route, { path: 'about', component: About }),
-	    React.createElement(IndexRoute, { component: Commut }),
-	    React.createElement(Map, null)
+	    React.createElement(IndexRoute, { component: Commut })
 	  )
 	), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))

@@ -31,7 +31,6 @@ module.exports = {
       Main: 'app/components/Main.jsx',
       WeatherMessage: 'app/components/WeatherMessage.jsx',
       Nav: 'app/components/Nav.jsx',
-      TSA: 'app/api/TSA.jsx',
       openWeatherMap: 'app/api/openWeatherMap.jsx',
       tsa_precheck: 'app/api/tsa_precheck.jsx',
       tsa_wait_time: 'app/api/tsa_wait_time.jsx',

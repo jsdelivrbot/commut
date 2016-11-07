@@ -11,7 +11,6 @@ var About = require('About');
 var WeatherMessage = require('WeatherMessage');
 var TsaPrecheckMessage = require('TsaPrecheckMessage');
 var TsaWaitTimeMessage = require('TsaWaitTimeMessage');
-
 //Load foundation that will be refactored later on
 require('style!css!foundation-sites/dist/foundation.min.css')
 $(document).foundation();
@@ -26,7 +25,6 @@ ReactDOM.render(
       <Route path="help" component={Help}/>
       <Route path="about" component={About}/>
       <IndexRoute component={Commut}/>
-      <Map/>
     </Route>
   </Router>,
   document.getElementById('app')
