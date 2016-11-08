@@ -73,4 +73,4 @@ var Commut = React.createClass({
   }
 });
 
-module.exports = Commut;
+export default Commut;

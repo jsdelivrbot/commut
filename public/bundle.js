@@ -25383,6 +25383,10 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _react = __webpack_require__(8);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -25506,7 +25510,7 @@
 	  }
 	});
 
-	module.exports = Commut;
+	exports.default = Commut;
 
 /***/ },
 /* 230 */
