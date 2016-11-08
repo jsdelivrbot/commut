@@ -116,16 +116,33 @@
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
+	var _Help = __webpack_require__(227);
+
+	var _Help2 = _interopRequireDefault(_Help);
+
+	var _About = __webpack_require__(228);
+
+	var _About2 = _interopRequireDefault(_About);
+
+	var _WeatherMessage = __webpack_require__(231);
+
+	var _WeatherMessage2 = _interopRequireDefault(_WeatherMessage);
+
+	var _TsaPrecheckMessage = __webpack_require__(261);
+
+	var _TsaPrecheckMessage2 = _interopRequireDefault(_TsaPrecheckMessage);
+
+	var _TsaWaitTimeMessage = __webpack_require__(260);
+
+	var _TsaWaitTimeMessage2 = _interopRequireDefault(_TsaWaitTimeMessage);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	//Object destructuring that comes from ES6
-	var Help = __webpack_require__(227);
-	var About = __webpack_require__(228);
-	var WeatherMessage = __webpack_require__(231);
-	var TsaPrecheckMessage = __webpack_require__(261);
-	var TsaWaitTimeMessage = __webpack_require__(260);
 	//Load foundation that will be refactored later on
 	__webpack_require__(262);
+
+	//Object destructuring that comes from ES6
+
 	$(document).foundation();
 
 	//App css
@@ -137,9 +154,10 @@
 	  _react2.default.createElement(
 	    _reactRouter.Route,
 	    { path: '/', component: _Main2.default },
-	    _react2.default.createElement(_reactRouter.Route, { path: 'help', component: Help }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'about', component: About }),
-	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Commut2.default })
+	    _react2.default.createElement(_reactRouter.Route, { path: 'help', component: _Help2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _About2.default }),
+	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Commut2.default }),
+	    _react2.default.createElement(Map, { google: window.google })
 	  )
 	), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
