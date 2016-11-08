@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react'
 
 var CommutResults = ({apiVar1, apiVar2, apiVar3, apiVar4}) => {
   return (

@@ -1,11 +1,11 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 //Object destructuring that comes from ES6
-var {Route, Router, IndexRoute, hashHistory} = require('react-router');
-var Main = require('Main');
-var Commut = require('Commut');
-var Nav = require('Nav');
+import {Route, Router, IndexRoute, hashHistory} from 'react-router'
+import Main from 'Main'
+import Commut from 'Commut'
+import Nav from 'Nav'
 var Help = require('Help');
 var About = require('About');
 var WeatherMessage = require('WeatherMessage');

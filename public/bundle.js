@@ -94,20 +94,31 @@
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var React = __webpack_require__(8);
-	var ReactDOM = __webpack_require__(165);
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(165);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _reactRouter = __webpack_require__(166);
+
+	var _Main = __webpack_require__(223);
+
+	var _Main2 = _interopRequireDefault(_Main);
+
+	var _Commut = __webpack_require__(229);
+
+	var _Commut2 = _interopRequireDefault(_Commut);
+
+	var _Nav = __webpack_require__(224);
+
+	var _Nav2 = _interopRequireDefault(_Nav);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Object destructuring that comes from ES6
-
-	var _require = __webpack_require__(166),
-	    Route = _require.Route,
-	    Router = _require.Router,
-	    IndexRoute = _require.IndexRoute,
-	    hashHistory = _require.hashHistory;
-
-	var Main = __webpack_require__(223);
-	var Commut = __webpack_require__(229);
-	var Nav = __webpack_require__(224);
 	var Help = __webpack_require__(227);
 	var About = __webpack_require__(228);
 	var WeatherMessage = __webpack_require__(231);
@@ -120,15 +131,15 @@
 	//App css
 	__webpack_require__(266);
 
-	ReactDOM.render(React.createElement(
-	  Router,
-	  { history: hashHistory },
-	  React.createElement(
-	    Route,
-	    { path: '/', component: Main },
-	    React.createElement(Route, { path: 'help', component: Help }),
-	    React.createElement(Route, { path: 'about', component: About }),
-	    React.createElement(IndexRoute, { component: Commut })
+	_reactDom2.default.render(_react2.default.createElement(
+	  _reactRouter.Router,
+	  { history: _reactRouter.hashHistory },
+	  _react2.default.createElement(
+	    _reactRouter.Route,
+	    { path: '/', component: _Main2.default },
+	    _react2.default.createElement(_reactRouter.Route, { path: 'help', component: Help }),
+	    _react2.default.createElement(_reactRouter.Route, { path: 'about', component: About }),
+	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Commut2.default })
 	  )
 	), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
@@ -24919,18 +24930,25 @@
 
 	'use strict';
 
-	var React = __webpack_require__(8);
-	var Nav = __webpack_require__(224);
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Nav = __webpack_require__(224);
+
+	var _Nav2 = _interopRequireDefault(_Nav);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Main = function Main(props) {
-	  return React.createElement(
+	  return _react2.default.createElement(
 	    'div',
 	    { className: 'back-img' },
-	    React.createElement(Nav, null),
-	    React.createElement(
+	    _react2.default.createElement(_Nav2.default, null),
+	    _react2.default.createElement(
 	      'div',
 	      { className: 'row' },
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        { className: 'columns small-centered' },
 	        props.children
@@ -24947,33 +24965,51 @@
 
 	'use strict';
 
-	var React = __webpack_require__(8);
-	var CommutForm = __webpack_require__(225);
-	var CommutMessage = __webpack_require__(226);
-	var Main = __webpack_require__(223);
-	var Help = __webpack_require__(227);
-	var About = __webpack_require__(228);
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _CommutForm = __webpack_require__(225);
+
+	var _CommutForm2 = _interopRequireDefault(_CommutForm);
+
+	var _CommutMessage = __webpack_require__(226);
+
+	var _CommutMessage2 = _interopRequireDefault(_CommutMessage);
+
+	var _Main = __webpack_require__(223);
+
+	var _Main2 = _interopRequireDefault(_Main);
+
+	var _Help = __webpack_require__(227);
+
+	var _Help2 = _interopRequireDefault(_Help);
+
+	var _About = __webpack_require__(228);
+
+	var _About2 = _interopRequireDefault(_About);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//ES6 destructuring
-
 	var _require = __webpack_require__(166),
 	    Link = _require.Link,
 	    IndexLink = _require.IndexLink;
 
 	var Nav = function Nav(props) {
-	  return React.createElement(
+	  return _react2.default.createElement(
 	    'div',
 	    { className: 'top-bar' },
-	    React.createElement(
+	    _react2.default.createElement(
 	      'div',
 	      { className: 'top-bar-left' },
-	      React.createElement(
+	      _react2.default.createElement(
 	        'ul',
 	        { className: 'menu', 'data-dropdown-menu': true },
-	        React.createElement(
+	        _react2.default.createElement(
 	          'li',
 	          { className: 'menu-text' },
-	          React.createElement(
+	          _react2.default.createElement(
 	            IndexLink,
 	            { to: '/', activeClassName: 'active' },
 	            'comm\xFCt'
@@ -24981,25 +25017,25 @@
 	        )
 	      )
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      'div',
 	      { className: 'top-bar-right' },
-	      React.createElement(
+	      _react2.default.createElement(
 	        'ul',
 	        { className: 'menu' },
-	        React.createElement(
+	        _react2.default.createElement(
 	          'li',
 	          null,
-	          React.createElement(
+	          _react2.default.createElement(
 	            Link,
 	            { to: '/about', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
 	            'About'
 	          )
 	        ),
-	        React.createElement(
+	        _react2.default.createElement(
 	          'li',
 	          null,
-	          React.createElement(
+	          _react2.default.createElement(
 	            Link,
 	            { to: '/help', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
 	            'Help'
@@ -25018,9 +25054,13 @@
 
 	'use strict';
 
-	var React = __webpack_require__(8);
+	var _react = __webpack_require__(8);
 
-	var CommutForm = React.createClass({
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CommutForm = _react2.default.createClass({
 	  displayName: 'CommutForm',
 
 	  onFormSubmit: function onFormSubmit(e) {
@@ -25050,33 +25090,33 @@
 	    this.props.onNewData(updates);
 	  },
 	  render: function render() {
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      'div',
 	      null,
-	      React.createElement(
+	      _react2.default.createElement(
 	        'h4',
 	        { className: 'page-title' },
 	        'Calculate your comm\xFCt'
 	      ),
-	      React.createElement(
+	      _react2.default.createElement(
 	        'form',
 	        { onSubmit: this.onFormSubmit },
-	        React.createElement(
+	        _react2.default.createElement(
 	          'div',
 	          null,
-	          React.createElement('input', { type: 'text', ref: 'startingAddress', placeholder: 'Starting Address' })
+	          _react2.default.createElement('input', { type: 'text', ref: 'startingAddress', placeholder: 'Starting Address' })
 	        ),
-	        React.createElement(
+	        _react2.default.createElement(
 	          'div',
 	          null,
-	          React.createElement('input', { type: 'text', ref: 'departureAirport', placeholder: 'Departure Airport' })
+	          _react2.default.createElement('input', { type: 'text', ref: 'departureAirport', placeholder: 'Departure Airport' })
 	        ),
-	        React.createElement(
+	        _react2.default.createElement(
 	          'div',
 	          null,
-	          React.createElement('input', { type: 'text', ref: 'flightNumber', placeholder: 'Flight Number' })
+	          _react2.default.createElement('input', { type: 'text', ref: 'flightNumber', placeholder: 'Flight Number' })
 	        ),
-	        React.createElement(
+	        _react2.default.createElement(
 	          'button',
 	          { className: 'button small' },
 	          'Submit'
@@ -25094,47 +25134,51 @@
 
 	"use strict";
 
-	var React = __webpack_require__(8);
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var CommutMessage = function CommutMessage(_ref) {
 	  var startingAddress = _ref.startingAddress,
 	      departureAirport = _ref.departureAirport,
 	      flightNumber = _ref.flightNumber;
 
-	  return React.createElement(
+	  return _react2.default.createElement(
 	    "div",
 	    null,
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h5",
 	      { className: "page-title" },
 	      "Your details:"
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      { className: "details" },
 	      "Start: "
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      null,
 	      startingAddress
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      { className: "details" },
 	      "Departing from:"
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      null,
 	      departureAirport
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      { className: "details" },
 	      "Flight Number:"
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      null,
 	      flightNumber
@@ -25150,27 +25194,32 @@
 
 	"use strict";
 
-	var React = __webpack_require__(8);
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var Help = function Help(props) {
-	  return React.createElement(
+	  return _react2.default.createElement(
 	    "div",
 	    null,
-	    React.createElement(
+	    _react2.default.createElement(
 	      "div",
 	      { className: "row" },
-	      React.createElement(
+	      _react2.default.createElement(
 	        "div",
 	        { className: "small-4 columns small-centered" },
-	        React.createElement(
+	        _react2.default.createElement(
 	          "h3",
 	          null,
 	          "Help section"
 	        ),
-	        React.createElement(
+	        _react2.default.createElement(
 	          "p",
 	          null,
 	          "Beetroot water spinach okra water chestnut ricebean pea catsear courgette summer purslane. Water spinach arugula pea tatsoi aubergine spring onion bush tomato kale radicchio turnip chicory salsify pea sprouts fava bean. Dandelion zucchini burdock yarrow chickpea dandelion sorrel courgette turnip greens tigernut soybean radish artichoke wattle seed endive groundnut broccoli arugula.",
-	          React.createElement("br", null),
+	          _react2.default.createElement("br", null),
 	          "Soko radicchio bunya nuts gram dulse silver beet parsnip napa cabbage lotus root sea lettuce brussels sprout cabbage. Catsear cauliflower garbanzo yarrow salsify chicory garlic bell pepper napa cabbage lettuce tomato kale arugula melon sierra leone bologi rutabaga tigernut. Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic. J\xEDcama garlic courgette coriander radicchio plantain scallion cauliflower fava bean desert raisin spring onion chicory bunya nuts. Sea lettuce water spinach gram fava bean leek dandelion silver beet eggplant bush tomato."
 	        )
 	      )
@@ -25186,124 +25235,134 @@
 
 	'use strict';
 
-	var React = __webpack_require__(8);
-	var Nav = __webpack_require__(224);
-	var Help = __webpack_require__(227);
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Nav = __webpack_require__(224);
+
+	var _Nav2 = _interopRequireDefault(_Nav);
+
+	var _Help = __webpack_require__(227);
+
+	var _Help2 = _interopRequireDefault(_Help);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var About = function About(props) {
-	  return React.createElement(
+	  return _react2.default.createElement(
 	    'div',
 	    null,
-	    React.createElement(
+	    _react2.default.createElement(
 	      'div',
 	      { className: 'row' },
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        { className: 'small-4 columns small-centered' },
-	        React.createElement(
+	        _react2.default.createElement(
 	          'h1',
 	          { className: 'text-center' },
 	          'About'
 	        ),
-	        React.createElement(
+	        _react2.default.createElement(
 	          'p',
 	          null,
 	          'This is a commuting application build on React. ',
-	          React.createElement(
+	          _react2.default.createElement(
 	            'a',
 	            { href: 'https://github.com/mwilkin' },
 	            'Matt Wilkin'
 	          ),
 	          ' and ',
-	          React.createElement(
+	          _react2.default.createElement(
 	            'a',
 	            { href: 'https://github.com/maskrap' },
 	            'Sam Park'
 	          ),
 	          ' built this app during their five-week internship at DevelopmentNow.'
 	        ),
-	        React.createElement(
+	        _react2.default.createElement(
 	          'p',
 	          null,
 	          'Here are some of the tools we used:'
 	        ),
-	        React.createElement(
+	        _react2.default.createElement(
 	          'ul',
 	          null,
-	          React.createElement(
+	          _react2.default.createElement(
 	            'li',
 	            null,
-	            React.createElement(
+	            _react2.default.createElement(
 	              'a',
 	              { href: 'https://facebook.github.io/react' },
 	              'React'
 	            ),
 	            ' - This was the JavaScript framework used.'
 	          ),
-	          React.createElement(
+	          _react2.default.createElement(
 	            'li',
 	            null,
-	            React.createElement(
+	            _react2.default.createElement(
 	              'a',
 	              { href: 'https://github.com/zurb/foundation-sites' },
 	              'Foundation'
 	            ),
 	            ' - This was the Front-End framework used.'
 	          ),
-	          React.createElement(
+	          _react2.default.createElement(
 	            'li',
 	            null,
-	            React.createElement(
+	            _react2.default.createElement(
 	              'a',
 	              { href: 'https://github.com/nodejs/node' },
 	              'Node.js'
 	            ),
 	            ' - Node.js is a JavaScript runtime built on Chrome\'s V8 JavaScript engine.'
 	          ),
-	          React.createElement(
+	          _react2.default.createElement(
 	            'li',
 	            null,
-	            React.createElement(
+	            _react2.default.createElement(
 	              'a',
 	              { href: 'http://webpack.github.io/' },
 	              'Webpack'
 	            ),
 	            ' - Webpack is a module bundler that turns modules with dependencies into static assets.'
 	          ),
-	          React.createElement(
+	          _react2.default.createElement(
 	            'li',
 	            null,
-	            React.createElement(
+	            _react2.default.createElement(
 	              'a',
 	              { href: 'http://babeljs.io/' },
 	              'Babel'
 	            ),
 	            ' - Babel is a JavaScript compiler. We used Babel to convert JSX syntax.'
 	          ),
-	          React.createElement(
+	          _react2.default.createElement(
 	            'li',
 	            null,
-	            React.createElement(
+	            _react2.default.createElement(
 	              'a',
 	              { href: 'https://developers.google.com/maps/' },
 	              'Google Maps API'
 	            ),
 	            ' - Google Maps API was used to search road traffic and direction data.'
 	          ),
-	          React.createElement(
+	          _react2.default.createElement(
 	            'li',
 	            null,
-	            React.createElement(
+	            _react2.default.createElement(
 	              'a',
 	              { href: 'https://developer.flightstats.com/api-docs/flightstatus/v2' },
 	              'FlightStats API'
 	            ),
 	            ' - FlightStats API was used to search flight information data.'
 	          ),
-	          React.createElement(
+	          _react2.default.createElement(
 	            'li',
 	            null,
-	            React.createElement(
+	            _react2.default.createElement(
 	              'a',
 	              { href: 'https://developer.flightstats.com/api-docs/flightstatus/v2' },
 	              'OpenWeatherMap API'
@@ -25324,18 +25383,49 @@
 
 	'use strict';
 
-	var React = __webpack_require__(8);
-	var CommutForm = __webpack_require__(225);
-	var CommutMessage = __webpack_require__(226);
-	var CommutResults = __webpack_require__(230);
-	var WeatherMessage = __webpack_require__(231);
-	var openWeatherMap = __webpack_require__(232);
-	var tsa_precheck = __webpack_require__(258);
-	var tsa_wait_time = __webpack_require__(259);
-	var TsaWaitTimeMessage = __webpack_require__(260);
-	var TsaPrecheckMessage = __webpack_require__(261);
+	var _react = __webpack_require__(8);
 
-	var Commut = React.createClass({
+	var _react2 = _interopRequireDefault(_react);
+
+	var _CommutForm = __webpack_require__(225);
+
+	var _CommutForm2 = _interopRequireDefault(_CommutForm);
+
+	var _CommutMessage = __webpack_require__(226);
+
+	var _CommutMessage2 = _interopRequireDefault(_CommutMessage);
+
+	var _CommutResults = __webpack_require__(230);
+
+	var _CommutResults2 = _interopRequireDefault(_CommutResults);
+
+	var _WeatherMessage = __webpack_require__(231);
+
+	var _WeatherMessage2 = _interopRequireDefault(_WeatherMessage);
+
+	var _openWeatherMap = __webpack_require__(232);
+
+	var _openWeatherMap2 = _interopRequireDefault(_openWeatherMap);
+
+	var _tsa_precheck = __webpack_require__(258);
+
+	var _tsa_precheck2 = _interopRequireDefault(_tsa_precheck);
+
+	var _tsa_wait_time = __webpack_require__(259);
+
+	var _tsa_wait_time2 = _interopRequireDefault(_tsa_wait_time);
+
+	var _TsaWaitTimeMessage = __webpack_require__(260);
+
+	var _TsaWaitTimeMessage2 = _interopRequireDefault(_TsaWaitTimeMessage);
+
+	var _TsaPrecheckMessage = __webpack_require__(261);
+
+	var _TsaPrecheckMessage2 = _interopRequireDefault(_TsaPrecheckMessage);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Commut = _react2.default.createClass({
 	  displayName: 'Commut',
 
 	  getInitialState: function getInitialState() {
@@ -25358,7 +25448,7 @@
 	    //We're setting that to this because the "this" binding get's lost when we set setState below. Setting that to this, fixes that temporarily
 	    var that = this;
 
-	    openWeatherMap.getTemp(startingAddress).then(function (temp) {
+	    _openWeatherMap2.default.getTemp(startingAddress).then(function (temp) {
 	      that.setState({
 	        startingAddress: startingAddress,
 	        temp: temp
@@ -25383,32 +25473,32 @@
 	        startingAddress = _state3.startingAddress;
 
 
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      'div',
 	      { className: 'row' },
-	      React.createElement(
+	      _react2.default.createElement(
 	        'div',
 	        { className: 'small-12 large-expand columns' },
-	        React.createElement(
+	        _react2.default.createElement(
 	          'div',
 	          { className: 'large-4 columns' },
-	          React.createElement(CommutForm, { onNewData: this.handleNewData, onSearch: this.handleSearch })
+	          _react2.default.createElement(_CommutForm2.default, { onNewData: this.handleNewData, onSearch: this.handleSearch })
 	        ),
-	        React.createElement(
+	        _react2.default.createElement(
 	          'div',
 	          null,
-	          React.createElement(
+	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            React.createElement(CommutMessage, { startingAddress: startingAddress, departureAirport: departureAirport, flightNumber: flightNumber }),
-	            React.createElement(WeatherMessage, { temp: temp, startingAddress: startingAddress })
+	            _react2.default.createElement(_CommutMessage2.default, { startingAddress: startingAddress, departureAirport: departureAirport, flightNumber: flightNumber }),
+	            _react2.default.createElement(_WeatherMessage2.default, { temp: temp, startingAddress: startingAddress })
 	          ),
-	          React.createElement(
+	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            React.createElement(CommutResults, { apiVar1: apiVar1, apiVar2: apiVar2, apiVar3: apiVar3, apiVar4: apiVar4 }),
-	            React.createElement(TsaPrecheckMessage, null),
-	            React.createElement(TsaWaitTimeMessage, null)
+	            _react2.default.createElement(_CommutResults2.default, { apiVar1: apiVar1, apiVar2: apiVar2, apiVar3: apiVar3, apiVar4: apiVar4 }),
+	            _react2.default.createElement(_TsaPrecheckMessage2.default, null),
+	            _react2.default.createElement(_TsaWaitTimeMessage2.default, null)
 	          )
 	        )
 	      )
@@ -25424,7 +25514,11 @@
 
 	"use strict";
 
-	var React = __webpack_require__(8);
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var CommutResults = function CommutResults(_ref) {
 	  var apiVar1 = _ref.apiVar1,
@@ -25432,70 +25526,70 @@
 	      apiVar3 = _ref.apiVar3,
 	      apiVar4 = _ref.apiVar4;
 
-	  return React.createElement(
+	  return _react2.default.createElement(
 	    "div",
 	    null,
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h5",
 	      { className: "page-title" },
 	      "Your results:"
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      { className: "details" },
 	      "Travel time: "
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      null,
 	      apiVar1
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      { className: "details" },
 	      "Delay time: "
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      null,
 	      apiVar2
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      { className: "details" },
 	      "Total commute time: "
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      null,
 	      apiVar3
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      { className: "details" },
 	      "Temperature at destination: "
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      null,
 	      apiVar4
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      { className: "details" },
 	      "TSA PreCheck: "
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      null,
 	      "Yes or No"
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      { className: "details" },
 	      "TSA Wait Time: "
 	    ),
-	    React.createElement(
+	    _react2.default.createElement(
 	      "h6",
 	      null,
 	      "TBD"
@@ -25511,24 +25605,28 @@
 
 	"use strict";
 
-	var React = __webpack_require__(8);
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var WeatherMessage = function WeatherMessage(_ref) {
 	  var temp = _ref.temp,
 	      startingAddress = _ref.startingAddress;
 
-	  return React.createElement(
+	  return _react2.default.createElement(
 	    "div",
 	    null,
-	    React.createElement(
+	    _react2.default.createElement(
 	      "div",
 	      null,
-	      React.createElement(
+	      _react2.default.createElement(
 	        "h6",
 	        { className: "details" },
 	        "Current temperature: "
 	      ),
-	      React.createElement(
+	      _react2.default.createElement(
 	        "h6",
 	        null,
 	        temp,
@@ -25546,7 +25644,11 @@
 
 	'use strict';
 
-	var axios = __webpack_require__(233);
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
 	var OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?appid=2322c06b77f4cfea39eab4b831f47e55&units=imperial';
@@ -25560,7 +25662,7 @@
 	    //these are called query strings
 
 	    //axios.get takes in a URL and fetches it, bringing you back the results
-	    return axios.get(requestUrl).then(function (res) {
+	    return _axios2.default.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
@@ -27363,10 +27465,14 @@
 
 	'use strict';
 
-	var React = __webpack_require__(8);
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var TsaWaitTimeMessage = function TsaWaitTimeMessage(props) {
-	  return React.createElement('div', null);
+	  return _react2.default.createElement('div', null);
 	};
 
 	module.exports = TsaWaitTimeMessage;
@@ -27377,10 +27483,14 @@
 
 	'use strict';
 
-	var React = __webpack_require__(8);
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var TsaPrecheckMessage = function TsaPrecheckMessage(props) {
-	  return React.createElement('div', null);
+	  return _react2.default.createElement('div', null);
 	};
 
 	module.exports = TsaPrecheckMessage;

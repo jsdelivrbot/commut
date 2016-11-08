@@ -1,13 +1,13 @@
-var React = require('react');
-var CommutForm = require('CommutForm');
-var CommutMessage = require('CommutMessage');
-var CommutResults = require('CommutResults');
-var WeatherMessage = require('WeatherMessage');
-var openWeatherMap = require('openWeatherMap');
-var tsa_precheck = require('tsa_precheck');
-var tsa_wait_time = require('tsa_wait_time');
-var TsaWaitTimeMessage = require('TsaWaitTimeMessage');
-var TsaPrecheckMessage = require('TsaPrecheckMessage');
+import React from 'react'
+import CommutForm from 'CommutForm'
+import CommutMessage from 'CommutMessage'
+import CommutResults from 'CommutResults'
+import WeatherMessage from 'WeatherMessage'
+import openWeatherMap from 'openWeatherMap'
+import tsa_precheck from 'tsa_precheck'
+import tsa_wait_time from 'tsa_wait_time'
+import TsaWaitTimeMessage from 'TsaWaitTimeMessage'
+import TsaPrecheckMessage from 'TsaPrecheckMessage'
 
 
 var Commut = React.createClass({

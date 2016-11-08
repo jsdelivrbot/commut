@@ -1,4 +1,4 @@
-var axios = require('axios');
+import axios from 'axios'
 
 //Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
 const OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?appid=2322c06b77f4cfea39eab4b831f47e55&units=imperial';

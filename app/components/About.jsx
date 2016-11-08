@@ -1,6 +1,6 @@
-var React = require('react');
-var Nav = require('Nav');
-var Help = require('Help');
+import React from 'react'
+import Nav from 'Nav'
+import Help from 'Help'
 
 var About = (props) => {
   return (
