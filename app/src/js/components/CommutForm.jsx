@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react';
 
 var CommutForm = React.createClass({
   onFormSubmit: function (e) {
@@ -17,7 +17,7 @@ var CommutForm = React.createClass({
     }
     if (departureAirport.length > 0) {
       this.refs.departureAirport.value = '';
-      // this.props.onSearch(departureAirport);
+      this.props.onSearch(departureAirport);
       updates.departureAirport = departureAirport;
     }
     if (flightNumber.length > 0) {

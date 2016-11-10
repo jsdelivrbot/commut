@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react';
 import Nav from 'Nav'
 import Help from 'Help'
 

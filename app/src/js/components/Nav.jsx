@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react';
 import CommutForm from 'CommutForm'
 import CommutMessage from 'CommutMessage'
 import Main from 'Main'

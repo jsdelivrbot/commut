@@ -136,17 +136,21 @@
 
 	var _TsaWaitTimeMessage2 = _interopRequireDefault(_TsaWaitTimeMessage);
 
+	var _googleMaps = __webpack_require__(262);
+
+	var _googleMaps2 = _interopRequireDefault(_googleMaps);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Load foundation that will be refactored later on
-	__webpack_require__(262);
+
 
 	//Object destructuring that comes from ES6
-
+	__webpack_require__(263);
 	$(document).foundation();
 
 	//App css
-	__webpack_require__(266);
+	__webpack_require__(267);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
@@ -156,8 +160,7 @@
 	    { path: '/', component: _Main2.default },
 	    _react2.default.createElement(_reactRouter.Route, { path: 'help', component: _Help2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _About2.default }),
-	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Commut2.default }),
-	    _react2.default.createElement(Map, { google: window.google })
+	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Commut2.default })
 	  )
 	), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
@@ -25097,7 +25100,7 @@
 	    }
 	    if (departureAirport.length > 0) {
 	      this.refs.departureAirport.value = '';
-	      // this.props.onSearch(departureAirport);
+	      this.props.onSearch(departureAirport);
 	      updates.departureAirport = departureAirport;
 	    }
 	    if (flightNumber.length > 0) {
@@ -25445,6 +25448,10 @@
 
 	var _TsaPrecheckMessage2 = _interopRequireDefault(_TsaPrecheckMessage);
 
+	var _googleMaps = __webpack_require__(262);
+
+	var _googleMaps2 = _interopRequireDefault(_googleMaps);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Commut = _react2.default.createClass({
@@ -25466,7 +25473,7 @@
 	  handleNewData: function handleNewData(updates) {
 	    this.setState(updates);
 	  },
-	  handleSearch: function handleSearch(startingAddress) {
+	  handleSearch: function handleSearch(startingAddress, departureAirport) {
 	    //We're setting that to this because the "this" binding get's lost when we set setState below. Setting that to this, fixes that temporarily
 	    var that = this;
 
@@ -25474,6 +25481,16 @@
 	      that.setState({
 	        startingAddress: startingAddress,
 	        temp: temp
+	      });
+	    }, function (errorMessage) {
+	      alert(errorMessage);
+	    });
+
+	    _googleMaps2.default.getGmap(startingAddress, departureAirport).then(function (apiVar1) {
+	      that.setState({
+	        startingAddress: startingAddress,
+	        departureAirport: departureAirport,
+	        apiVar1: apiVar1
 	      });
 	    }, function (errorMessage) {
 	      alert(errorMessage);
@@ -25530,11 +25547,62 @@
 
 	exports.default = Commut;
 
+	// const dummy = [
+	//   {
+	//     isLoading: false,
+	//     startingAddress: '123 Main St',
+	//     departureAirport: 'PDX',
+	//     flightNumber: 'US123',
+	//     apiVar1: "34 minutes",
+	//     apiVar2: "0-10 minutes",
+	//     apiVar3: "44 minutes",
+	//     apiVar4: "47°F",
+	//     temp: 53
+	//   }
+	// ];
+	//
+	// export default class Commut extends React.Component {
+	//   constructor(props) {
+	//     super(props);
+	//
+	//     this.state = {
+	//       dummy
+	//     }
+	//   }
+	//   render() {
+	//     return (
+	//       <div className="row">
+	//         <div className="small-12 large-expand columns">
+	//           <div className="large-4 columns">
+	//             <CommutForm dummy={this.state.dummy} onNewData={this.handleNewData} onSearch={this.handleSearch}/>
+	//           </div>
+	//           <div>
+	//             <div className="large-4 columns">
+	//               <CommutMessage startingAddress={startingAddress} departureAirport={departureAirport} flightNumber={flightNumber}/>
+	//               <WeatherMessage temp={temp} startingAddress={startingAddress}/>
+	//             </div>
+	//             <div className="large-4 columns">
+	//               <CommutResults apiVar1={apiVar1} apiVar2={apiVar2} apiVar3={apiVar3} apiVar4={apiVar4}/>
+	//               <TsaPrecheckMessage/>
+	//               <TsaWaitTimeMessage/>
+	//             </div>
+	//           </div>
+	//         </div>
+	//       </div>
+	//     );
+	//   }
+	// }
+	//
+
 /***/ },
 /* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
 	var _react = __webpack_require__(8);
 
@@ -25619,7 +25687,7 @@
 	  );
 	};
 
-	module.exports = CommutResults;
+	exports.default = CommutResults;
 
 /***/ },
 /* 231 */
@@ -27521,13 +27589,50 @@
 /* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
+	var GMAP_URL = 'https://maps.googleapis.com/maps/api/directions/json?';
+
+	//
+	module.exports = {
+	  getGmap: function getGmap(startingAddress, departureAirport) {
+	    var encodedLocation = encodeURIComponent(startingAddress);
+	    var encodedDeparture = encodeURIComponent(departureAirport);
+	    //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
+	    var requestUrl = GMAP_URL + 'origin=' + encodedLocation + '&destination=' + encodedDeparture + '&key=AIzaSyAqpWjz6H7emmTezZQsDs3aqcovG5fqm4w';
+	    //these are called query strings
+
+	    //axios.get takes in a URL and fetches it, bringing you back the results
+	    return _axios2.default.get(requestUrl).then(function (res) {
+	      if (res.data.cod && res.data.message) {
+	        throw new Error(res.data.message);
+	      } else {
+	        return res.data.main.temp;
+	      }
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
+	  }
+	};
+
+/***/ },
+/* 263 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(263);
+	var content = __webpack_require__(264);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(265)(content, {});
+	var update = __webpack_require__(266)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27544,10 +27649,10 @@
 	}
 
 /***/ },
-/* 263 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(264)();
+	exports = module.exports = __webpack_require__(265)();
 	// imports
 
 
@@ -27558,7 +27663,7 @@
 
 
 /***/ },
-/* 264 */
+/* 265 */
 /***/ function(module, exports) {
 
 	/*
@@ -27614,7 +27719,7 @@
 
 
 /***/ },
-/* 265 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -27868,16 +27973,16 @@
 
 
 /***/ },
-/* 266 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(267);
+	var content = __webpack_require__(268);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(265)(content, {});
+	var update = __webpack_require__(266)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27894,10 +27999,10 @@
 	}
 
 /***/ },
-/* 267 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(264)();
+	exports = module.exports = __webpack_require__(265)();
 	// imports
 
 

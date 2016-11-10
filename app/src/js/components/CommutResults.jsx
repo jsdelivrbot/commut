@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react';
 
 var CommutResults = ({apiVar1, apiVar2, apiVar3, apiVar4}) => {
   return (
@@ -21,4 +21,4 @@ var CommutResults = ({apiVar1, apiVar2, apiVar3, apiVar4}) => {
 };
 
 
-module.exports = CommutResults;
+export default CommutResults;

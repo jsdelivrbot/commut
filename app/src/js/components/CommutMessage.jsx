@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react';
 
 var CommutMessage = ({startingAddress, departureAirport, flightNumber}) => {
   return (
