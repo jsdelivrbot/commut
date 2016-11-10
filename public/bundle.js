@@ -25093,14 +25093,11 @@
 	    var departureAirport = this.refs.departureAirport.value;
 	    var flightNumber = this.refs.flightNumber.value;
 
-	    if (startingAddress.length > 0) {
+	    if (startingAddress.length > 0 && departureAirport.length > 0) {
 	      this.refs.startingAddress.value = '';
-	      this.props.onSearch(startingAddress);
-	      updates.startingAddress = startingAddress;
-	    }
-	    if (departureAirport.length > 0) {
 	      this.refs.departureAirport.value = '';
-	      this.props.onSearch(departureAirport);
+	      this.props.onSearch(startingAddress, departureAirport);
+	      updates.startingAddress = startingAddress;
 	      updates.departureAirport = departureAirport;
 	    }
 	    if (flightNumber.length > 0) {
@@ -25463,7 +25460,7 @@
 	      startingAddress: '123 Main St',
 	      departureAirport: 'PDX',
 	      flightNumber: 'US123',
-	      apiVar1: "34 minutes",
+	      duration: "34 minutes",
 	      apiVar2: "0-10 minutes",
 	      apiVar3: "44 minutes",
 	      apiVar4: "47°F",
@@ -25486,11 +25483,11 @@
 	      alert(errorMessage);
 	    });
 
-	    _googleMaps2.default.getGmap(startingAddress, departureAirport).then(function (apiVar1) {
+	    _googleMaps2.default.getGmap(startingAddress, departureAirport).then(function (duration) {
 	      that.setState({
 	        startingAddress: startingAddress,
 	        departureAirport: departureAirport,
-	        apiVar1: apiVar1
+	        duration: duration
 	      });
 	    }, function (errorMessage) {
 	      alert(errorMessage);
@@ -25503,7 +25500,7 @@
 	        departureAirport = _state.departureAirport,
 	        flightNumber = _state.flightNumber;
 	    var _state2 = this.state,
-	        apiVar1 = _state2.apiVar1,
+	        duration = _state2.duration,
 	        apiVar2 = _state2.apiVar2,
 	        apiVar3 = _state2.apiVar3,
 	        apiVar4 = _state2.apiVar4;
@@ -25535,7 +25532,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutResults2.default, { apiVar1: apiVar1, apiVar2: apiVar2, apiVar3: apiVar3, apiVar4: apiVar4 }),
+	            _react2.default.createElement(_CommutResults2.default, { duration: duration, apiVar2: apiVar2, apiVar3: apiVar3, apiVar4: apiVar4 }),
 	            _react2.default.createElement(_TsaPrecheckMessage2.default, null),
 	            _react2.default.createElement(_TsaWaitTimeMessage2.default, null)
 	          )
@@ -25611,7 +25608,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var CommutResults = function CommutResults(_ref) {
-	  var apiVar1 = _ref.apiVar1,
+	  var duration = _ref.duration,
 	      apiVar2 = _ref.apiVar2,
 	      apiVar3 = _ref.apiVar3,
 	      apiVar4 = _ref.apiVar4;
@@ -25632,7 +25629,7 @@
 	    _react2.default.createElement(
 	      "h6",
 	      null,
-	      apiVar1
+	      duration
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -27598,7 +27595,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-	var GMAP_URL = 'https://maps.googleapis.com/maps/api/directions/json?';
+	var GMAP_URL = 'https://commut-api.herokuapp.com/google?';
 
 	//
 	module.exports = {
@@ -27606,15 +27603,15 @@
 	    var encodedLocation = encodeURIComponent(startingAddress);
 	    var encodedDeparture = encodeURIComponent(departureAirport);
 	    //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
-	    var requestUrl = GMAP_URL + 'origin=' + encodedLocation + '&destination=' + encodedDeparture + '&key=AIzaSyAqpWjz6H7emmTezZQsDs3aqcovG5fqm4w';
+	    var requestUrl = GMAP_URL + 'origin=' + encodedLocation + '&destination=' + encodedDeparture;
 	    //these are called query strings
-
+	    console.log(requestUrl);
 	    //axios.get takes in a URL and fetches it, bringing you back the results
 	    return _axios2.default.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        return res.data.main.temp;
+	        return res.data.duration;
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);

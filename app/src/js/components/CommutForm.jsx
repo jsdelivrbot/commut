@@ -10,15 +10,13 @@ var CommutForm = React.createClass({
     var departureAirport = this.refs.departureAirport.value;
     var flightNumber = this.refs.flightNumber.value;
 
-    if (startingAddress.length > 0) {
+    if (startingAddress.length > 0 && departureAirport.length > 0) {
       this.refs.startingAddress.value = '';
-      this.props.onSearch(startingAddress);
-      updates.startingAddress = startingAddress;
-    }
-    if (departureAirport.length > 0) {
       this.refs.departureAirport.value = '';
-      this.props.onSearch(departureAirport);
+      this.props.onSearch(startingAddress, departureAirport);
+      updates.startingAddress = startingAddress;
       updates.departureAirport = departureAirport;
+
     }
     if (flightNumber.length > 0) {
       this.refs.flightNumber.value = '';

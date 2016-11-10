@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-var CommutResults = ({apiVar1, apiVar2, apiVar3, apiVar4}) => {
+var CommutResults = ({duration, apiVar2, apiVar3, apiVar4}) => {
   return (
     <div>
       <h5 className="page-title">Your results:</h5>
       <h6 className="details">Travel time: </h6>
-      <h6>{apiVar1}</h6>
+      <h6>{duration}</h6>
       <h6 className="details">Delay time: </h6>
       <h6>{apiVar2}</h6>
       <h6 className="details">Total commute time: </h6>
