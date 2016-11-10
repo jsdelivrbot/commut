@@ -38,7 +38,6 @@ module.exports = {
       TsaWaitTimeMessage: 'app/src/js/components/TsaWaitTimeMessage.jsx',
       TsaPrecheckMessage: 'app/src/js/components/TsaPrecheckMessage.jsx',
       applicationStyles: 'app/styles/app.css',
-      Gmap: 'app/src/js/components/Gmap.js'
     },
     extensions: ['', '.js', '.jsx']
   },
