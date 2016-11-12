@@ -1,16 +1,14 @@
 import axios from 'axios'
 
 //Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-const FLIGHT_URL = 'https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/'
-
-const FLIGHT_URL2 = '?appId=2f2f3e48&appKey=5118cbf9ab0d0478039292e64eddfe3a';
+const FLIGHT_URL = 'https://commut-api.herokuapp.com/flightstats?'
 
 //
 module.exports = {
   getDelay: function (departureAirport) {
     var encodedLocation = encodeURIComponent(departureAirport);
     //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
-    var requestUrl = `${FLIGHT_URL}${encodedLocation}${FLIGHT_URL2}`;
+    var requestUrl = `${FLIGHT_URL}${encodedLocation}`;
     //these are called query strings
 
     //axios.get takes in a URL and fetches it, bringing you back the results
