@@ -9,6 +9,7 @@ import tsa_wait_time from 'tsa_wait_time'
 import TsaWaitTimeMessage from 'TsaWaitTimeMessage'
 import TsaPrecheckMessage from 'TsaPrecheckMessage'
 import googleMaps from 'googleMaps'
+import flightStats from 'flightStats'
 
 var Commut = React.createClass({
   getInitialState: function () {
@@ -18,7 +19,7 @@ var Commut = React.createClass({
       departureAirport: 'PDX',
       flightNumber: 'US123',
       duration: "34 minutes",
-      apiVar2: "0-10 minutes",
+      normalizedScore: "0-10 minutes",
       apiVar3: "44 minutes",
       apiVar4: "47°F",
       temp: 53
@@ -49,12 +50,21 @@ var Commut = React.createClass({
     }, function (errorMessage) {
         alert(errorMessage);
     });
+
+    flightStats.getDelay(departureAirport).then(function (normalizedScore) {
+      that.setState({
+        departureAirport: departureAirport,
+        normalizedScore: normalizedScore
+      });
+    }, function (errorMessage) {
+        alert(errorMessage);
+    });
   },
 
   render: function () {
     var {startingAddress, departureAirport, flightNumber} = this.state;
 
-    var {duration, apiVar2, apiVar3, apiVar4} = this.state;
+    var {duration, normalizedScore, apiVar3, apiVar4} = this.state;
 
     var {temp, startingAddress} = this.state;
 
@@ -70,7 +80,7 @@ var Commut = React.createClass({
               <WeatherMessage temp={temp} startingAddress={startingAddress}/>
             </div>
             <div className="large-4 columns">
-              <CommutResults duration={duration} apiVar2={apiVar2} apiVar3={apiVar3} apiVar4={apiVar4}/>
+              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} apiVar4={apiVar4}/>
               <TsaPrecheckMessage/>
               <TsaWaitTimeMessage/>
 

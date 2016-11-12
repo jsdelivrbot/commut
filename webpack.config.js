@@ -32,6 +32,7 @@ module.exports = {
       WeatherMessage: 'app/src/js/components/WeatherMessage.jsx',
       Nav: 'app/src/js/components/Nav.jsx',
       openWeatherMap: 'app/src/js/api/openWeatherMap.jsx',
+      flightStats: 'app/src/js/api/flightStats.jsx',
       googleMaps: 'app/src/js/api/googleMaps.jsx',
       tsa_precheck: 'app/src/js/api/tsa_precheck.jsx',
       tsa_wait_time: 'app/src/js/api/tsa_wait_time.jsx',

@@ -140,17 +140,21 @@
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
+	var _flightStats = __webpack_require__(263);
+
+	var _flightStats2 = _interopRequireDefault(_flightStats);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Load foundation that will be refactored later on
-
+	__webpack_require__(264);
 
 	//Object destructuring that comes from ES6
-	__webpack_require__(263);
+
 	$(document).foundation();
 
 	//App css
-	__webpack_require__(267);
+	__webpack_require__(268);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
@@ -25449,6 +25453,10 @@
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
+	var _flightStats = __webpack_require__(263);
+
+	var _flightStats2 = _interopRequireDefault(_flightStats);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Commut = _react2.default.createClass({
@@ -25461,7 +25469,7 @@
 	      departureAirport: 'PDX',
 	      flightNumber: 'US123',
 	      duration: "34 minutes",
-	      apiVar2: "0-10 minutes",
+	      normalizedScore: "0-10 minutes",
 	      apiVar3: "44 minutes",
 	      apiVar4: "47°F",
 	      temp: 53
@@ -25492,6 +25500,15 @@
 	    }, function (errorMessage) {
 	      alert(errorMessage);
 	    });
+
+	    _flightStats2.default.getDelay(departureAirport).then(function (normalizedScore) {
+	      that.setState({
+	        departureAirport: departureAirport,
+	        normalizedScore: normalizedScore
+	      });
+	    }, function (errorMessage) {
+	      alert(errorMessage);
+	    });
 	  },
 
 	  render: function render() {
@@ -25501,7 +25518,7 @@
 	        flightNumber = _state.flightNumber;
 	    var _state2 = this.state,
 	        duration = _state2.duration,
-	        apiVar2 = _state2.apiVar2,
+	        normalizedScore = _state2.normalizedScore,
 	        apiVar3 = _state2.apiVar3,
 	        apiVar4 = _state2.apiVar4;
 	    var _state3 = this.state,
@@ -25532,7 +25549,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutResults2.default, { duration: duration, apiVar2: apiVar2, apiVar3: apiVar3, apiVar4: apiVar4 }),
+	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, apiVar4: apiVar4 }),
 	            _react2.default.createElement(_TsaPrecheckMessage2.default, null),
 	            _react2.default.createElement(_TsaWaitTimeMessage2.default, null)
 	          )
@@ -25562,7 +25579,7 @@
 
 	var CommutResults = function CommutResults(_ref) {
 	  var duration = _ref.duration,
-	      apiVar2 = _ref.apiVar2,
+	      normalizedScore = _ref.normalizedScore,
 	      apiVar3 = _ref.apiVar3,
 	      apiVar4 = _ref.apiVar4;
 
@@ -25592,7 +25609,7 @@
 	    _react2.default.createElement(
 	      "h6",
 	      null,
-	      apiVar2
+	      normalizedScore
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -27576,13 +27593,51 @@
 /* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
+	var FLIGHT_URL = 'https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/';
+
+	var FLIGHT_URL2 = '?appId=2f2f3e48&appKey=5118cbf9ab0d0478039292e64eddfe3a';
+
+	//
+	module.exports = {
+	  getDelay: function getDelay(departureAirport) {
+	    var encodedLocation = encodeURIComponent(departureAirport);
+	    //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
+	    var requestUrl = '' + FLIGHT_URL + encodedLocation + FLIGHT_URL2;
+	    //these are called query strings
+
+	    //axios.get takes in a URL and fetches it, bringing you back the results
+	    return _axios2.default.get(requestUrl).then(function (res) {
+	      if (res.data.cod && res.data.message) {
+	        throw new Error(res.data.message);
+	      } else {
+	        return res.data.delayIndexes[1].normalizedScore;
+	      }
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
+	  }
+	};
+
+/***/ },
+/* 264 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(264);
+	var content = __webpack_require__(265);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(266)(content, {});
+	var update = __webpack_require__(267)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27599,10 +27654,10 @@
 	}
 
 /***/ },
-/* 264 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(265)();
+	exports = module.exports = __webpack_require__(266)();
 	// imports
 
 
@@ -27613,7 +27668,7 @@
 
 
 /***/ },
-/* 265 */
+/* 266 */
 /***/ function(module, exports) {
 
 	/*
@@ -27669,7 +27724,7 @@
 
 
 /***/ },
-/* 266 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -27923,16 +27978,16 @@
 
 
 /***/ },
-/* 267 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(268);
+	var content = __webpack_require__(269);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(266)(content, {});
+	var update = __webpack_require__(267)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27949,10 +28004,10 @@
 	}
 
 /***/ },
-/* 268 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(265)();
+	exports = module.exports = __webpack_require__(266)();
 	// imports
 
 

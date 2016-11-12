@@ -12,6 +12,7 @@ import WeatherMessage from 'WeatherMessage';
 import TsaPrecheckMessage from 'TsaPrecheckMessage';
 import TsaWaitTimeMessage from 'TsaWaitTimeMessage';
 import googleMaps from 'googleMaps';
+import flightStats from 'flightStats';
 //Load foundation that will be refactored later on
 require('style!css!foundation-sites/dist/foundation.min.css')
 $(document).foundation();
