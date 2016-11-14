@@ -25471,7 +25471,6 @@
 	      duration: "34 minutes",
 	      normalizedScore: "0-10 minutes",
 	      apiVar3: "44 minutes",
-	      apiVar4: "47°F",
 	      temp: 53
 	    };
 	  },
@@ -25519,8 +25518,7 @@
 	    var _state2 = this.state,
 	        duration = _state2.duration,
 	        normalizedScore = _state2.normalizedScore,
-	        apiVar3 = _state2.apiVar3,
-	        apiVar4 = _state2.apiVar4;
+	        apiVar3 = _state2.apiVar3;
 	    var _state3 = this.state,
 	        temp = _state3.temp,
 	        startingAddress = _state3.startingAddress;
@@ -25549,7 +25547,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, apiVar4: apiVar4 }),
+	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3 }),
 	            _react2.default.createElement(_TsaPrecheckMessage2.default, null),
 	            _react2.default.createElement(_TsaWaitTimeMessage2.default, null)
 	          )
@@ -25620,16 +25618,6 @@
 	      "h6",
 	      null,
 	      apiVar3
-	    ),
-	    _react2.default.createElement(
-	      "h6",
-	      { className: "details" },
-	      "Temperature at destination: "
-	    ),
-	    _react2.default.createElement(
-	      "h6",
-	      null,
-	      apiVar4
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -27602,20 +27590,19 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-	var FLIGHT_URL = 'https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/';
-
-	var FLIGHT_URL2 = '?appId=2f2f3e48&appKey=5118cbf9ab0d0478039292e64eddfe3a';
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/flightstats?';
 
 	//
 	module.exports = {
 	  getDelay: function getDelay(departureAirport) {
 	    var encodedLocation = encodeURIComponent(departureAirport);
 	    //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
-	    var requestUrl = '' + FLIGHT_URL + encodedLocation + FLIGHT_URL2;
+	    var requestUrl = '' + FLIGHT_URL + encodedLocation;
 	    //these are called query strings
 
 	    //axios.get takes in a URL and fetches it, bringing you back the results
 	    return _axios2.default.get(requestUrl).then(function (res) {
+	      console.log(res.data.delayIndexes[1].normalizedScore);
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {

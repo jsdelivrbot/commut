@@ -10,8 +10,6 @@ var CommutResults = ({duration, normalizedScore, apiVar3, apiVar4}) => {
       <h6>{normalizedScore}</h6>
       <h6 className="details">Total commute time: </h6>
       <h6>{apiVar3}</h6>
-      <h6 className="details">Temperature at destination: </h6>
-      <h6>{apiVar4}</h6>
       <h6 className="details">TSA PreCheck: </h6>
       <h6>Yes or No</h6>
       <h6 className="details">TSA Wait Time: </h6>

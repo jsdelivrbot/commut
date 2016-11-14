@@ -19,9 +19,8 @@ var Commut = React.createClass({
       departureAirport: 'PDX',
       flightNumber: 'US123',
       duration: "34 minutes",
-      normalizedScore: "0-10 minutes",
+      normalizedScore: "TBD",
       apiVar3: "44 minutes",
-      apiVar4: "47°F",
       temp: 53
     }
   },
@@ -64,7 +63,7 @@ var Commut = React.createClass({
   render: function () {
     var {startingAddress, departureAirport, flightNumber} = this.state;
 
-    var {duration, normalizedScore, apiVar3, apiVar4} = this.state;
+    var {duration, normalizedScore, apiVar3} = this.state;
 
     var {temp, startingAddress} = this.state;
 
@@ -80,7 +79,7 @@ var Commut = React.createClass({
               <WeatherMessage temp={temp} startingAddress={startingAddress}/>
             </div>
             <div className="large-4 columns">
-              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} apiVar4={apiVar4}/>
+              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3}/>
               <TsaPrecheckMessage/>
               <TsaWaitTimeMessage/>
 
