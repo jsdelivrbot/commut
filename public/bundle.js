@@ -128,6 +128,10 @@
 
 	var _WeatherMessage2 = _interopRequireDefault(_WeatherMessage);
 
+	var _tsa_precheck = __webpack_require__(258);
+
+	var _tsa_precheck2 = _interopRequireDefault(_tsa_precheck);
+
 	var _TsaPrecheckMessage = __webpack_require__(261);
 
 	var _TsaPrecheckMessage2 = _interopRequireDefault(_TsaPrecheckMessage);
@@ -140,21 +144,18 @@
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
-	var _flightStats = __webpack_require__(263);
-
-	var _flightStats2 = _interopRequireDefault(_flightStats);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// import flightStats from 'flightStats';
 	//Load foundation that will be refactored later on
-	__webpack_require__(264);
+	__webpack_require__(263);
 
 	//Object destructuring that comes from ES6
 
 	$(document).foundation();
 
 	//App css
-	__webpack_require__(268);
+	__webpack_require__(267);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
@@ -25453,11 +25454,9 @@
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
-	var _flightStats = __webpack_require__(263);
-
-	var _flightStats2 = _interopRequireDefault(_flightStats);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// import flightStats from 'flightStats'
 
 	var Commut = _react2.default.createClass({
 	  displayName: 'Commut',
@@ -25469,8 +25468,9 @@
 	      departureAirport: 'PDX',
 	      flightNumber: 'US123',
 	      duration: "34 minutes",
-	      normalizedScore: "0-10 minutes",
+	      normalizedScore: "TBD",
 	      apiVar3: "44 minutes",
+	      precheck: "TBD",
 	      temp: 53
 	    };
 	  },
@@ -25500,14 +25500,23 @@
 	      alert(errorMessage);
 	    });
 
-	    _flightStats2.default.getDelay(departureAirport).then(function (normalizedScore) {
+	    _tsa_precheck2.default.getPrecheck(departureAirport).then(function (precheck) {
 	      that.setState({
 	        departureAirport: departureAirport,
-	        normalizedScore: normalizedScore
+	        precheck: precheck
 	      });
 	    }, function (errorMessage) {
 	      alert(errorMessage);
 	    });
+
+	    // flightStats.getDelay(departureAirport).then(function (normalizedScore) {
+	    //   that.setState({
+	    //     departureAirport: departureAirport,
+	    //     normalizedScore: normalizedScore
+	    //   });
+	    // }, function (errorMessage) {
+	    //     alert(errorMessage);
+	    // });
 	  },
 
 	  render: function render() {
@@ -25521,7 +25530,8 @@
 	        apiVar3 = _state2.apiVar3;
 	    var _state3 = this.state,
 	        temp = _state3.temp,
-	        startingAddress = _state3.startingAddress;
+	        startingAddress = _state3.startingAddress,
+	        precheck = _state3.precheck;
 
 
 	    return _react2.default.createElement(
@@ -25547,7 +25557,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3 }),
+	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck }),
 	            _react2.default.createElement(_TsaPrecheckMessage2.default, null),
 	            _react2.default.createElement(_TsaWaitTimeMessage2.default, null)
 	          )
@@ -25579,6 +25589,7 @@
 	  var duration = _ref.duration,
 	      normalizedScore = _ref.normalizedScore,
 	      apiVar3 = _ref.apiVar3,
+	      precheck = _ref.precheck,
 	      apiVar4 = _ref.apiVar4;
 
 	  return _react2.default.createElement(
@@ -25627,7 +25638,7 @@
 	    _react2.default.createElement(
 	      "h6",
 	      null,
-	      "Yes or No"
+	      precheck
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -27202,170 +27213,39 @@
 
 /***/ },
 /* 258 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	/*
-	 [
-	  {
-	    "airport": {
-	      "name": "Los Angeles International",
-	      "shortcode": "LAX",
-	      "city": "Los Angeles",
-	      "state": "CA",
-	      "latitude": 33.942452,
-	      "longitude": -118.40801,
-	      "utc": -8,
-	      "dst": true,
-	      "precheck": true,
-	      "precheckMilitary": false,
-	      "checkpoints": [
-	        {
-	          "id": 375,
-	          "longname": "TB International - North",
-	          "shortname": "TBIT- NORTH",
-	          "precheck": false,
-	          "precheckMilitary": false,
-	          "precheckCarriers": []
-	        },
-	        {
-	          "id": 381,
-	          "longname": "TB International - South",
-	          "shortname": "TBIT- SOUTH",
-	          "precheck": false,
-	          "precheckMilitary": false,
-	          "precheckCarriers": []
-	        },
-	        {
-	          "id": 382,
-	          "longname": "Terminal 1",
-	          "shortname": "Terminal 1",
-	          "precheck": true,
-	          "precheckMilitary": false,
-	          "precheckCarriers": [
-	            {
-	              "name": "Aeromexico"
-	            },
-	            {
-	              "name": "Allegiant Air"
-	            },
-	            {
-	              "name": "LUFTHANSA"
-	            },
-	            {
-	              "name": "Etihad Airways"
-	            },
-	            {
-	              "name": "FRONTIER AIRLINES, INC."
-	            },
-	            {
-	              "name": "Southwest Airlines"
-	            },
-	            {
-	              "name": "WestJet"
-	            }
-	          ]
-	        },
-	        {
-	          "id": 380,
-	          "longname": "Terminal 2",
-	          "shortname": "Terminal 2",
-	          "precheck": true,
-	          "precheckMilitary": false,
-	          "precheckCarriers": [
-	            {
-	              "name": "Air Canada"
-	            },
-	            {
-	              "name": "Sun Country Airlines"
-	            }
-	          ]
-	        },
-	        {
-	          "id": 379,
-	          "longname": "Terminal 3",
-	          "shortname": "Terminal 3",
-	          "precheck": true,
-	          "precheckMilitary": false,
-	          "precheckCarriers": [
-	            {
-	              "name": "JetBlue Airways"
-	            },
-	            {
-	              "name": "Virgin America"
-	            }
-	          ]
-	        },
-	        {
-	          "id": 376,
-	          "longname": "Terminal 4",
-	          "shortname": "Terminal 4",
-	          "precheck": true,
-	          "precheckMilitary": false,
-	          "precheckCarriers": [
-	            {
-	              "name": "American Airlines"
-	            }
-	          ]
-	        },
-	        {
-	          "id": 383,
-	          "longname": "Terminal 5",
-	          "shortname": "Terminal 5",
-	          "precheck": true,
-	          "precheckMilitary": false,
-	          "precheckCarriers": [
-	            {
-	              "name": "Delta Air Lines"
-	            }
-	          ]
-	        },
-	        {
-	          "id": 384,
-	          "longname": "Terminal 6",
-	          "shortname": "Terminal 6",
-	          "precheck": true,
-	          "precheckMilitary": false,
-	          "precheckCarriers": [
-	            {
-	              "name": "Alaska Airlines"
-	            },
-	            {
-	              "name": "United Airlines"
-	            }
-	          ]
-	        },
-	        {
-	          "id": 378,
-	          "longname": "Terminal 7",
-	          "shortname": "Terminal 7",
-	          "precheck": true,
-	          "precheckMilitary": false,
-	          "precheckCarriers": [
-	            {
-	              "name": "United Airlines"
-	            }
-	          ]
-	        },
-	        {
-	          "id": 377,
-	          "longname": "Terminal 8",
-	          "shortname": "Terminal 8",
-	          "precheck": true,
-	          "precheckMilitary": false,
-	          "precheckCarriers": [
-	            {
-	              "name": "United Airlines"
-	            }
-	          ]
-	        }
-	      ],
-	      "precheckNotes": [
-	        {
-	          "Note": "For more information please visit https://www.tsa.gov/precheck."
-	        }
-	      ]
-	*/
-	"use strict";
+	'use strict';
+
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
+	var TSA_URL = 'https://commut-api.herokuapp.com/precheck?';
+
+	//
+	module.exports = {
+	  getPrecheck: function getPrecheck(departureAirport) {
+	    var encodedDeparture = encodeURIComponent(departureAirport);
+	    //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
+	    var requestUrl = '' + TSA_URL + encodedDeparture;
+	    //these are called query strings
+	    // console.log(requestUrl);
+	    //axios.get takes in a URL and fetches it, bringing you back the results
+	    return _axios2.default.get(requestUrl).then(function (res) {
+	      if (res.data.cod && res.data.message) {
+	        throw new Error(res.data.message);
+	      } else {
+	        return JSON.stringify(res.data.precheck).charAt(0).toUpperCase() + JSON.stringify(res.data.precheck).slice(1);
+	      }
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
+	  }
+	};
 
 /***/ },
 /* 259 */
@@ -27581,50 +27461,13 @@
 /* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var _axios = __webpack_require__(233);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-	var FLIGHT_URL = 'https://commut-api.herokuapp.com/flightstats?';
-
-	//
-	module.exports = {
-	  getDelay: function getDelay(departureAirport) {
-	    var encodedLocation = encodeURIComponent(departureAirport);
-	    //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
-	    var requestUrl = '' + FLIGHT_URL + encodedLocation;
-	    //these are called query strings
-
-	    //axios.get takes in a URL and fetches it, bringing you back the results
-	    return _axios2.default.get(requestUrl).then(function (res) {
-	      console.log(res.data.delayIndexes[1].normalizedScore);
-	      if (res.data.cod && res.data.message) {
-	        throw new Error(res.data.message);
-	      } else {
-	        return res.data.delayIndexes[1].normalizedScore;
-	      }
-	    }, function (res) {
-	      throw new Error(res.data.message);
-	    });
-	  }
-	};
-
-/***/ },
-/* 264 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(265);
+	var content = __webpack_require__(264);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(267)(content, {});
+	var update = __webpack_require__(266)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27641,10 +27484,10 @@
 	}
 
 /***/ },
-/* 265 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(266)();
+	exports = module.exports = __webpack_require__(265)();
 	// imports
 
 
@@ -27655,7 +27498,7 @@
 
 
 /***/ },
-/* 266 */
+/* 265 */
 /***/ function(module, exports) {
 
 	/*
@@ -27711,7 +27554,7 @@
 
 
 /***/ },
-/* 267 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -27965,16 +27808,16 @@
 
 
 /***/ },
-/* 268 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(269);
+	var content = __webpack_require__(268);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(267)(content, {});
+	var update = __webpack_require__(266)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27991,10 +27834,10 @@
 	}
 
 /***/ },
-/* 269 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(266)();
+	exports = module.exports = __webpack_require__(265)();
 	// imports
 
 

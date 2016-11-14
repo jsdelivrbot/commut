@@ -9,7 +9,7 @@ import tsa_wait_time from 'tsa_wait_time'
 import TsaWaitTimeMessage from 'TsaWaitTimeMessage'
 import TsaPrecheckMessage from 'TsaPrecheckMessage'
 import googleMaps from 'googleMaps'
-import flightStats from 'flightStats'
+// import flightStats from 'flightStats'
 
 var Commut = React.createClass({
   getInitialState: function () {
@@ -21,6 +21,7 @@ var Commut = React.createClass({
       duration: "34 minutes",
       normalizedScore: "TBD",
       apiVar3: "44 minutes",
+      precheck: "TBD",
       temp: 53
     }
   },
@@ -50,14 +51,24 @@ var Commut = React.createClass({
         alert(errorMessage);
     });
 
-    flightStats.getDelay(departureAirport).then(function (normalizedScore) {
+    tsa_precheck.getPrecheck(departureAirport).then(function (precheck) {
       that.setState({
         departureAirport: departureAirport,
-        normalizedScore: normalizedScore
+        precheck: precheck
       });
     }, function (errorMessage) {
         alert(errorMessage);
     });
+
+
+    // flightStats.getDelay(departureAirport).then(function (normalizedScore) {
+    //   that.setState({
+    //     departureAirport: departureAirport,
+    //     normalizedScore: normalizedScore
+    //   });
+    // }, function (errorMessage) {
+    //     alert(errorMessage);
+    // });
   },
 
   render: function () {
@@ -65,7 +76,7 @@ var Commut = React.createClass({
 
     var {duration, normalizedScore, apiVar3} = this.state;
 
-    var {temp, startingAddress} = this.state;
+    var {temp, startingAddress, precheck} = this.state;
 
     return (
       <div className="row">
@@ -79,7 +90,7 @@ var Commut = React.createClass({
               <WeatherMessage temp={temp} startingAddress={startingAddress}/>
             </div>
             <div className="large-4 columns">
-              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3}/>
+              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck}/>
               <TsaPrecheckMessage/>
               <TsaWaitTimeMessage/>
 
