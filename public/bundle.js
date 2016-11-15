@@ -144,7 +144,7 @@
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
-	var _flightStats = __webpack_require__(269);
+	var _flightStats = __webpack_require__(263);
 
 	var _flightStats2 = _interopRequireDefault(_flightStats);
 
@@ -154,11 +154,11 @@
 
 
 	//Object destructuring that comes from ES6
-	__webpack_require__(263);
+	__webpack_require__(264);
 	$(document).foundation();
 
 	//App css
-	__webpack_require__(267);
+	__webpack_require__(268);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
@@ -25457,7 +25457,7 @@
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
-	var _flightStats = __webpack_require__(269);
+	var _flightStats = __webpack_require__(263);
 
 	var _flightStats2 = _interopRequireDefault(_flightStats);
 
@@ -27459,7 +27459,7 @@
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        return parseInt(res.data.duration);
+	        return res.data.duration;
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);
@@ -27471,13 +27471,49 @@
 /* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/flightstats/?departureAirport=';
+
+	//
+	module.exports = {
+	  getDelay: function getDelay(departureAirport) {
+	    var encodedLocation = encodeURIComponent(departureAirport);
+	    //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
+	    var requestUrl = '' + FLIGHT_URL + encodedLocation;
+	    //these are called query strings
+
+	    //axios.get takes in a URL and fetches it, bringing you back the results
+	    return _axios2.default.get(requestUrl).then(function (res) {
+	      if (res.data.cod && res.data.message) {
+	        throw new Error(res.data.message);
+	      } else {
+	        return res.data.normalizedScore;
+	      }
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
+	  }
+	};
+
+/***/ },
+/* 264 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(264);
+	var content = __webpack_require__(265);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(266)(content, {});
+	var update = __webpack_require__(267)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27494,10 +27530,10 @@
 	}
 
 /***/ },
-/* 264 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(265)();
+	exports = module.exports = __webpack_require__(266)();
 	// imports
 
 
@@ -27508,7 +27544,7 @@
 
 
 /***/ },
-/* 265 */
+/* 266 */
 /***/ function(module, exports) {
 
 	/*
@@ -27564,7 +27600,7 @@
 
 
 /***/ },
-/* 266 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -27818,16 +27854,16 @@
 
 
 /***/ },
-/* 267 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(268);
+	var content = __webpack_require__(269);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(266)(content, {});
+	var update = __webpack_require__(267)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27844,10 +27880,10 @@
 	}
 
 /***/ },
-/* 268 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(265)();
+	exports = module.exports = __webpack_require__(266)();
 	// imports
 
 
@@ -27856,42 +27892,6 @@
 
 	// exports
 
-
-/***/ },
-/* 269 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _axios = __webpack_require__(233);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-	var FLIGHT_URL = 'https://commut-api.herokuapp.com/flightstats/?departureAirport=';
-
-	//
-	module.exports = {
-	  getDelay: function getDelay(departureAirport) {
-	    var encodedLocation = encodeURIComponent(departureAirport);
-	    //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
-	    var requestUrl = '' + FLIGHT_URL + encodedLocation;
-	    //these are called query strings
-
-	    //axios.get takes in a URL and fetches it, bringing you back the results
-	    return _axios2.default.get(requestUrl).then(function (res) {
-	      if (res.data.cod && res.data.message) {
-	        throw new Error(res.data.message);
-	      } else {
-	        return res.data.normalizedScore;
-	      }
-	    }, function (res) {
-	      throw new Error(res.data.message);
-	    });
-	  }
-	};
 
 /***/ }
 /******/ ]);

@@ -17,7 +17,7 @@ module.exports = {
       if (res.data.cod && res.data.message) {
         throw new Error(res.data.message);
       } else {
-        return parseInt(res.data.duration);
+        return res.data.duration;
       }
     }, function (res) {
       throw new Error(res.data.message);
