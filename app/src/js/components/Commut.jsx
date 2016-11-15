@@ -9,7 +9,7 @@ import tsa_wait_time from 'tsa_wait_time'
 import TsaWaitTimeMessage from 'TsaWaitTimeMessage'
 import TsaPrecheckMessage from 'TsaPrecheckMessage'
 import googleMaps from 'googleMaps'
-// import flightStats from 'flightStats'
+import flightStats from 'flightStats'
 
 var Commut = React.createClass({
   getInitialState: function () {
@@ -18,9 +18,9 @@ var Commut = React.createClass({
       startingAddress: '123 Main St',
       departureAirport: 'PDX',
       flightNumber: 'US123',
-      duration: "34 minutes",
+      duration: "34",
       normalizedScore: "TBD",
-      apiVar3: "44 minutes",
+      apiVar3: 44,
       precheck: "TBD",
       temp: 53
     }
@@ -61,14 +61,14 @@ var Commut = React.createClass({
     });
 
 
-    // flightStats.getDelay(departureAirport).then(function (normalizedScore) {
-    //   that.setState({
-    //     departureAirport: departureAirport,
-    //     normalizedScore: normalizedScore
-    //   });
-    // }, function (errorMessage) {
-    //     alert(errorMessage);
-    // });
+    flightStats.getDelay(departureAirport).then(function (normalizedScore) {
+      that.setState({
+        departureAirport: departureAirport,
+        normalizedScore: normalizedScore
+      });
+    }, function (errorMessage) {
+        alert(errorMessage);
+    });
   },
 
   render: function () {

@@ -144,14 +144,17 @@
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
+	var _flightStats = __webpack_require__(269);
+
+	var _flightStats2 = _interopRequireDefault(_flightStats);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import flightStats from 'flightStats';
 	//Load foundation that will be refactored later on
-	__webpack_require__(263);
+
 
 	//Object destructuring that comes from ES6
-
+	__webpack_require__(263);
 	$(document).foundation();
 
 	//App css
@@ -25454,9 +25457,11 @@
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _flightStats = __webpack_require__(269);
 
-	// import flightStats from 'flightStats'
+	var _flightStats2 = _interopRequireDefault(_flightStats);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Commut = _react2.default.createClass({
 	  displayName: 'Commut',
@@ -25467,9 +25472,9 @@
 	      startingAddress: '123 Main St',
 	      departureAirport: 'PDX',
 	      flightNumber: 'US123',
-	      duration: "34 minutes",
+	      duration: "34",
 	      normalizedScore: "TBD",
-	      apiVar3: "44 minutes",
+	      apiVar3: 44,
 	      precheck: "TBD",
 	      temp: 53
 	    };
@@ -25509,14 +25514,14 @@
 	      alert(errorMessage);
 	    });
 
-	    // flightStats.getDelay(departureAirport).then(function (normalizedScore) {
-	    //   that.setState({
-	    //     departureAirport: departureAirport,
-	    //     normalizedScore: normalizedScore
-	    //   });
-	    // }, function (errorMessage) {
-	    //     alert(errorMessage);
-	    // });
+	    _flightStats2.default.getDelay(departureAirport).then(function (normalizedScore) {
+	      that.setState({
+	        departureAirport: departureAirport,
+	        normalizedScore: normalizedScore
+	      });
+	    }, function (errorMessage) {
+	      alert(errorMessage);
+	    });
 	  },
 
 	  render: function render() {
@@ -25608,7 +25613,8 @@
 	    _react2.default.createElement(
 	      "h6",
 	      null,
-	      duration
+	      duration,
+	      " minutes"
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -25628,7 +25634,11 @@
 	    _react2.default.createElement(
 	      "h6",
 	      null,
-	      apiVar3
+	      "(",
+	      apiVar3,
+	      " + ",
+	      duration,
+	      ")"
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -27449,7 +27459,7 @@
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        return res.data.duration;
+	        return parseInt(res.data.duration);
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);
@@ -27846,6 +27856,42 @@
 
 	// exports
 
+
+/***/ },
+/* 269 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/flightstats/?departureAirport=';
+
+	//
+	module.exports = {
+	  getDelay: function getDelay(departureAirport) {
+	    var encodedLocation = encodeURIComponent(departureAirport);
+	    //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
+	    var requestUrl = '' + FLIGHT_URL + encodedLocation;
+	    //these are called query strings
+
+	    //axios.get takes in a URL and fetches it, bringing you back the results
+	    return _axios2.default.get(requestUrl).then(function (res) {
+	      if (res.data.cod && res.data.message) {
+	        throw new Error(res.data.message);
+	      } else {
+	        return res.data.normalizedScore;
+	      }
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
+	  }
+	};
 
 /***/ }
 /******/ ]);
