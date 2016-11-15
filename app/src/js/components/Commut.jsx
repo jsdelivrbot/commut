@@ -18,7 +18,7 @@ var Commut = React.createClass({
       startingAddress: '123 Main St',
       departureAirport: 'PDX',
       flightNumber: 'US123',
-      duration: "34",
+      duration: "34 minutes",
       normalizedScore: "TBD",
       apiVar3: 44,
       precheck: "TBD",

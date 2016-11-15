@@ -5,7 +5,7 @@ var CommutResults = ({duration, normalizedScore, apiVar3, precheck, apiVar4}) =>
     <div>
       <h5 className="page-title">Your results:</h5>
       <h6 className="details">Travel time: </h6>
-      <h6>{duration} minutes</h6>
+      <h6>{duration}</h6>
       <h6 className="details">Delay time: </h6>
       <h6>{normalizedScore}</h6>
       <h6 className="details">Total commute time: </h6>

@@ -25472,7 +25472,7 @@
 	      startingAddress: '123 Main St',
 	      departureAirport: 'PDX',
 	      flightNumber: 'US123',
-	      duration: "34",
+	      duration: "34 minutes",
 	      normalizedScore: "TBD",
 	      apiVar3: 44,
 	      precheck: "TBD",
@@ -25613,8 +25613,7 @@
 	    _react2.default.createElement(
 	      "h6",
 	      null,
-	      duration,
-	      " minutes"
+	      duration
 	    ),
 	    _react2.default.createElement(
 	      "h6",
