@@ -22,6 +22,7 @@ var Commut = React.createClass({
       normalizedScore: "TBD",
       apiVar3: 44,
       precheck: "TBD",
+      WaitTime: 10,
       temp: 53
     }
   },
@@ -60,6 +61,14 @@ var Commut = React.createClass({
         alert(errorMessage);
     });
 
+    tsa_wait_time.getWaitTime(departureAirport).then(function (WaitTime) {
+      that.setState({
+        departureAirport: departureAirport,
+        WaitTime: WaitTime
+      });
+    }, function (errorMessage) {
+        alert(errorMessage);
+    });
 
     flightStats.getDelay(departureAirport).then(function (normalizedScore) {
       that.setState({
@@ -76,7 +85,7 @@ var Commut = React.createClass({
 
     var {duration, normalizedScore, apiVar3} = this.state;
 
-    var {temp, startingAddress, precheck} = this.state;
+    var {temp, startingAddress, precheck, WaitTime} = this.state;
 
     return (
       <div className="row">
@@ -90,7 +99,7 @@ var Commut = React.createClass({
               <WeatherMessage temp={temp} startingAddress={startingAddress}/>
             </div>
             <div className="large-4 columns">
-              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck}/>
+              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime}/>
               <TsaPrecheckMessage/>
               <TsaWaitTimeMessage/>
 

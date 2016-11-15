@@ -132,6 +132,10 @@
 
 	var _tsa_precheck2 = _interopRequireDefault(_tsa_precheck);
 
+	var _tsa_wait_time = __webpack_require__(259);
+
+	var _tsa_wait_time2 = _interopRequireDefault(_tsa_wait_time);
+
 	var _TsaPrecheckMessage = __webpack_require__(261);
 
 	var _TsaPrecheckMessage2 = _interopRequireDefault(_TsaPrecheckMessage);
@@ -151,10 +155,10 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Load foundation that will be refactored later on
-
+	__webpack_require__(264);
 
 	//Object destructuring that comes from ES6
-	__webpack_require__(264);
+
 	$(document).foundation();
 
 	//App css
@@ -25476,6 +25480,7 @@
 	      normalizedScore: "TBD",
 	      apiVar3: 44,
 	      precheck: "TBD",
+	      WaitTime: 10,
 	      temp: 53
 	    };
 	  },
@@ -25514,6 +25519,15 @@
 	      alert(errorMessage);
 	    });
 
+	    _tsa_wait_time2.default.getWaitTime(departureAirport).then(function (WaitTime) {
+	      that.setState({
+	        departureAirport: departureAirport,
+	        WaitTime: WaitTime
+	      });
+	    }, function (errorMessage) {
+	      alert(errorMessage);
+	    });
+
 	    _flightStats2.default.getDelay(departureAirport).then(function (normalizedScore) {
 	      that.setState({
 	        departureAirport: departureAirport,
@@ -25536,7 +25550,8 @@
 	    var _state3 = this.state,
 	        temp = _state3.temp,
 	        startingAddress = _state3.startingAddress,
-	        precheck = _state3.precheck;
+	        precheck = _state3.precheck,
+	        WaitTime = _state3.WaitTime;
 
 
 	    return _react2.default.createElement(
@@ -25562,7 +25577,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck }),
+	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime }),
 	            _react2.default.createElement(_TsaPrecheckMessage2.default, null),
 	            _react2.default.createElement(_TsaWaitTimeMessage2.default, null)
 	          )
@@ -25595,7 +25610,7 @@
 	      normalizedScore = _ref.normalizedScore,
 	      apiVar3 = _ref.apiVar3,
 	      precheck = _ref.precheck,
-	      apiVar4 = _ref.apiVar4;
+	      WaitTime = _ref.WaitTime;
 
 	  return _react2.default.createElement(
 	    "div",
@@ -25657,7 +25672,7 @@
 	    _react2.default.createElement(
 	      "h6",
 	      null,
-	      "TBD"
+	      WaitTime
 	    )
 	  );
 	};
@@ -27258,140 +27273,39 @@
 
 /***/ },
 /* 259 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	/*
-	{
-	  "WaitTimes": [
-	    {
-	      "CheckpointIndex": "8",
-	      "WaitTime": "2",
-	      "Created_Datetime": "11/2/2016 12:32:02 PM"
-	    },
-	    {
-	      "CheckpointIndex": "1",
-	      "WaitTime": "1",
-	      "Created_Datetime": "11/2/2016 10:30:43 AM"
-	    },
-	    {
-	      "CheckpointIndex": "8",
-	      "WaitTime": "2",
-	      "Created_Datetime": "11/2/2016 10:04:41 AM"
-	    },
-	    {
-	      "CheckpointIndex": "8",
-	      "WaitTime": "4",
-	      "Created_Datetime": "11/2/2016 4:25:52 AM"
-	    },
-	    {
-	      "CheckpointIndex": "7",
-	      "WaitTime": "3",
-	      "Created_Datetime": "11/1/2016 4:16:00 PM"
-	    },
-	    {
-	      "CheckpointIndex": "9",
-	      "WaitTime": "1",
-	      "Created_Datetime": "11/1/2016 3:12:13 PM"
-	    },
-	    {
-	      "CheckpointIndex": "9",
-	      "WaitTime": "1",
-	      "Created_Datetime": "11/1/2016 2:31:06 PM"
-	    },
-	    {
-	      "CheckpointIndex": "9",
-	      "WaitTime": "1",
-	      "Created_Datetime": "11/1/2016 2:31:06 PM"
-	    },
-	    {
-	      "CheckpointIndex": "8",
-	      "WaitTime": "1",
-	      "Created_Datetime": "11/1/2016 1:29:16 PM"
-	    },
-	    {
-	      "CheckpointIndex": "10",
-	      "WaitTime": "1",
-	      "Created_Datetime": "11/1/2016 1:28:48 PM"
-	    },
-	    {
-	      "CheckpointIndex": "9",
-	      "WaitTime": "1",
-	      "Created_Datetime": "11/1/2016 12:20:50 PM"
-	    },
-	    {
-	      "CheckpointIndex": "9",
-	      "WaitTime": "1",
-	      "Created_Datetime": "11/1/2016 12:20:21 PM"
-	    },
-	    {
-	      "CheckpointIndex": "10",
-	      "WaitTime": "1",
-	      "Created_Datetime": "10/31/2016 10:10:28 PM"
-	    },
-	    {
-	      "CheckpointIndex": "4",
-	      "WaitTime": "3",
-	      "Created_Datetime": "10/31/2016 7:24:10 PM"
-	    },
-	    {
-	      "CheckpointIndex": "4",
-	      "WaitTime": "1",
-	      "Created_Datetime": "10/31/2016 7:21:20 PM"
-	    },
-	    {
-	      "CheckpointIndex": "4",
-	      "WaitTime": "4",
-	      "Created_Datetime": "10/31/2016 7:12:53 PM"
-	    },
-	    {
-	      "CheckpointIndex": "9",
-	      "WaitTime": "3",
-	      "Created_Datetime": "10/31/2016 6:17:07 PM"
-	    },
-	    {
-	      "CheckpointIndex": "8",
-	      "WaitTime": "3",
-	      "Created_Datetime": "10/31/2016 3:01:49 PM"
-	    },
-	    {
-	      "CheckpointIndex": "1",
-	      "WaitTime": "6",
-	      "Created_Datetime": "10/31/2016 12:07:38 PM"
-	    },
-	    {
-	      "CheckpointIndex": "9",
-	      "WaitTime": "1",
-	      "Created_Datetime": "10/31/2016 10:23:05 AM"
-	    },
-	    {
-	      "CheckpointIndex": "10",
-	      "WaitTime": "3",
-	      "Created_Datetime": "10/31/2016 2:00:39 AM"
-	    },
-	    {
-	      "CheckpointIndex": "8",
-	      "WaitTime": "7",
-	      "Created_Datetime": "10/30/2016 11:40:01 PM"
-	    },
-	    {
-	      "CheckpointIndex": "0",
-	      "WaitTime": "1",
-	      "Created_Datetime": "10/30/2016 10:59:42 PM"
-	    },
-	    {
-	      "CheckpointIndex": "5",
-	      "WaitTime": "4",
-	      "Created_Datetime": "10/30/2016 8:09:17 PM"
-	    },
-	    {
-	      "CheckpointIndex": "5",
-	      "WaitTime": "1",
-	      "Created_Datetime": "10/30/2016 11:45:37 AM"
-	    }
-	  ]
-	}
-	*/
-	"use strict";
+	'use strict';
+
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
+	var TSA_URL2 = 'https://commut-api.herokuapp.com/WaitTime?';
+
+	//
+	module.exports = {
+	  getWaitTime: function getWaitTime(departureAirport) {
+	    var encodedDeparture = encodeURIComponent(departureAirport);
+	    //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
+	    var requestUrl = '' + TSA_URL2 + encodedDeparture;
+	    //these are called query strings
+	    // console.log(requestUrl);
+	    //axios.get takes in a URL and fetches it, bringing you back the results
+	    return _axios2.default.get(requestUrl).then(function (res) {
+	      if (res.data.cod && res.data.message) {
+	        throw new Error(res.data.message);
+	      } else {
+	        return res.data.WaitTime;
+	      }
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
+	  }
+	};
 
 /***/ },
 /* 260 */
