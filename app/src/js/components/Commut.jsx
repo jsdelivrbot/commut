@@ -17,14 +17,15 @@ var Commut = React.createClass({
   getInitialState: function () {
     return {
       isLoading: false,
-      startingAddress: '123 Main St',
+      startingAddress: '1425 NE 7th Ave., Portland, OR',
       departureAirport: 'PDX',
       carrierCode: 'AA',
       flightNumber: '100',
-      duration: 34,
+      duration: 15,
+      delayTime: ' ',
       normalizedScore: "TBD",
       apiVar3: 44,
-      precheck: "TBD",
+      precheck: " ",
       WaitTime: "Approximately: 10 minutes",
       LastUpdated: "11/12/2016 8:51:27 AM",
       temp: 53
@@ -65,7 +66,6 @@ var Commut = React.createClass({
         alert(errorMessage);
     });
 
-
     flightStats_departureTime.getDepartureTime(carrierCode, flightNumber).then(function (departureTime) {
       that.setState({
         carrierCode: carrierCode,
@@ -94,9 +94,9 @@ var Commut = React.createClass({
   // }, function (errorMessage) {
   //     alert(errorMessage);
   // });
-  
+
   render: function () {
-    var {startingAddress, departureAirport, carrierCode, flightNumber, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
+    var {startingAddress, departureAirport, carrierCode, departureTime, flightNumber, delayTime, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
 
 
     return (
@@ -111,7 +111,7 @@ var Commut = React.createClass({
               <WeatherMessage temp={temp} startingAddress={startingAddress}/>
             </div>
             <div className="large-4 columns">
-              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} LastUpdated={LastUpdated}/>
+              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} departureTime={departureTime} LastUpdated={LastUpdated}/>
               <TsaPrecheckMessage/>
               <TsaWaitTimeMessage/>
             </div>

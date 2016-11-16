@@ -25492,14 +25492,15 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      isLoading: false,
-	      startingAddress: '123 Main St',
+	      startingAddress: '1425 NE 7th Ave., Portland, OR',
 	      departureAirport: 'PDX',
 	      carrierCode: 'AA',
 	      flightNumber: '100',
-	      duration: 34,
+	      duration: 15,
+	      delayTime: ' ',
 	      normalizedScore: "TBD",
 	      apiVar3: 44,
-	      precheck: "TBD",
+	      precheck: " ",
 	      WaitTime: "Approximately: 10 minutes",
 	      LastUpdated: "11/12/2016 8:51:27 AM",
 	      temp: 53
@@ -25574,7 +25575,9 @@
 	        startingAddress = _state.startingAddress,
 	        departureAirport = _state.departureAirport,
 	        carrierCode = _state.carrierCode,
+	        departureTime = _state.departureTime,
 	        flightNumber = _state.flightNumber,
+	        delayTime = _state.delayTime,
 	        duration = _state.duration,
 	        normalizedScore = _state.normalizedScore,
 	        apiVar3 = _state.apiVar3,
@@ -25607,7 +25610,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, LastUpdated: LastUpdated }),
+	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, LastUpdated: LastUpdated }),
 	            _react2.default.createElement(_TsaPrecheckMessage2.default, null),
 	            _react2.default.createElement(_TsaWaitTimeMessage2.default, null)
 	          )
@@ -25640,6 +25643,7 @@
 	      normalizedScore = _ref.normalizedScore,
 	      apiVar3 = _ref.apiVar3,
 	      departureTime = _ref.departureTime,
+	      delayTime = _ref.delayTime,
 	      precheck = _ref.precheck,
 	      WaitTime = _ref.WaitTime,
 	      LastUpdated = _ref.LastUpdated;
@@ -25680,7 +25684,7 @@
 	    _react2.default.createElement(
 	      "h6",
 	      null,
-	      normalizedScore
+	      delayTime
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -25690,7 +25694,8 @@
 	    _react2.default.createElement(
 	      "h6",
 	      null,
-	      apiVar3 + duration
+	      duration,
+	      " + X"
 	    ),
 	    _react2.default.createElement(
 	      "h6",
