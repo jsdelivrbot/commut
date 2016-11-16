@@ -136,17 +136,25 @@
 
 	var _tsa_wait_time2 = _interopRequireDefault(_tsa_wait_time);
 
-	var _googleMaps = __webpack_require__(262);
+	var _googleMaps = __webpack_require__(260);
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
-	var _flightStats_departureTime = __webpack_require__(263);
+	var _flightStats_departureTime = __webpack_require__(261);
 
 	var _flightStats_departureTime2 = _interopRequireDefault(_flightStats_departureTime);
 
-	var _flightStats_delayTime = __webpack_require__(264);
+	var _flightStats_departureGateDelayMinutes = __webpack_require__(262);
 
-	var _flightStats_delayTime2 = _interopRequireDefault(_flightStats_delayTime);
+	var _flightStats_departureGateDelayMinutes2 = _interopRequireDefault(_flightStats_departureGateDelayMinutes);
+
+	var _flightStats_departureRunwayDelayMinutes = __webpack_require__(263);
+
+	var _flightStats_departureRunwayDelayMinutes2 = _interopRequireDefault(_flightStats_departureRunwayDelayMinutes);
+
+	var _flightStats_arrivalGateDelayMinutes = __webpack_require__(264);
+
+	var _flightStats_arrivalGateDelayMinutes2 = _interopRequireDefault(_flightStats_arrivalGateDelayMinutes);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25464,23 +25472,31 @@
 
 	var _tsa_wait_time2 = _interopRequireDefault(_tsa_wait_time);
 
-	var _googleMaps = __webpack_require__(262);
+	var _googleMaps = __webpack_require__(260);
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
-	var _flightStats_departureTime = __webpack_require__(263);
+	var _flightStats_departureTime = __webpack_require__(261);
 
 	var _flightStats_departureTime2 = _interopRequireDefault(_flightStats_departureTime);
 
-	var _flightStats_delayTime = __webpack_require__(264);
+	var _flightStats_departureGateDelayMinutes = __webpack_require__(262);
 
-	var _flightStats_delayTime2 = _interopRequireDefault(_flightStats_delayTime);
+	var _flightStats_departureGateDelayMinutes2 = _interopRequireDefault(_flightStats_departureGateDelayMinutes);
+
+	var _flightStats_departureRunwayDelayMinutes = __webpack_require__(263);
+
+	var _flightStats_departureRunwayDelayMinutes2 = _interopRequireDefault(_flightStats_departureRunwayDelayMinutes);
+
+	var _flightStats_arrivalGateDelayMinutes = __webpack_require__(264);
+
+	var _flightStats_arrivalGateDelayMinutes2 = _interopRequireDefault(_flightStats_arrivalGateDelayMinutes);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import flightStats from 'flightStats'
 	var Commut = _react2.default.createClass({
 	  displayName: 'Commut',
+
 
 	  getInitialState: function getInitialState() {
 	    return {
@@ -25491,6 +25507,8 @@
 	      flightNumber: '100',
 	      duration: 15,
 	      departureGateDelayMinutes: " ",
+	      departureRunwayDelayMinutes: " ",
+	      arrivalGateDelayMinutes: " ",
 	      normalizedScore: "TBD",
 	      apiVar3: 44,
 	      precheck: " ",
@@ -25544,7 +25562,7 @@
 	      alert(errorMessage);
 	    });
 
-	    _flightStats_delayTime2.default.getDelayTime(carrierCode, flightNumber).then(function (departureGateDelayMinutes) {
+	    _flightStats_departureGateDelayMinutes2.default.getDepartureGateDelayMinutes(carrierCode, flightNumber).then(function (departureGateDelayMinutes) {
 	      that.setState({
 	        carrierCode: carrierCode,
 	        flightNumber: flightNumber,
@@ -25553,25 +25571,27 @@
 	    }, function (errorMessage) {
 	      alert(errorMessage);
 	    });
+
+	    _flightStats_departureRunwayDelayMinutes2.default.getDepartureRunwayDelayMinutes(carrierCode, flightNumber).then(function (departureRunwayDelayMinutes) {
+	      that.setState({
+	        carrierCode: carrierCode,
+	        flightNumber: flightNumber,
+	        departureRunwayDelayMinutes: departureRunwayDelayMinutes
+	      });
+	    }, function (errorMessage) {
+	      alert(errorMessage);
+	    });
+
+	    _flightStats_arrivalGateDelayMinutes2.default.getArrivalGateDelayMinutes(carrierCode, flightNumber).then(function (arrivalGateDelayMinutes) {
+	      that.setState({
+	        carrierCode: carrierCode,
+	        flightNumber: flightNumber,
+	        arrivalGateDelayMinutes: arrivalGateDelayMinutes
+	      });
+	    }, function (errorMessage) {
+	      alert(errorMessage);
+	    });
 	  },
-
-	  // tsa_wait_time.getWaitTime(departureAirport).then(function (WaitTime) {
-	  //   that.setState({
-	  //     departureAirport: departureAirport,
-	  //     WaitTime: WaitTime
-	  //   });
-	  // }, function (errorMessage) {
-	  //     alert(errorMessage);
-	  // });
-
-	  // flightStats.getDelay(departureAirport).then(function (normalizedScore) {
-	  //   that.setState({
-	  //     departureAirport: departureAirport,
-	  //     normalizedScore: normalizedScore
-	  //   });
-	  // }, function (errorMessage) {
-	  //     alert(errorMessage);
-	  // });
 
 	  render: function render() {
 	    var _state = this.state,
@@ -25580,6 +25600,8 @@
 	        carrierCode = _state.carrierCode,
 	        departureTime = _state.departureTime,
 	        departureGateDelayMinutes = _state.departureGateDelayMinutes,
+	        departureRunwayDelayMinutes = _state.departureRunwayDelayMinutes,
+	        arrivalGateDelayMinutes = _state.arrivalGateDelayMinutes,
 	        flightNumber = _state.flightNumber,
 	        departureTerminal = _state.departureTerminal,
 	        duration = _state.duration,
@@ -25614,7 +25636,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, departureGateDelayMinutes: departureGateDelayMinutes, LastUpdated: LastUpdated })
+	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, departureGateDelayMinutes: departureGateDelayMinutes, departureRunwayDelayMinutes: departureRunwayDelayMinutes, arrivalGateDelayMinutes: arrivalGateDelayMinutes, LastUpdated: LastUpdated })
 	          )
 	        )
 	      )
@@ -25646,6 +25668,8 @@
 	      apiVar3 = _ref.apiVar3,
 	      departureTime = _ref.departureTime,
 	      departureGateDelayMinutes = _ref.departureGateDelayMinutes,
+	      departureRunwayDelayMinutes = _ref.departureRunwayDelayMinutes,
+	      arrivalGateDelayMinutes = _ref.arrivalGateDelayMinutes,
 	      precheck = _ref.precheck,
 	      WaitTime = _ref.WaitTime,
 	      LastUpdated = _ref.LastUpdated;
@@ -25688,6 +25712,18 @@
 	      null,
 	      "Departure Gate Delay Minutes: ",
 	      departureGateDelayMinutes
+	    ),
+	    _react2.default.createElement(
+	      "h6",
+	      null,
+	      "Departure Runway Delay Minutes: ",
+	      departureRunwayDelayMinutes
+	    ),
+	    _react2.default.createElement(
+	      "h6",
+	      null,
+	      "Arrival Gate Delay Minutes: ",
+	      arrivalGateDelayMinutes
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -27355,9 +27391,7 @@
 	"use strict";
 
 /***/ },
-/* 260 */,
-/* 261 */,
-/* 262 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27394,7 +27428,7 @@
 	};
 
 /***/ },
-/* 263 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27429,6 +27463,72 @@
 	};
 
 /***/ },
+/* 262 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/delayTime/';
+
+	//
+	module.exports = {
+	  getDepartureGateDelayMinutes: function getDepartureGateDelayMinutes(carrierCode, flightNumber) {
+	    var encodedCarrierCode = encodeURIComponent(carrierCode);
+	    var encodedFlightNumber = encodeURIComponent(flightNumber);
+	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+
+	    return _axios2.default.get(requestUrl).then(function (res) {
+	      if (res.data.cod && res.data.message) {
+	        throw new Error(res.data.message);
+	      } else {
+	        return res.data.departureGateDelayMinutes;
+	      }
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
+	  }
+	};
+
+/***/ },
+/* 263 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/delayTime/';
+
+	//
+	module.exports = {
+	  getDepartureRunwayDelayMinutes: function getDepartureRunwayDelayMinutes(carrierCode, flightNumber) {
+	    var encodedCarrierCode = encodeURIComponent(carrierCode);
+	    var encodedFlightNumber = encodeURIComponent(flightNumber);
+	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+
+	    return _axios2.default.get(requestUrl).then(function (res) {
+	      if (res.data.cod && res.data.message) {
+	        throw new Error(res.data.message);
+	      } else {
+	        return res.data.departureRunwayDelayMinutes;
+	      }
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
+	  }
+	};
+
+/***/ },
 /* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -27444,7 +27544,7 @@
 
 	//
 	module.exports = {
-	  getDelayTime: function getDelayTime(carrierCode, flightNumber) {
+	  getArrivalGateDelayMinutes: function getArrivalGateDelayMinutes(carrierCode, flightNumber) {
 	    var encodedCarrierCode = encodeURIComponent(carrierCode);
 	    var encodedFlightNumber = encodeURIComponent(flightNumber);
 	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
@@ -27453,11 +27553,7 @@
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        return res.data.departureGateDelayMinutes;
-	        console.log(res.data.departureGateDelayMinutes);
-	        // return res.data.departureRunwayDelayMinutes;
-	        // return res.data.arrivalGateDelayMinutes;
-	        // return res.data.arrivalRunwayDelayMinutes;
+	        return res.data.arrivalGateDelayMinutes;
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);

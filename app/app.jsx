@@ -14,8 +14,9 @@ import tsa_wait_time from 'tsa_wait_time';
 import googleMaps from 'googleMaps';
 // import flightStats from 'flightStats';
 import flightStats_departureTime from 'flightStats_departureTime';
-import flightStats_delayTime from 'flightStats_delayTime';
-
+import flightStats_departureGateDelayMinutes from 'flightStats_departureGateDelayMinutes';
+import flightStats_departureRunwayDelayMinutes from 'flightStats_departureRunwayDelayMinutes';
+import flightStats_arrivalGateDelayMinutes from 'flightStats_arrivalGateDelayMinutes';
 
 //Load foundation that will be refactored later on
 require('style!css!foundation-sites/dist/foundation.min.css')

@@ -7,12 +7,13 @@ import openWeatherMap from 'openWeatherMap'
 import tsa_precheck from 'tsa_precheck'
 import tsa_wait_time from 'tsa_wait_time'
 import googleMaps from 'googleMaps'
-// import flightStats from 'flightStats'
 import flightStats_departureTime from 'flightStats_departureTime'
-import flightStats_delayTime from 'flightStats_delayTime';
-
+import flightStats_departureGateDelayMinutes from 'flightStats_departureGateDelayMinutes';
+import flightStats_departureRunwayDelayMinutes from 'flightStats_departureRunwayDelayMinutes';
+import flightStats_arrivalGateDelayMinutes from 'flightStats_arrivalGateDelayMinutes';
 
 var Commut = React.createClass({
+
   getInitialState: function () {
     return {
       isLoading: false,
@@ -22,6 +23,8 @@ var Commut = React.createClass({
       flightNumber: '100',
       duration: 15,
       departureGateDelayMinutes: " ",
+      departureRunwayDelayMinutes: " ",
+      arrivalGateDelayMinutes: " ",
       normalizedScore: "TBD",
       apiVar3: 44,
       precheck: " ",
@@ -75,7 +78,7 @@ var Commut = React.createClass({
         alert(errorMessage);
     });
 
-    flightStats_delayTime.getDelayTime(carrierCode, flightNumber).then(function (departureGateDelayMinutes) {
+    flightStats_departureGateDelayMinutes.getDepartureGateDelayMinutes(carrierCode, flightNumber).then(function (departureGateDelayMinutes) {
       that.setState({
         carrierCode: carrierCode,
         flightNumber: flightNumber,
@@ -84,28 +87,31 @@ var Commut = React.createClass({
     }, function (errorMessage) {
         alert(errorMessage);
     });
+
+    flightStats_departureRunwayDelayMinutes.getDepartureRunwayDelayMinutes(carrierCode, flightNumber).then(function (departureRunwayDelayMinutes) {
+      that.setState({
+        carrierCode: carrierCode,
+        flightNumber: flightNumber,
+        departureRunwayDelayMinutes: departureRunwayDelayMinutes
+      });
+    }, function (errorMessage) {
+        alert(errorMessage);
+    });
+
+    flightStats_arrivalGateDelayMinutes.getArrivalGateDelayMinutes(carrierCode, flightNumber).then(function (arrivalGateDelayMinutes) {
+      that.setState({
+        carrierCode: carrierCode,
+        flightNumber: flightNumber,
+        arrivalGateDelayMinutes: arrivalGateDelayMinutes
+      });
+    }, function (errorMessage) {
+        alert(errorMessage);
+    });
+
   },
 
-  // tsa_wait_time.getWaitTime(departureAirport).then(function (WaitTime) {
-  //   that.setState({
-  //     departureAirport: departureAirport,
-  //     WaitTime: WaitTime
-  //   });
-  // }, function (errorMessage) {
-  //     alert(errorMessage);
-  // });
-
-  // flightStats.getDelay(departureAirport).then(function (normalizedScore) {
-  //   that.setState({
-  //     departureAirport: departureAirport,
-  //     normalizedScore: normalizedScore
-  //   });
-  // }, function (errorMessage) {
-  //     alert(errorMessage);
-  // });
-
   render: function () {
-    var {startingAddress, departureAirport, carrierCode, departureTime, departureGateDelayMinutes, flightNumber, departureTerminal, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
+    var {startingAddress, departureAirport, carrierCode, departureTime, departureGateDelayMinutes, departureRunwayDelayMinutes, arrivalGateDelayMinutes, flightNumber, departureTerminal, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
 
 
     return (
@@ -120,7 +126,7 @@ var Commut = React.createClass({
               <WeatherMessage temp={temp} startingAddress={startingAddress}/>
             </div>
             <div className="large-4 columns">
-              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} departureTime={departureTime} departureGateDelayMinutes={departureGateDelayMinutes} LastUpdated={LastUpdated}/>
+              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} departureTime={departureTime} departureGateDelayMinutes={departureGateDelayMinutes} departureRunwayDelayMinutes={departureRunwayDelayMinutes} arrivalGateDelayMinutes={arrivalGateDelayMinutes} LastUpdated={LastUpdated}/>
             </div>
           </div>
         </div>

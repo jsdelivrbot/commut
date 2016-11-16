@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-var CommutResults = ({duration, normalizedScore, apiVar3, departureTime, departureGateDelayMinutes, precheck, WaitTime, LastUpdated}) => {
+var CommutResults = ({duration, normalizedScore, apiVar3, departureTime, departureGateDelayMinutes, departureRunwayDelayMinutes, arrivalGateDelayMinutes, precheck, WaitTime, LastUpdated}) => {
   return (
     <div>
       <h5 className="page-title">Your results:</h5>
@@ -10,6 +10,8 @@ var CommutResults = ({duration, normalizedScore, apiVar3, departureTime, departu
       <h6>{departureTime}</h6>
       <h6 className="details">Delay time: </h6>
       <h6>Departure Gate Delay Minutes: {departureGateDelayMinutes}</h6>
+      <h6>Departure Runway Delay Minutes: {departureRunwayDelayMinutes}</h6>
+      <h6>Arrival Gate Delay Minutes: {arrivalGateDelayMinutes}</h6>
       <h6 className="details">Total commute time: </h6>
       <h6>{duration} + X</h6>
       <h6 className="details">TSA PreCheck: </h6>

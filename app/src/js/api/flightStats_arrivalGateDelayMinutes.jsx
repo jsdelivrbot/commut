@@ -4,7 +4,7 @@ const FLIGHT_URL = 'https://commut-api.herokuapp.com/delayTime/'
 
 //
 module.exports = {
-  getDelayTime: function (carrierCode, flightNumber) {
+  getArrivalGateDelayMinutes: function (carrierCode, flightNumber) {
     var encodedCarrierCode = encodeURIComponent(carrierCode);
     var encodedFlightNumber = encodeURIComponent(flightNumber);
     var requestUrl = `${FLIGHT_URL}?carrierCode=${encodedCarrierCode}?flightNumber=${encodedFlightNumber}`
@@ -13,11 +13,7 @@ module.exports = {
       if (res.data.cod && res.data.message) {
         throw new Error(res.data.message);
       } else {
-        return res.data.departureGateDelayMinutes;
-        console.log(res.data.departureGateDelayMinutes);
-        // return res.data.departureRunwayDelayMinutes;
-        // return res.data.arrivalGateDelayMinutes;
-        // return res.data.arrivalRunwayDelayMinutes;
+        return res.data.arrivalGateDelayMinutes;
       }
     }, function (res) {
       throw new Error(res.data.message);
