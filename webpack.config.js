@@ -38,8 +38,6 @@ module.exports = {
       googleMaps: 'app/src/js/api/googleMaps.jsx',
       tsa_precheck: 'app/src/js/api/tsa_precheck.jsx',
       tsa_wait_time: 'app/src/js/api/tsa_wait_time.jsx',
-      TsaWaitTimeMessage: 'app/src/js/components/TsaWaitTimeMessage.jsx',
-      TsaPrecheckMessage: 'app/src/js/components/TsaPrecheckMessage.jsx',
       applicationStyles: 'app/styles/app.css',
     },
     extensions: ['', '.js', '.jsx']

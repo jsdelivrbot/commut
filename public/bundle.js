@@ -136,14 +136,6 @@
 
 	var _tsa_wait_time2 = _interopRequireDefault(_tsa_wait_time);
 
-	var _TsaPrecheckMessage = __webpack_require__(261);
-
-	var _TsaPrecheckMessage2 = _interopRequireDefault(_TsaPrecheckMessage);
-
-	var _TsaWaitTimeMessage = __webpack_require__(260);
-
-	var _TsaWaitTimeMessage2 = _interopRequireDefault(_TsaWaitTimeMessage);
-
 	var _googleMaps = __webpack_require__(262);
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
@@ -25472,14 +25464,6 @@
 
 	var _tsa_wait_time2 = _interopRequireDefault(_tsa_wait_time);
 
-	var _TsaWaitTimeMessage = __webpack_require__(260);
-
-	var _TsaWaitTimeMessage2 = _interopRequireDefault(_TsaWaitTimeMessage);
-
-	var _TsaPrecheckMessage = __webpack_require__(261);
-
-	var _TsaPrecheckMessage2 = _interopRequireDefault(_TsaPrecheckMessage);
-
 	var _googleMaps = __webpack_require__(262);
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
@@ -25506,7 +25490,7 @@
 	      carrierCode: 'AA',
 	      flightNumber: '100',
 	      duration: 15,
-	      delayTime: ' ',
+	      departureGateDelayMinutes: " ",
 	      normalizedScore: "TBD",
 	      apiVar3: 44,
 	      precheck: " ",
@@ -25560,11 +25544,11 @@
 	      alert(errorMessage);
 	    });
 
-	    _flightStats_delayTime2.default.getDelayTime(carrierCode, flightNumber).then(function (delayTime) {
+	    _flightStats_delayTime2.default.getDelayTime(carrierCode, flightNumber).then(function (departureGateDelayMinutes) {
 	      that.setState({
 	        carrierCode: carrierCode,
 	        flightNumber: flightNumber,
-	        delayTime: delayTime
+	        departureGateDelayMinutes: departureGateDelayMinutes
 	      });
 	    }, function (errorMessage) {
 	      alert(errorMessage);
@@ -25595,9 +25579,9 @@
 	        departureAirport = _state.departureAirport,
 	        carrierCode = _state.carrierCode,
 	        departureTime = _state.departureTime,
-	        delayTime = _state.delayTime,
+	        departureGateDelayMinutes = _state.departureGateDelayMinutes,
 	        flightNumber = _state.flightNumber,
-	        delayTime = _state.delayTime,
+	        departureTerminal = _state.departureTerminal,
 	        duration = _state.duration,
 	        normalizedScore = _state.normalizedScore,
 	        apiVar3 = _state.apiVar3,
@@ -25630,9 +25614,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, delayTime: delayTime, LastUpdated: LastUpdated }),
-	            _react2.default.createElement(_TsaPrecheckMessage2.default, null),
-	            _react2.default.createElement(_TsaWaitTimeMessage2.default, null)
+	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, departureGateDelayMinutes: departureGateDelayMinutes, LastUpdated: LastUpdated })
 	          )
 	        )
 	      )
@@ -25663,7 +25645,7 @@
 	      normalizedScore = _ref.normalizedScore,
 	      apiVar3 = _ref.apiVar3,
 	      departureTime = _ref.departureTime,
-	      delayTime = _ref.delayTime,
+	      departureGateDelayMinutes = _ref.departureGateDelayMinutes,
 	      precheck = _ref.precheck,
 	      WaitTime = _ref.WaitTime,
 	      LastUpdated = _ref.LastUpdated;
@@ -25704,7 +25686,8 @@
 	    _react2.default.createElement(
 	      "h6",
 	      null,
-	      delayTime
+	      "Departure Gate Delay Minutes: ",
+	      departureGateDelayMinutes
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -27372,42 +27355,8 @@
 	"use strict";
 
 /***/ },
-/* 260 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(8);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var TsaWaitTimeMessage = function TsaWaitTimeMessage(props) {
-	  return _react2.default.createElement('div', null);
-	};
-
-	module.exports = TsaWaitTimeMessage;
-
-/***/ },
-/* 261 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(8);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var TsaPrecheckMessage = function TsaPrecheckMessage(props) {
-	  return _react2.default.createElement('div', null);
-	};
-
-	module.exports = TsaPrecheckMessage;
-
-/***/ },
+/* 260 */,
+/* 261 */,
 /* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -27491,8 +27440,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-	var FLIGHT_URL = 'https://commut-api.herokuapp.com/departureTime/';
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/delayTime/';
 
 	//
 	module.exports = {
@@ -27501,12 +27449,15 @@
 	    var encodedFlightNumber = encodeURIComponent(flightNumber);
 	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
 
-	    //axios.get takes in a URL and fetches it, bringing you back the results
 	    return _axios2.default.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        return res.data.delaTime;
+	        return res.data.departureGateDelayMinutes;
+	        console.log(res.data.departureGateDelayMinutes);
+	        // return res.data.departureRunwayDelayMinutes;
+	        // return res.data.arrivalGateDelayMinutes;
+	        // return res.data.arrivalRunwayDelayMinutes;
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);

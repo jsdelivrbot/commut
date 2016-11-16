@@ -6,8 +6,6 @@ import WeatherMessage from 'WeatherMessage'
 import openWeatherMap from 'openWeatherMap'
 import tsa_precheck from 'tsa_precheck'
 import tsa_wait_time from 'tsa_wait_time'
-import TsaWaitTimeMessage from 'TsaWaitTimeMessage'
-import TsaPrecheckMessage from 'TsaPrecheckMessage'
 import googleMaps from 'googleMaps'
 // import flightStats from 'flightStats'
 import flightStats_departureTime from 'flightStats_departureTime'
@@ -23,7 +21,7 @@ var Commut = React.createClass({
       carrierCode: 'AA',
       flightNumber: '100',
       duration: 15,
-      delayTime: ' ',
+      departureGateDelayMinutes: " ",
       normalizedScore: "TBD",
       apiVar3: 44,
       precheck: " ",
@@ -77,11 +75,11 @@ var Commut = React.createClass({
         alert(errorMessage);
     });
 
-    flightStats_delayTime.getDelayTime(carrierCode, flightNumber).then(function (delayTime) {
+    flightStats_delayTime.getDelayTime(carrierCode, flightNumber).then(function (departureGateDelayMinutes) {
       that.setState({
         carrierCode: carrierCode,
         flightNumber: flightNumber,
-        delayTime: delayTime
+        departureGateDelayMinutes: departureGateDelayMinutes
       });
     }, function (errorMessage) {
         alert(errorMessage);
@@ -107,7 +105,7 @@ var Commut = React.createClass({
   // });
 
   render: function () {
-    var {startingAddress, departureAirport, carrierCode, departureTime, delayTime, flightNumber, delayTime, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
+    var {startingAddress, departureAirport, carrierCode, departureTime, departureGateDelayMinutes, flightNumber, departureTerminal, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
 
 
     return (
@@ -122,9 +120,7 @@ var Commut = React.createClass({
               <WeatherMessage temp={temp} startingAddress={startingAddress}/>
             </div>
             <div className="large-4 columns">
-              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} departureTime={departureTime} delayTime={delayTime} LastUpdated={LastUpdated}/>
-              <TsaPrecheckMessage/>
-              <TsaWaitTimeMessage/>
+              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} departureTime={departureTime} departureGateDelayMinutes={departureGateDelayMinutes} LastUpdated={LastUpdated}/>
             </div>
           </div>
         </div>

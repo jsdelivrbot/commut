@@ -11,8 +11,6 @@ import About from 'About';
 import WeatherMessage from 'WeatherMessage';
 import tsa_precheck from 'tsa_precheck';
 import tsa_wait_time from 'tsa_wait_time';
-import TsaPrecheckMessage from 'TsaPrecheckMessage';
-import TsaWaitTimeMessage from 'TsaWaitTimeMessage';
 import googleMaps from 'googleMaps';
 // import flightStats from 'flightStats';
 import flightStats_departureTime from 'flightStats_departureTime';

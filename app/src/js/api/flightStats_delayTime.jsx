@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-const FLIGHT_URL = 'https://commut-api.herokuapp.com/departureTime/'
+const FLIGHT_URL = 'https://commut-api.herokuapp.com/delayTime/'
 
 //
 module.exports = {
@@ -10,12 +9,15 @@ module.exports = {
     var encodedFlightNumber = encodeURIComponent(flightNumber);
     var requestUrl = `${FLIGHT_URL}?carrierCode=${encodedCarrierCode}?flightNumber=${encodedFlightNumber}`
 
-    //axios.get takes in a URL and fetches it, bringing you back the results
     return axios.get(requestUrl).then(function (res) {
       if (res.data.cod && res.data.message) {
         throw new Error(res.data.message);
       } else {
-        return res.data.delaTime;
+        return res.data.departureGateDelayMinutes;
+        console.log(res.data.departureGateDelayMinutes);
+        // return res.data.departureRunwayDelayMinutes;
+        // return res.data.arrivalGateDelayMinutes;
+        // return res.data.arrivalRunwayDelayMinutes;
       }
     }, function (res) {
       throw new Error(res.data.message);
