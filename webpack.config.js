@@ -37,6 +37,7 @@ module.exports = {
       flightStats_departureGateDelayMinutes: 'app/src/js/api/flightStats_departureGateDelayMinutes.jsx',
       flightStats_departureRunwayDelayMinutes: 'app/src/js/api/flightStats_departureRunwayDelayMinutes.jsx',
       flightStats_arrivalGateDelayMinutes: 'app/src/js/api/flightStats_arrivalGateDelayMinutes.jsx',
+      flightStats_arrivalRunwayDelayMinutes: 'app/src/js/api/flightStats_arrivalRunwayDelayMinutes.jsx',
       googleMaps: 'app/src/js/api/googleMaps.jsx',
       tsa_precheck: 'app/src/js/api/tsa_precheck.jsx',
       tsa_wait_time: 'app/src/js/api/tsa_wait_time.jsx',
