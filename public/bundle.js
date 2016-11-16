@@ -160,19 +160,23 @@
 
 	var _flightStats_arrivalRunwayDelayMinutes2 = _interopRequireDefault(_flightStats_arrivalRunwayDelayMinutes);
 
+	var _flightStats_gateDepartureTerminal = __webpack_require__(266);
+
+	var _flightStats_gateDepartureTerminal2 = _interopRequireDefault(_flightStats_gateDepartureTerminal);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Load foundation that will be refactored later on
-	__webpack_require__(266);
+
 	// import flightStats from 'flightStats';
 
 
 	//Object destructuring that comes from ES6
-
+	__webpack_require__(267);
 	$(document).foundation();
 
 	//App css
-	__webpack_require__(270);
+	__webpack_require__(271);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
@@ -25500,6 +25504,10 @@
 
 	var _flightStats_arrivalRunwayDelayMinutes2 = _interopRequireDefault(_flightStats_arrivalRunwayDelayMinutes);
 
+	var _flightStats_gateDepartureTerminal = __webpack_require__(266);
+
+	var _flightStats_gateDepartureTerminal2 = _interopRequireDefault(_flightStats_gateDepartureTerminal);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Commut = _react2.default.createClass({
@@ -25518,7 +25526,7 @@
 	      departureRunwayDelayMinutes: " ",
 	      arrivalGateDelayMinutes: " ",
 	      arrivalRunwayDelayMinutes: " ",
-	      normalizedScore: "TBD",
+	      departureTerminal: " ",
 	      apiVar3: 44,
 	      precheck: " ",
 	      WaitTime: "Approximately: 10 minutes",
@@ -25610,6 +25618,16 @@
 	    }, function (errorMessage) {
 	      alert(errorMessage);
 	    });
+
+	    _flightStats_gateDepartureTerminal2.default.getGetDepartureTerminal(carrierCode, flightNumber).then(function (gateDepartureTerminal) {
+	      that.setState({
+	        carrierCode: carrierCode,
+	        flightNumber: flightNumber,
+	        gateDepartureTerminal: gateDepartureTerminal
+	      });
+	    }, function (errorMessage) {
+	      alert(errorMessage);
+	    });
 	  },
 
 	  render: function render() {
@@ -25623,7 +25641,7 @@
 	        arrivalGateDelayMinutes = _state.arrivalGateDelayMinutes,
 	        arrivalRunwayDelayMinutes = _state.arrivalRunwayDelayMinutes,
 	        flightNumber = _state.flightNumber,
-	        departureTerminal = _state.departureTerminal,
+	        gateDepartureTerminal = _state.gateDepartureTerminal,
 	        duration = _state.duration,
 	        normalizedScore = _state.normalizedScore,
 	        apiVar3 = _state.apiVar3,
@@ -25656,7 +25674,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, departureGateDelayMinutes: departureGateDelayMinutes, departureRunwayDelayMinutes: departureRunwayDelayMinutes, arrivalGateDelayMinutes: arrivalGateDelayMinutes, arrivalRunwayDelayMinutes: arrivalRunwayDelayMinutes, LastUpdated: LastUpdated })
+	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, departureGateDelayMinutes: departureGateDelayMinutes, departureRunwayDelayMinutes: departureRunwayDelayMinutes, arrivalGateDelayMinutes: arrivalGateDelayMinutes, arrivalRunwayDelayMinutes: arrivalRunwayDelayMinutes, gateDepartureTerminal: gateDepartureTerminal, LastUpdated: LastUpdated })
 	          )
 	        )
 	      )
@@ -25691,6 +25709,7 @@
 	      departureRunwayDelayMinutes = _ref.departureRunwayDelayMinutes,
 	      arrivalGateDelayMinutes = _ref.arrivalGateDelayMinutes,
 	      arrivalRunwayDelayMinutes = _ref.arrivalRunwayDelayMinutes,
+	      gateDepartureTerminal = _ref.gateDepartureTerminal,
 	      precheck = _ref.precheck,
 	      WaitTime = _ref.WaitTime,
 	      LastUpdated = _ref.LastUpdated;
@@ -25721,7 +25740,14 @@
 	    _react2.default.createElement(
 	      "h6",
 	      null,
+	      "Departure Time: ",
 	      departureTime
+	    ),
+	    _react2.default.createElement(
+	      "h6",
+	      null,
+	      "Departure Terminal: ",
+	      gateDepartureTerminal
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -27625,13 +27651,48 @@
 /* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/';
+
+	//
+	module.exports = {
+	  getGetDepartureTerminal: function getGetDepartureTerminal(carrierCode, flightNumber) {
+	    var encodedCarrierCode = encodeURIComponent(carrierCode);
+	    var encodedFlightNumber = encodeURIComponent(flightNumber);
+	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+
+	    //axios.get takes in a URL and fetches it, bringing you back the results
+	    return _axios2.default.get(requestUrl).then(function (res) {
+	      if (res.data.cod && res.data.message) {
+	        throw new Error(res.data.message);
+	      } else {
+	        return res.data.departureTerminal;
+	      }
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
+	  }
+	};
+
+/***/ },
+/* 267 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(267);
+	var content = __webpack_require__(268);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(269)(content, {});
+	var update = __webpack_require__(270)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27648,10 +27709,10 @@
 	}
 
 /***/ },
-/* 267 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(268)();
+	exports = module.exports = __webpack_require__(269)();
 	// imports
 
 
@@ -27662,7 +27723,7 @@
 
 
 /***/ },
-/* 268 */
+/* 269 */
 /***/ function(module, exports) {
 
 	/*
@@ -27718,7 +27779,7 @@
 
 
 /***/ },
-/* 269 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -27972,16 +28033,16 @@
 
 
 /***/ },
-/* 270 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(271);
+	var content = __webpack_require__(272);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(269)(content, {});
+	var update = __webpack_require__(270)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27998,10 +28059,10 @@
 	}
 
 /***/ },
-/* 271 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(268)();
+	exports = module.exports = __webpack_require__(269)();
 	// imports
 
 

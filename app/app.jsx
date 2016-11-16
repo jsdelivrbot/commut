@@ -18,6 +18,7 @@ import flightStats_departureGateDelayMinutes from 'flightStats_departureGateDela
 import flightStats_departureRunwayDelayMinutes from 'flightStats_departureRunwayDelayMinutes';
 import flightStats_arrivalGateDelayMinutes from 'flightStats_arrivalGateDelayMinutes';
 import flightStats_arrivalRunwayDelayMinutes from 'flightStats_arrivalRunwayDelayMinutes';
+import flightStats_gateDepartureTerminal from 'flightStats_gateDepartureTerminal';
 //Load foundation that will be refactored later on
 require('style!css!foundation-sites/dist/foundation.min.css')
 $(document).foundation();
