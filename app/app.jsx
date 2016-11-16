@@ -25,6 +25,8 @@ import flightStats_gateDepartureTerminal from 'flightStats_gateDepartureTerminal
 import flightStats_gateDepartureGate from 'flightStats_gateDepartureGate';
 import flightStats_gateArrivalTerminal from 'flightStats_gateArrivalTerminal';
 import flightStats_gateArrivalGate from 'flightStats_gateArrivalGate';
+import flightStats_gateBaggage from 'flightStats_gateBaggage';
+
 //Load foundation that will be refactored later on
 require('style!css!foundation-sites/dist/foundation.min.css')
 $(document).foundation();

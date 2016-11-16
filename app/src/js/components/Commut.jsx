@@ -20,6 +20,8 @@ import flightStats_gateDepartureTerminal from 'flightStats_gateDepartureTerminal
 import flightStats_gateDepartureGate from 'flightStats_gateDepartureGate';
 import flightStats_gateArrivalTerminal from 'flightStats_gateArrivalTerminal';
 import flightStats_gateArrivalGate from 'flightStats_gateArrivalGate';
+import flightStats_gateBaggage from 'flightStats_gateBaggage';
+
 
 var Commut = React.createClass({
 
@@ -38,6 +40,7 @@ var Commut = React.createClass({
       departureTerminal: " ",
       departureGate: " ",
       arrivalGate: " ",
+      baggage: " ",
       apiVar3: 44,
       precheck: " ",
       WaitTime: "Approximately: 10 minutes",
@@ -169,10 +172,20 @@ var Commut = React.createClass({
     }, function (errorMessage) {
         alert(errorMessage);
     });
+
+    flightStats_gateBaggage.getGetBaggage(carrierCode, flightNumber).then(function (baggage) {
+      that.setState({
+        carrierCode: carrierCode,
+        flightNumber: flightNumber,
+        baggage: baggage
+      });
+    }, function (errorMessage) {
+        alert(errorMessage);
+    });
   },
 
   render: function () {
-    var {startingAddress, departureAirport, carrierCode, departureTime, departureGateDelayMinutes, departureRunwayDelayMinutes, arrivalGateDelayMinutes, arrivalRunwayDelayMinutes, flightNumber, departureTerminal, departureGate, arrivalTerminal, arrivalGate, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
+    var {startingAddress, departureAirport, carrierCode, departureTime, departureGateDelayMinutes, departureRunwayDelayMinutes, arrivalGateDelayMinutes, arrivalRunwayDelayMinutes, flightNumber, departureTerminal, departureGate, arrivalTerminal, arrivalGate, baggage, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
 
 
     return (
@@ -187,7 +200,7 @@ var Commut = React.createClass({
               <WeatherMessage temp={temp} startingAddress={startingAddress}/>
             </div>
             <div className="large-4 columns">
-              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} departureTime={departureTime} departureGateDelayMinutes={departureGateDelayMinutes} departureRunwayDelayMinutes={departureRunwayDelayMinutes} arrivalGateDelayMinutes={arrivalGateDelayMinutes} arrivalRunwayDelayMinutes={arrivalRunwayDelayMinutes} departureTerminal={departureTerminal} departureGate={departureGate} arrivalTerminal={arrivalTerminal} arrivalGate={arrivalGate} LastUpdated={LastUpdated}/>
+              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} departureTime={departureTime} departureGateDelayMinutes={departureGateDelayMinutes} departureRunwayDelayMinutes={departureRunwayDelayMinutes} arrivalGateDelayMinutes={arrivalGateDelayMinutes} arrivalRunwayDelayMinutes={arrivalRunwayDelayMinutes} departureTerminal={departureTerminal} departureGate={departureGate} arrivalTerminal={arrivalTerminal} arrivalGate={arrivalGate} baggage={baggage} LastUpdated={LastUpdated}/>
             </div>
           </div>
         </div>

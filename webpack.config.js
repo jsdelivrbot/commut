@@ -42,6 +42,7 @@ module.exports = {
       flightStats_gateDepartureGate: 'app/src/js/api/flightStats_gateDepartureGate.jsx',
       flightStats_gateArrivalTerminal: 'app/src/js/api/flightStats_gateArrivalTerminal.jsx',
       flightStats_gateArrivalGate: 'app/src/js/api/flightStats_gateArrivalGate.jsx',
+      flightStats_gateBaggage: 'app/src/js/api/flightStats_gateBaggage.jsx',
       googleMaps: 'app/src/js/api/googleMaps.jsx',
       tsa_precheck: 'app/src/js/api/tsa_precheck.jsx',
       tsa_wait_time: 'app/src/js/api/tsa_wait_time.jsx',

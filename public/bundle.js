@@ -176,23 +176,27 @@
 
 	var _flightStats_gateArrivalGate2 = _interopRequireDefault(_flightStats_gateArrivalGate);
 
+	var _flightStats_gateBaggage = __webpack_require__(270);
+
+	var _flightStats_gateBaggage2 = _interopRequireDefault(_flightStats_gateBaggage);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Load foundation that will be refactored later on
 
 
-	////FlightStats Terminals and Gates
-	__webpack_require__(270);
-
 	////FlightStats Delays
 
 
 	//Object destructuring that comes from ES6
+	__webpack_require__(271);
+
+	////FlightStats Terminals and Gates
 
 	$(document).foundation();
 
 	//App css
-	__webpack_require__(274);
+	__webpack_require__(275);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
@@ -25536,9 +25540,13 @@
 
 	var _flightStats_gateArrivalGate2 = _interopRequireDefault(_flightStats_gateArrivalGate);
 
+	var _flightStats_gateBaggage = __webpack_require__(270);
+
+	var _flightStats_gateBaggage2 = _interopRequireDefault(_flightStats_gateBaggage);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	////FlightStats Terminals and Gates
+	////FlightStats Delays
 	var Commut = _react2.default.createClass({
 	  displayName: 'Commut',
 
@@ -25558,6 +25566,7 @@
 	      departureTerminal: " ",
 	      departureGate: " ",
 	      arrivalGate: " ",
+	      baggage: " ",
 	      apiVar3: 44,
 	      precheck: " ",
 	      WaitTime: "Approximately: 10 minutes",
@@ -25689,6 +25698,16 @@
 	    }, function (errorMessage) {
 	      alert(errorMessage);
 	    });
+
+	    _flightStats_gateBaggage2.default.getGetBaggage(carrierCode, flightNumber).then(function (baggage) {
+	      that.setState({
+	        carrierCode: carrierCode,
+	        flightNumber: flightNumber,
+	        baggage: baggage
+	      });
+	    }, function (errorMessage) {
+	      alert(errorMessage);
+	    });
 	  },
 
 	  render: function render() {
@@ -25706,6 +25725,7 @@
 	        departureGate = _state.departureGate,
 	        arrivalTerminal = _state.arrivalTerminal,
 	        arrivalGate = _state.arrivalGate,
+	        baggage = _state.baggage,
 	        duration = _state.duration,
 	        normalizedScore = _state.normalizedScore,
 	        apiVar3 = _state.apiVar3,
@@ -25738,7 +25758,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, departureGateDelayMinutes: departureGateDelayMinutes, departureRunwayDelayMinutes: departureRunwayDelayMinutes, arrivalGateDelayMinutes: arrivalGateDelayMinutes, arrivalRunwayDelayMinutes: arrivalRunwayDelayMinutes, departureTerminal: departureTerminal, departureGate: departureGate, arrivalTerminal: arrivalTerminal, arrivalGate: arrivalGate, LastUpdated: LastUpdated })
+	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, departureGateDelayMinutes: departureGateDelayMinutes, departureRunwayDelayMinutes: departureRunwayDelayMinutes, arrivalGateDelayMinutes: arrivalGateDelayMinutes, arrivalRunwayDelayMinutes: arrivalRunwayDelayMinutes, departureTerminal: departureTerminal, departureGate: departureGate, arrivalTerminal: arrivalTerminal, arrivalGate: arrivalGate, baggage: baggage, LastUpdated: LastUpdated })
 	          )
 	        )
 	      )
@@ -25746,7 +25766,7 @@
 	  }
 	});
 
-	////FlightStats Delays
+	////FlightStats Terminals and Gates
 	exports.default = Commut;
 
 /***/ },
@@ -25778,6 +25798,7 @@
 	      departureGate = _ref.departureGate,
 	      arrivalTerminal = _ref.arrivalTerminal,
 	      arrivalGate = _ref.arrivalGate,
+	      baggage = _ref.baggage,
 	      precheck = _ref.precheck,
 	      WaitTime = _ref.WaitTime,
 	      LastUpdated = _ref.LastUpdated;
@@ -25834,6 +25855,12 @@
 	      null,
 	      "Arrival Gate: ",
 	      arrivalGate
+	    ),
+	    _react2.default.createElement(
+	      "h6",
+	      null,
+	      "Baggage: ",
+	      baggage
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -27877,13 +27904,48 @@
 /* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/';
+
+	//
+	module.exports = {
+	  getGetBaggage: function getGetBaggage(carrierCode, flightNumber) {
+	    var encodedCarrierCode = encodeURIComponent(carrierCode);
+	    var encodedFlightNumber = encodeURIComponent(flightNumber);
+	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+
+	    //axios.get takes in a URL and fetches it, bringing you back the results
+	    return _axios2.default.get(requestUrl).then(function (res) {
+	      if (res.data.cod && res.data.message) {
+	        throw new Error(res.data.message);
+	      } else {
+	        return res.data.baggage;
+	      }
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
+	  }
+	};
+
+/***/ },
+/* 271 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(271);
+	var content = __webpack_require__(272);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(273)(content, {});
+	var update = __webpack_require__(274)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27900,10 +27962,10 @@
 	}
 
 /***/ },
-/* 271 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(272)();
+	exports = module.exports = __webpack_require__(273)();
 	// imports
 
 
@@ -27914,7 +27976,7 @@
 
 
 /***/ },
-/* 272 */
+/* 273 */
 /***/ function(module, exports) {
 
 	/*
@@ -27970,7 +28032,7 @@
 
 
 /***/ },
-/* 273 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -28224,16 +28286,16 @@
 
 
 /***/ },
-/* 274 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(275);
+	var content = __webpack_require__(276);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(273)(content, {});
+	var update = __webpack_require__(274)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -28250,10 +28312,10 @@
 	}
 
 /***/ },
-/* 275 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(272)();
+	exports = module.exports = __webpack_require__(273)();
 	// imports
 
 
