@@ -148,19 +148,23 @@
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
-	var _flightStats_departureTime = __webpack_require__(264);
+	var _flightStats_departureTime = __webpack_require__(263);
 
 	var _flightStats_departureTime2 = _interopRequireDefault(_flightStats_departureTime);
+
+	var _flightStats_delayTime = __webpack_require__(264);
+
+	var _flightStats_delayTime2 = _interopRequireDefault(_flightStats_delayTime);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Load foundation that will be refactored later on
-	__webpack_require__(265);
+
 	// import flightStats from 'flightStats';
 
 
 	//Object destructuring that comes from ES6
-
+	__webpack_require__(265);
 	$(document).foundation();
 
 	//App css
@@ -25480,12 +25484,17 @@
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
-	var _flightStats_departureTime = __webpack_require__(264);
+	var _flightStats_departureTime = __webpack_require__(263);
 
 	var _flightStats_departureTime2 = _interopRequireDefault(_flightStats_departureTime);
 
+	var _flightStats_delayTime = __webpack_require__(264);
+
+	var _flightStats_delayTime2 = _interopRequireDefault(_flightStats_delayTime);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// import flightStats from 'flightStats'
 	var Commut = _react2.default.createClass({
 	  displayName: 'Commut',
 
@@ -25550,6 +25559,16 @@
 	    }, function (errorMessage) {
 	      alert(errorMessage);
 	    });
+
+	    _flightStats_delayTime2.default.getDelayTime(carrierCode, flightNumber).then(function (delayTime) {
+	      that.setState({
+	        carrierCode: carrierCode,
+	        flightNumber: flightNumber,
+	        delayTime: delayTime
+	      });
+	    }, function (errorMessage) {
+	      alert(errorMessage);
+	    });
 	  },
 
 	  // tsa_wait_time.getWaitTime(departureAirport).then(function (WaitTime) {
@@ -25576,6 +25595,7 @@
 	        departureAirport = _state.departureAirport,
 	        carrierCode = _state.carrierCode,
 	        departureTime = _state.departureTime,
+	        delayTime = _state.delayTime,
 	        flightNumber = _state.flightNumber,
 	        delayTime = _state.delayTime,
 	        duration = _state.duration,
@@ -25610,7 +25630,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, LastUpdated: LastUpdated }),
+	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, delayTime: delayTime, LastUpdated: LastUpdated }),
 	            _react2.default.createElement(_TsaPrecheckMessage2.default, null),
 	            _react2.default.createElement(_TsaWaitTimeMessage2.default, null)
 	          )
@@ -25619,7 +25639,7 @@
 	    );
 	  }
 	});
-	// import flightStats from 'flightStats'
+
 	exports.default = Commut;
 
 /***/ },
@@ -27425,8 +27445,7 @@
 	};
 
 /***/ },
-/* 263 */,
-/* 264 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27453,6 +27472,41 @@
 	        throw new Error(res.data.message);
 	      } else {
 	        return res.data.departureTime;
+	      }
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
+	  }
+	};
+
+/***/ },
+/* 264 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/departureTime/';
+
+	//
+	module.exports = {
+	  getDelayTime: function getDelayTime(carrierCode, flightNumber) {
+	    var encodedCarrierCode = encodeURIComponent(carrierCode);
+	    var encodedFlightNumber = encodeURIComponent(flightNumber);
+	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+
+	    //axios.get takes in a URL and fetches it, bringing you back the results
+	    return _axios2.default.get(requestUrl).then(function (res) {
+	      if (res.data.cod && res.data.message) {
+	        throw new Error(res.data.message);
+	      } else {
+	        return res.data.delaTime;
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);

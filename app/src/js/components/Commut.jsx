@@ -11,6 +11,7 @@ import TsaPrecheckMessage from 'TsaPrecheckMessage'
 import googleMaps from 'googleMaps'
 // import flightStats from 'flightStats'
 import flightStats_departureTime from 'flightStats_departureTime'
+import flightStats_delayTime from 'flightStats_delayTime';
 
 
 var Commut = React.createClass({
@@ -75,6 +76,16 @@ var Commut = React.createClass({
     }, function (errorMessage) {
         alert(errorMessage);
     });
+
+    flightStats_delayTime.getDelayTime(carrierCode, flightNumber).then(function (delayTime) {
+      that.setState({
+        carrierCode: carrierCode,
+        flightNumber: flightNumber,
+        delayTime: delayTime
+      });
+    }, function (errorMessage) {
+        alert(errorMessage);
+    });
   },
 
   // tsa_wait_time.getWaitTime(departureAirport).then(function (WaitTime) {
@@ -96,7 +107,7 @@ var Commut = React.createClass({
   // });
 
   render: function () {
-    var {startingAddress, departureAirport, carrierCode, departureTime, flightNumber, delayTime, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
+    var {startingAddress, departureAirport, carrierCode, departureTime, delayTime, flightNumber, delayTime, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
 
 
     return (
@@ -111,7 +122,7 @@ var Commut = React.createClass({
               <WeatherMessage temp={temp} startingAddress={startingAddress}/>
             </div>
             <div className="large-4 columns">
-              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} departureTime={departureTime} LastUpdated={LastUpdated}/>
+              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} departureTime={departureTime} delayTime={delayTime} LastUpdated={LastUpdated}/>
               <TsaPrecheckMessage/>
               <TsaWaitTimeMessage/>
             </div>
