@@ -9,7 +9,9 @@ import tsa_wait_time from 'tsa_wait_time'
 import TsaWaitTimeMessage from 'TsaWaitTimeMessage'
 import TsaPrecheckMessage from 'TsaPrecheckMessage'
 import googleMaps from 'googleMaps'
-import flightStats from 'flightStats'
+// import flightStats from 'flightStats'
+import flightStats_departureTime from 'flightStats_departureTime'
+
 
 var Commut = React.createClass({
   getInitialState: function () {
@@ -17,19 +19,21 @@ var Commut = React.createClass({
       isLoading: false,
       startingAddress: '123 Main St',
       departureAirport: 'PDX',
-      flightNumber: 'US123',
-      duration: "34 minutes",
+      carrierCode: 'AA',
+      flightNumber: '100',
+      duration: 34,
       normalizedScore: "TBD",
       apiVar3: 44,
       precheck: "TBD",
-      WaitTime: 10,
+      WaitTime: "Approximately: 10 minutes",
+      LastUpdated: "11/12/2016 8:51:27 AM",
       temp: 53
     }
   },
   handleNewData: function (updates) {
     this.setState(updates);
   },
-  handleSearch: function (startingAddress, departureAirport) {
+  handleSearch: function (startingAddress, departureAirport, carrierCode, flightNumber) {
     //We're setting that to this because the "this" binding get's lost when we set setState below. Setting that to this, fixes that temporarily
     var that = this;
 
@@ -61,31 +65,39 @@ var Commut = React.createClass({
         alert(errorMessage);
     });
 
-    tsa_wait_time.getWaitTime(departureAirport).then(function (WaitTime) {
-      that.setState({
-        departureAirport: departureAirport,
-        WaitTime: WaitTime
-      });
-    }, function (errorMessage) {
-        alert(errorMessage);
-    });
 
-    flightStats.getDelay(departureAirport).then(function (normalizedScore) {
+    flightStats_departureTime.getDepartureTime(carrierCode, flightNumber).then(function (departureTime) {
       that.setState({
-        departureAirport: departureAirport,
-        normalizedScore: normalizedScore
+        carrierCode: carrierCode,
+        flightNumber: flightNumber,
+        departureTime: departureTime
       });
     }, function (errorMessage) {
         alert(errorMessage);
     });
   },
 
+  // tsa_wait_time.getWaitTime(departureAirport).then(function (WaitTime) {
+  //   that.setState({
+  //     departureAirport: departureAirport,
+  //     WaitTime: WaitTime
+  //   });
+  // }, function (errorMessage) {
+  //     alert(errorMessage);
+  // });
+
+  // flightStats.getDelay(departureAirport).then(function (normalizedScore) {
+  //   that.setState({
+  //     departureAirport: departureAirport,
+  //     normalizedScore: normalizedScore
+  //   });
+  // }, function (errorMessage) {
+  //     alert(errorMessage);
+  // });
+  
   render: function () {
-    var {startingAddress, departureAirport, flightNumber} = this.state;
+    var {startingAddress, departureAirport, carrierCode, flightNumber, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
 
-    var {duration, normalizedScore, apiVar3} = this.state;
-
-    var {temp, startingAddress, precheck, WaitTime} = this.state;
 
     return (
       <div className="row">
@@ -95,14 +107,13 @@ var Commut = React.createClass({
           </div>
           <div>
             <div className="large-4 columns">
-              <CommutMessage startingAddress={startingAddress} departureAirport={departureAirport} flightNumber={flightNumber}/>
+              <CommutMessage startingAddress={startingAddress} departureAirport={departureAirport} carrierCode={carrierCode} flightNumber={flightNumber}/>
               <WeatherMessage temp={temp} startingAddress={startingAddress}/>
             </div>
             <div className="large-4 columns">
-              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime}/>
+              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} LastUpdated={LastUpdated}/>
               <TsaPrecheckMessage/>
               <TsaWaitTimeMessage/>
-
             </div>
           </div>
         </div>

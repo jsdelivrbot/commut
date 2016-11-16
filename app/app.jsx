@@ -14,7 +14,9 @@ import tsa_wait_time from 'tsa_wait_time';
 import TsaPrecheckMessage from 'TsaPrecheckMessage';
 import TsaWaitTimeMessage from 'TsaWaitTimeMessage';
 import googleMaps from 'googleMaps';
-import flightStats from 'flightStats';
+// import flightStats from 'flightStats';
+import flightStats_departureTime from 'flightStats_departureTime';
+
 //Load foundation that will be refactored later on
 require('style!css!foundation-sites/dist/foundation.min.css')
 $(document).foundation();

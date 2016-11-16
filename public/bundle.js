@@ -148,21 +148,23 @@
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
-	var _flightStats = __webpack_require__(263);
+	var _flightStats_departureTime = __webpack_require__(264);
 
-	var _flightStats2 = _interopRequireDefault(_flightStats);
+	var _flightStats_departureTime2 = _interopRequireDefault(_flightStats_departureTime);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Load foundation that will be refactored later on
-	__webpack_require__(264);
+	__webpack_require__(265);
+	// import flightStats from 'flightStats';
+
 
 	//Object destructuring that comes from ES6
 
 	$(document).foundation();
 
 	//App css
-	__webpack_require__(268);
+	__webpack_require__(269);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
@@ -25103,20 +25105,21 @@
 
 	    var startingAddress = this.refs.startingAddress.value;
 	    var departureAirport = this.refs.departureAirport.value;
+	    var carrierCode = this.refs.carrierCode.value;
 	    var flightNumber = this.refs.flightNumber.value;
 
-	    if (startingAddress.length > 0 && departureAirport.length > 0) {
+	    if (startingAddress.length > 0 && departureAirport.length > 0 && flightNumber.length > 0 && carrierCode.length > 0) {
 	      this.refs.startingAddress.value = '';
 	      this.refs.departureAirport.value = '';
-	      this.props.onSearch(startingAddress, departureAirport);
+	      this.refs.carrierCode.value = '';
+	      this.refs.flightNumber.value = '';
+	      this.props.onSearch(startingAddress, departureAirport, carrierCode, flightNumber);
 	      updates.startingAddress = startingAddress;
 	      updates.departureAirport = departureAirport;
-	    }
-	    if (flightNumber.length > 0) {
-	      this.refs.flightNumber.value = '';
-	      // this.props.onSearch(flightNumber);
+	      updates.carrierCode = carrierCode;
 	      updates.flightNumber = flightNumber;
 	    }
+
 	    this.props.onNewData(updates);
 	  },
 	  render: function render() {
@@ -25140,6 +25143,11 @@
 	          'div',
 	          null,
 	          _react2.default.createElement('input', { type: 'text', ref: 'departureAirport', placeholder: 'Departure Airport' })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement('input', { type: 'text', ref: 'carrierCode', placeholder: 'Carrier Code' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -25173,6 +25181,7 @@
 	var CommutMessage = function CommutMessage(_ref) {
 	  var startingAddress = _ref.startingAddress,
 	      departureAirport = _ref.departureAirport,
+	      carrierCode = _ref.carrierCode,
 	      flightNumber = _ref.flightNumber;
 
 	  return _react2.default.createElement(
@@ -25202,6 +25211,16 @@
 	      "h6",
 	      null,
 	      departureAirport
+	    ),
+	    _react2.default.createElement(
+	      "h6",
+	      { className: "details" },
+	      "Carrier Code:"
+	    ),
+	    _react2.default.createElement(
+	      "h6",
+	      null,
+	      carrierCode
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -25461,9 +25480,9 @@
 
 	var _googleMaps2 = _interopRequireDefault(_googleMaps);
 
-	var _flightStats = __webpack_require__(263);
+	var _flightStats_departureTime = __webpack_require__(264);
 
-	var _flightStats2 = _interopRequireDefault(_flightStats);
+	var _flightStats_departureTime2 = _interopRequireDefault(_flightStats_departureTime);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25475,19 +25494,21 @@
 	      isLoading: false,
 	      startingAddress: '123 Main St',
 	      departureAirport: 'PDX',
-	      flightNumber: 'US123',
-	      duration: "34 minutes",
+	      carrierCode: 'AA',
+	      flightNumber: '100',
+	      duration: 34,
 	      normalizedScore: "TBD",
 	      apiVar3: 44,
 	      precheck: "TBD",
-	      WaitTime: 10,
+	      WaitTime: "Approximately: 10 minutes",
+	      LastUpdated: "11/12/2016 8:51:27 AM",
 	      temp: 53
 	    };
 	  },
 	  handleNewData: function handleNewData(updates) {
 	    this.setState(updates);
 	  },
-	  handleSearch: function handleSearch(startingAddress, departureAirport) {
+	  handleSearch: function handleSearch(startingAddress, departureAirport, carrierCode, flightNumber) {
 	    //We're setting that to this because the "this" binding get's lost when we set setState below. Setting that to this, fixes that temporarily
 	    var that = this;
 
@@ -25519,39 +25540,48 @@
 	      alert(errorMessage);
 	    });
 
-	    _tsa_wait_time2.default.getWaitTime(departureAirport).then(function (WaitTime) {
+	    _flightStats_departureTime2.default.getDepartureTime(carrierCode, flightNumber).then(function (departureTime) {
 	      that.setState({
-	        departureAirport: departureAirport,
-	        WaitTime: WaitTime
-	      });
-	    }, function (errorMessage) {
-	      alert(errorMessage);
-	    });
-
-	    _flightStats2.default.getDelay(departureAirport).then(function (normalizedScore) {
-	      that.setState({
-	        departureAirport: departureAirport,
-	        normalizedScore: normalizedScore
+	        carrierCode: carrierCode,
+	        flightNumber: flightNumber,
+	        departureTime: departureTime
 	      });
 	    }, function (errorMessage) {
 	      alert(errorMessage);
 	    });
 	  },
 
+	  // tsa_wait_time.getWaitTime(departureAirport).then(function (WaitTime) {
+	  //   that.setState({
+	  //     departureAirport: departureAirport,
+	  //     WaitTime: WaitTime
+	  //   });
+	  // }, function (errorMessage) {
+	  //     alert(errorMessage);
+	  // });
+
+	  // flightStats.getDelay(departureAirport).then(function (normalizedScore) {
+	  //   that.setState({
+	  //     departureAirport: departureAirport,
+	  //     normalizedScore: normalizedScore
+	  //   });
+	  // }, function (errorMessage) {
+	  //     alert(errorMessage);
+	  // });
+
 	  render: function render() {
 	    var _state = this.state,
 	        startingAddress = _state.startingAddress,
 	        departureAirport = _state.departureAirport,
-	        flightNumber = _state.flightNumber;
-	    var _state2 = this.state,
-	        duration = _state2.duration,
-	        normalizedScore = _state2.normalizedScore,
-	        apiVar3 = _state2.apiVar3;
-	    var _state3 = this.state,
-	        temp = _state3.temp,
-	        startingAddress = _state3.startingAddress,
-	        precheck = _state3.precheck,
-	        WaitTime = _state3.WaitTime;
+	        carrierCode = _state.carrierCode,
+	        flightNumber = _state.flightNumber,
+	        duration = _state.duration,
+	        normalizedScore = _state.normalizedScore,
+	        apiVar3 = _state.apiVar3,
+	        temp = _state.temp,
+	        precheck = _state.precheck,
+	        WaitTime = _state.WaitTime,
+	        LastUpdated = _state.LastUpdated;
 
 
 	    return _react2.default.createElement(
@@ -25571,13 +25601,13 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutMessage2.default, { startingAddress: startingAddress, departureAirport: departureAirport, flightNumber: flightNumber }),
+	            _react2.default.createElement(_CommutMessage2.default, { startingAddress: startingAddress, departureAirport: departureAirport, carrierCode: carrierCode, flightNumber: flightNumber }),
 	            _react2.default.createElement(_WeatherMessage2.default, { temp: temp, startingAddress: startingAddress })
 	          ),
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime }),
+	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, LastUpdated: LastUpdated }),
 	            _react2.default.createElement(_TsaPrecheckMessage2.default, null),
 	            _react2.default.createElement(_TsaWaitTimeMessage2.default, null)
 	          )
@@ -25586,7 +25616,7 @@
 	    );
 	  }
 	});
-
+	// import flightStats from 'flightStats'
 	exports.default = Commut;
 
 /***/ },
@@ -25609,8 +25639,10 @@
 	  var duration = _ref.duration,
 	      normalizedScore = _ref.normalizedScore,
 	      apiVar3 = _ref.apiVar3,
+	      departureTime = _ref.departureTime,
 	      precheck = _ref.precheck,
-	      WaitTime = _ref.WaitTime;
+	      WaitTime = _ref.WaitTime,
+	      LastUpdated = _ref.LastUpdated;
 
 	  return _react2.default.createElement(
 	    "div",
@@ -25633,6 +25665,16 @@
 	    _react2.default.createElement(
 	      "h6",
 	      { className: "details" },
+	      "Departure time: "
+	    ),
+	    _react2.default.createElement(
+	      "h6",
+	      null,
+	      departureTime
+	    ),
+	    _react2.default.createElement(
+	      "h6",
+	      { className: "details" },
 	      "Delay time: "
 	    ),
 	    _react2.default.createElement(
@@ -25648,11 +25690,7 @@
 	    _react2.default.createElement(
 	      "h6",
 	      null,
-	      "(",
-	      apiVar3,
-	      " + ",
-	      duration,
-	      ")"
+	      apiVar3 + duration
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -25673,6 +25711,12 @@
 	      "h6",
 	      null,
 	      WaitTime
+	    ),
+	    _react2.default.createElement(
+	      "h8",
+	      null,
+	      "Last updated: ",
+	      LastUpdated
 	    )
 	  );
 	};
@@ -27273,39 +27317,34 @@
 
 /***/ },
 /* 259 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	'use strict';
-
-	var _axios = __webpack_require__(233);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-	var TSA_URL2 = 'https://commut-api.herokuapp.com/WaitTime?';
-
+	// import axios from 'axios'
 	//
-	module.exports = {
-	  getWaitTime: function getWaitTime(departureAirport) {
-	    var encodedDeparture = encodeURIComponent(departureAirport);
-	    //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
-	    var requestUrl = '' + TSA_URL2 + encodedDeparture;
-	    //these are called query strings
-	    // console.log(requestUrl);
-	    //axios.get takes in a URL and fetches it, bringing you back the results
-	    return _axios2.default.get(requestUrl).then(function (res) {
-	      if (res.data.cod && res.data.message) {
-	        throw new Error(res.data.message);
-	      } else {
-	        return res.data.WaitTime;
-	      }
-	    }, function (res) {
-	      throw new Error(res.data.message);
-	    });
-	  }
-	};
+	// //Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
+	// const TSA_URL2 = 'https://commut-api.herokuapp.com/WaitTime?';
+	//
+	// //
+	// module.exports = {
+	//   getWaitTime: function (departureAirport) {
+	//     var encodedDeparture = encodeURIComponent(departureAirport);
+	//     //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
+	//     var requestUrl = `${TSA_URL2}${encodedDeparture}`;
+	//     //these are called query strings
+	//     // console.log(requestUrl);
+	//     //axios.get takes in a URL and fetches it, bringing you back the results
+	//     return axios.get(requestUrl).then(function (res) {
+	//       if (res.data.cod && res.data.message) {
+	//         throw new Error(res.data.message);
+	//       } else {
+	//         return res.data.WaitTime;
+	//       }
+	//     }, function (res) {
+	//       throw new Error(res.data.message);
+	//     });
+	//   }
+	// }
+	"use strict";
 
 /***/ },
 /* 260 */
@@ -27381,7 +27420,8 @@
 	};
 
 /***/ },
-/* 263 */
+/* 263 */,
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27393,22 +27433,21 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-	var FLIGHT_URL = 'https://commut-api.herokuapp.com/flightstats/?departureAirport=';
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/departureTime/';
 
 	//
 	module.exports = {
-	  getDelay: function getDelay(departureAirport) {
-	    var encodedLocation = encodeURIComponent(departureAirport);
-	    //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
-	    var requestUrl = '' + FLIGHT_URL + encodedLocation;
-	    //these are called query strings
+	  getDepartureTime: function getDepartureTime(carrierCode, flightNumber) {
+	    var encodedCarrierCode = encodeURIComponent(carrierCode);
+	    var encodedFlightNumber = encodeURIComponent(flightNumber);
+	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
 
 	    //axios.get takes in a URL and fetches it, bringing you back the results
 	    return _axios2.default.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        return res.data.normalizedScore;
+	        return res.data.departureTime;
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);
@@ -27417,16 +27456,16 @@
 	};
 
 /***/ },
-/* 264 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(265);
+	var content = __webpack_require__(266);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(267)(content, {});
+	var update = __webpack_require__(268)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27443,10 +27482,10 @@
 	}
 
 /***/ },
-/* 265 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(266)();
+	exports = module.exports = __webpack_require__(267)();
 	// imports
 
 
@@ -27457,7 +27496,7 @@
 
 
 /***/ },
-/* 266 */
+/* 267 */
 /***/ function(module, exports) {
 
 	/*
@@ -27513,7 +27552,7 @@
 
 
 /***/ },
-/* 267 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -27767,16 +27806,16 @@
 
 
 /***/ },
-/* 268 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(269);
+	var content = __webpack_require__(270);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(267)(content, {});
+	var update = __webpack_require__(268)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27793,10 +27832,10 @@
 	}
 
 /***/ },
-/* 269 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(266)();
+	exports = module.exports = __webpack_require__(267)();
 	// imports
 
 

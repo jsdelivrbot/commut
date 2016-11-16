@@ -8,21 +8,21 @@ var CommutForm = React.createClass({
 
     var startingAddress = this.refs.startingAddress.value;
     var departureAirport = this.refs.departureAirport.value;
+    var carrierCode = this.refs.carrierCode.value;
     var flightNumber = this.refs.flightNumber.value;
 
-    if (startingAddress.length > 0 && departureAirport.length > 0) {
+    if (startingAddress.length > 0 && departureAirport.length > 0 && flightNumber.length > 0 && carrierCode.length > 0) {
       this.refs.startingAddress.value = '';
       this.refs.departureAirport.value = '';
-      this.props.onSearch(startingAddress, departureAirport);
+      this.refs.carrierCode.value = '';
+      this.refs.flightNumber.value = '';
+      this.props.onSearch(startingAddress, departureAirport, carrierCode, flightNumber);
       updates.startingAddress = startingAddress;
       updates.departureAirport = departureAirport;
-
-    }
-    if (flightNumber.length > 0) {
-      this.refs.flightNumber.value = '';
-      // this.props.onSearch(flightNumber);
+      updates.carrierCode = carrierCode;
       updates.flightNumber = flightNumber;
     }
+
     this.props.onNewData(updates);
 
   },
@@ -37,6 +37,9 @@ var CommutForm = React.createClass({
           </div>
           <div>
             <input type="text" ref="departureAirport" placeholder="Departure Airport"/>
+          </div>
+          <div>
+            <input type="text" ref="carrierCode" placeholder="Carrier Code"/>
           </div>
           <div>
             <input type="text" ref="flightNumber" placeholder="Flight Number"/>

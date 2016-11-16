@@ -33,6 +33,7 @@ module.exports = {
       Nav: 'app/src/js/components/Nav.jsx',
       openWeatherMap: 'app/src/js/api/openWeatherMap.jsx',
       flightStats: 'app/src/js/api/flightStats.jsx',
+      flightStats_departureTime: 'app/src/js/api/flightStats_departureTime.jsx',
       googleMaps: 'app/src/js/api/googleMaps.jsx',
       tsa_precheck: 'app/src/js/api/tsa_precheck.jsx',
       tsa_wait_time: 'app/src/js/api/tsa_wait_time.jsx',
