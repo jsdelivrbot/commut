@@ -7,13 +7,19 @@ import openWeatherMap from 'openWeatherMap'
 import tsa_precheck from 'tsa_precheck'
 import tsa_wait_time from 'tsa_wait_time'
 import googleMaps from 'googleMaps'
-import flightStats_departureTime from 'flightStats_departureTime'
+
+////FlightStats Delays
+import flightStats_departureTime from 'flightStats_departureTime';
 import flightStats_departureGateDelayMinutes from 'flightStats_departureGateDelayMinutes';
 import flightStats_departureRunwayDelayMinutes from 'flightStats_departureRunwayDelayMinutes';
 import flightStats_arrivalGateDelayMinutes from 'flightStats_arrivalGateDelayMinutes';
 import flightStats_arrivalRunwayDelayMinutes from 'flightStats_arrivalRunwayDelayMinutes';
-import flightStats_gateDepartureTerminal from 'flightStats_gateDepartureTerminal';
 
+////FlightStats Terminals and Gates
+import flightStats_gateDepartureTerminal from 'flightStats_gateDepartureTerminal';
+import flightStats_gateDepartureGate from 'flightStats_gateDepartureGate';
+import flightStats_gateArrivalTerminal from 'flightStats_gateArrivalTerminal';
+import flightStats_gateArrivalGate from 'flightStats_gateArrivalGate';
 
 var Commut = React.createClass({
 
@@ -30,6 +36,8 @@ var Commut = React.createClass({
       arrivalGateDelayMinutes: " ",
       arrivalRunwayDelayMinutes: " ",
       departureTerminal: " ",
+      departureGate: " ",
+      arrivalGate: " ",
       apiVar3: 44,
       precheck: " ",
       WaitTime: "Approximately: 10 minutes",
@@ -122,11 +130,41 @@ var Commut = React.createClass({
         alert(errorMessage);
     });
 
-    flightStats_gateDepartureTerminal.getGetDepartureTerminal(carrierCode, flightNumber).then(function (gateDepartureTerminal) {
+    flightStats_gateDepartureTerminal.getGetDepartureTerminal(carrierCode, flightNumber).then(function (departureTerminal) {
       that.setState({
         carrierCode: carrierCode,
         flightNumber: flightNumber,
-        gateDepartureTerminal: gateDepartureTerminal
+        departureTerminal: departureTerminal
+      });
+    }, function (errorMessage) {
+        alert(errorMessage);
+    });
+
+    flightStats_gateDepartureGate.getGetDepartureGate(carrierCode, flightNumber).then(function (departureGate) {
+      that.setState({
+        carrierCode: carrierCode,
+        flightNumber: flightNumber,
+        departureGate: departureGate
+      });
+    }, function (errorMessage) {
+        alert(errorMessage);
+    });
+
+    flightStats_gateArrivalTerminal.getGetArrivalTerminal(carrierCode, flightNumber).then(function (arrivalTerminal) {
+      that.setState({
+        carrierCode: carrierCode,
+        flightNumber: flightNumber,
+        arrivalTerminal: arrivalTerminal
+      });
+    }, function (errorMessage) {
+        alert(errorMessage);
+    });
+
+    flightStats_gateArrivalGate.getGetArrivalGate(carrierCode, flightNumber).then(function (arrivalGate) {
+      that.setState({
+        carrierCode: carrierCode,
+        flightNumber: flightNumber,
+        arrivalGate: arrivalGate
       });
     }, function (errorMessage) {
         alert(errorMessage);
@@ -134,7 +172,7 @@ var Commut = React.createClass({
   },
 
   render: function () {
-    var {startingAddress, departureAirport, carrierCode, departureTime, departureGateDelayMinutes, departureRunwayDelayMinutes, arrivalGateDelayMinutes, arrivalRunwayDelayMinutes, flightNumber, gateDepartureTerminal, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
+    var {startingAddress, departureAirport, carrierCode, departureTime, departureGateDelayMinutes, departureRunwayDelayMinutes, arrivalGateDelayMinutes, arrivalRunwayDelayMinutes, flightNumber, departureTerminal, departureGate, arrivalTerminal, arrivalGate, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
 
 
     return (
@@ -149,7 +187,7 @@ var Commut = React.createClass({
               <WeatherMessage temp={temp} startingAddress={startingAddress}/>
             </div>
             <div className="large-4 columns">
-              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} departureTime={departureTime} departureGateDelayMinutes={departureGateDelayMinutes} departureRunwayDelayMinutes={departureRunwayDelayMinutes} arrivalGateDelayMinutes={arrivalGateDelayMinutes} arrivalRunwayDelayMinutes={arrivalRunwayDelayMinutes} gateDepartureTerminal={gateDepartureTerminal} LastUpdated={LastUpdated}/>
+              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} departureTime={departureTime} departureGateDelayMinutes={departureGateDelayMinutes} departureRunwayDelayMinutes={departureRunwayDelayMinutes} arrivalGateDelayMinutes={arrivalGateDelayMinutes} arrivalRunwayDelayMinutes={arrivalRunwayDelayMinutes} departureTerminal={departureTerminal} departureGate={departureGate} arrivalTerminal={arrivalTerminal} arrivalGate={arrivalGate} LastUpdated={LastUpdated}/>
             </div>
           </div>
         </div>

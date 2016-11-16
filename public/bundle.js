@@ -164,19 +164,35 @@
 
 	var _flightStats_gateDepartureTerminal2 = _interopRequireDefault(_flightStats_gateDepartureTerminal);
 
+	var _flightStats_gateDepartureGate = __webpack_require__(267);
+
+	var _flightStats_gateDepartureGate2 = _interopRequireDefault(_flightStats_gateDepartureGate);
+
+	var _flightStats_gateArrivalTerminal = __webpack_require__(268);
+
+	var _flightStats_gateArrivalTerminal2 = _interopRequireDefault(_flightStats_gateArrivalTerminal);
+
+	var _flightStats_gateArrivalGate = __webpack_require__(269);
+
+	var _flightStats_gateArrivalGate2 = _interopRequireDefault(_flightStats_gateArrivalGate);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Load foundation that will be refactored later on
 
-	// import flightStats from 'flightStats';
+
+	////FlightStats Terminals and Gates
+	__webpack_require__(270);
+
+	////FlightStats Delays
 
 
 	//Object destructuring that comes from ES6
-	__webpack_require__(267);
+
 	$(document).foundation();
 
 	//App css
-	__webpack_require__(271);
+	__webpack_require__(274);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
@@ -25508,8 +25524,21 @@
 
 	var _flightStats_gateDepartureTerminal2 = _interopRequireDefault(_flightStats_gateDepartureTerminal);
 
+	var _flightStats_gateDepartureGate = __webpack_require__(267);
+
+	var _flightStats_gateDepartureGate2 = _interopRequireDefault(_flightStats_gateDepartureGate);
+
+	var _flightStats_gateArrivalTerminal = __webpack_require__(268);
+
+	var _flightStats_gateArrivalTerminal2 = _interopRequireDefault(_flightStats_gateArrivalTerminal);
+
+	var _flightStats_gateArrivalGate = __webpack_require__(269);
+
+	var _flightStats_gateArrivalGate2 = _interopRequireDefault(_flightStats_gateArrivalGate);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	////FlightStats Terminals and Gates
 	var Commut = _react2.default.createClass({
 	  displayName: 'Commut',
 
@@ -25527,6 +25556,8 @@
 	      arrivalGateDelayMinutes: " ",
 	      arrivalRunwayDelayMinutes: " ",
 	      departureTerminal: " ",
+	      departureGate: " ",
+	      arrivalGate: " ",
 	      apiVar3: 44,
 	      precheck: " ",
 	      WaitTime: "Approximately: 10 minutes",
@@ -25619,11 +25650,41 @@
 	      alert(errorMessage);
 	    });
 
-	    _flightStats_gateDepartureTerminal2.default.getGetDepartureTerminal(carrierCode, flightNumber).then(function (gateDepartureTerminal) {
+	    _flightStats_gateDepartureTerminal2.default.getGetDepartureTerminal(carrierCode, flightNumber).then(function (departureTerminal) {
 	      that.setState({
 	        carrierCode: carrierCode,
 	        flightNumber: flightNumber,
-	        gateDepartureTerminal: gateDepartureTerminal
+	        departureTerminal: departureTerminal
+	      });
+	    }, function (errorMessage) {
+	      alert(errorMessage);
+	    });
+
+	    _flightStats_gateDepartureGate2.default.getGetDepartureGate(carrierCode, flightNumber).then(function (departureGate) {
+	      that.setState({
+	        carrierCode: carrierCode,
+	        flightNumber: flightNumber,
+	        departureGate: departureGate
+	      });
+	    }, function (errorMessage) {
+	      alert(errorMessage);
+	    });
+
+	    _flightStats_gateArrivalTerminal2.default.getGetArrivalTerminal(carrierCode, flightNumber).then(function (arrivalTerminal) {
+	      that.setState({
+	        carrierCode: carrierCode,
+	        flightNumber: flightNumber,
+	        arrivalTerminal: arrivalTerminal
+	      });
+	    }, function (errorMessage) {
+	      alert(errorMessage);
+	    });
+
+	    _flightStats_gateArrivalGate2.default.getGetArrivalGate(carrierCode, flightNumber).then(function (arrivalGate) {
+	      that.setState({
+	        carrierCode: carrierCode,
+	        flightNumber: flightNumber,
+	        arrivalGate: arrivalGate
 	      });
 	    }, function (errorMessage) {
 	      alert(errorMessage);
@@ -25641,7 +25702,10 @@
 	        arrivalGateDelayMinutes = _state.arrivalGateDelayMinutes,
 	        arrivalRunwayDelayMinutes = _state.arrivalRunwayDelayMinutes,
 	        flightNumber = _state.flightNumber,
-	        gateDepartureTerminal = _state.gateDepartureTerminal,
+	        departureTerminal = _state.departureTerminal,
+	        departureGate = _state.departureGate,
+	        arrivalTerminal = _state.arrivalTerminal,
+	        arrivalGate = _state.arrivalGate,
 	        duration = _state.duration,
 	        normalizedScore = _state.normalizedScore,
 	        apiVar3 = _state.apiVar3,
@@ -25674,7 +25738,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, departureGateDelayMinutes: departureGateDelayMinutes, departureRunwayDelayMinutes: departureRunwayDelayMinutes, arrivalGateDelayMinutes: arrivalGateDelayMinutes, arrivalRunwayDelayMinutes: arrivalRunwayDelayMinutes, gateDepartureTerminal: gateDepartureTerminal, LastUpdated: LastUpdated })
+	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, departureGateDelayMinutes: departureGateDelayMinutes, departureRunwayDelayMinutes: departureRunwayDelayMinutes, arrivalGateDelayMinutes: arrivalGateDelayMinutes, arrivalRunwayDelayMinutes: arrivalRunwayDelayMinutes, departureTerminal: departureTerminal, departureGate: departureGate, arrivalTerminal: arrivalTerminal, arrivalGate: arrivalGate, LastUpdated: LastUpdated })
 	          )
 	        )
 	      )
@@ -25682,6 +25746,7 @@
 	  }
 	});
 
+	////FlightStats Delays
 	exports.default = Commut;
 
 /***/ },
@@ -25709,7 +25774,10 @@
 	      departureRunwayDelayMinutes = _ref.departureRunwayDelayMinutes,
 	      arrivalGateDelayMinutes = _ref.arrivalGateDelayMinutes,
 	      arrivalRunwayDelayMinutes = _ref.arrivalRunwayDelayMinutes,
-	      gateDepartureTerminal = _ref.gateDepartureTerminal,
+	      departureTerminal = _ref.departureTerminal,
+	      departureGate = _ref.departureGate,
+	      arrivalTerminal = _ref.arrivalTerminal,
+	      arrivalGate = _ref.arrivalGate,
 	      precheck = _ref.precheck,
 	      WaitTime = _ref.WaitTime,
 	      LastUpdated = _ref.LastUpdated;
@@ -25747,7 +25815,25 @@
 	      "h6",
 	      null,
 	      "Departure Terminal: ",
-	      gateDepartureTerminal
+	      departureTerminal
+	    ),
+	    _react2.default.createElement(
+	      "h6",
+	      null,
+	      "Departure Gate: ",
+	      departureGate
+	    ),
+	    _react2.default.createElement(
+	      "h6",
+	      null,
+	      "Arrival Terminal: ",
+	      arrivalTerminal
+	    ),
+	    _react2.default.createElement(
+	      "h6",
+	      null,
+	      "Arrival Gate: ",
+	      arrivalGate
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -27686,13 +27772,118 @@
 /* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/';
+
+	//
+	module.exports = {
+	  getGetDepartureGate: function getGetDepartureGate(carrierCode, flightNumber) {
+	    var encodedCarrierCode = encodeURIComponent(carrierCode);
+	    var encodedFlightNumber = encodeURIComponent(flightNumber);
+	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+
+	    //axios.get takes in a URL and fetches it, bringing you back the results
+	    return _axios2.default.get(requestUrl).then(function (res) {
+	      if (res.data.cod && res.data.message) {
+	        throw new Error(res.data.message);
+	      } else {
+	        return res.data.departureGate;
+	      }
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
+	  }
+	};
+
+/***/ },
+/* 268 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/';
+
+	//
+	module.exports = {
+	  getGetArrivalTerminal: function getGetArrivalTerminal(carrierCode, flightNumber) {
+	    var encodedCarrierCode = encodeURIComponent(carrierCode);
+	    var encodedFlightNumber = encodeURIComponent(flightNumber);
+	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+
+	    //axios.get takes in a URL and fetches it, bringing you back the results
+	    return _axios2.default.get(requestUrl).then(function (res) {
+	      if (res.data.cod && res.data.message) {
+	        throw new Error(res.data.message);
+	      } else {
+	        return res.data.arrivalTerminal;
+	      }
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
+	  }
+	};
+
+/***/ },
+/* 269 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _axios = __webpack_require__(233);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/';
+
+	//
+	module.exports = {
+	  getGetArrivalGate: function getGetArrivalGate(carrierCode, flightNumber) {
+	    var encodedCarrierCode = encodeURIComponent(carrierCode);
+	    var encodedFlightNumber = encodeURIComponent(flightNumber);
+	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+
+	    //axios.get takes in a URL and fetches it, bringing you back the results
+	    return _axios2.default.get(requestUrl).then(function (res) {
+	      if (res.data.cod && res.data.message) {
+	        throw new Error(res.data.message);
+	      } else {
+	        return res.data.arrivalGate;
+	      }
+	    }, function (res) {
+	      throw new Error(res.data.message);
+	    });
+	  }
+	};
+
+/***/ },
+/* 270 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(268);
+	var content = __webpack_require__(271);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(270)(content, {});
+	var update = __webpack_require__(273)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27709,10 +27900,10 @@
 	}
 
 /***/ },
-/* 268 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(269)();
+	exports = module.exports = __webpack_require__(272)();
 	// imports
 
 
@@ -27723,7 +27914,7 @@
 
 
 /***/ },
-/* 269 */
+/* 272 */
 /***/ function(module, exports) {
 
 	/*
@@ -27779,7 +27970,7 @@
 
 
 /***/ },
-/* 270 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -28033,16 +28224,16 @@
 
 
 /***/ },
-/* 271 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(272);
+	var content = __webpack_require__(275);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(270)(content, {});
+	var update = __webpack_require__(273)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -28059,10 +28250,10 @@
 	}
 
 /***/ },
-/* 272 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(269)();
+	exports = module.exports = __webpack_require__(272)();
 	// imports
 
 
