@@ -1,9 +1,7 @@
 import axios from 'axios'
 
-//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
 const GMAP_URL = 'https://commut-api.herokuapp.com/google?';
 
-//
 module.exports = {
   getGmap: function (startingAddress, departureAirport) {
     var encodedLocation = encodeURIComponent(startingAddress);
