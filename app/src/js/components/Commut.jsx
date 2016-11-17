@@ -22,9 +22,7 @@ import flightStats_gateArrivalTerminal from 'flightStats_gateArrivalTerminal';
 import flightStats_gateArrivalGate from 'flightStats_gateArrivalGate';
 import flightStats_gateBaggage from 'flightStats_gateBaggage';
 
-
 var Commut = React.createClass({
-
   getInitialState: function () {
     return {
       isLoading: false,
@@ -37,13 +35,14 @@ var Commut = React.createClass({
       departureRunwayDelayMinutes: " ",
       arrivalGateDelayMinutes: " ",
       arrivalRunwayDelayMinutes: " ",
+      departureTime: " ",
       departureTerminal: " ",
       departureGate: " ",
       arrivalGate: " ",
       baggage: " ",
       apiVar3: 44,
       precheck: " ",
-      WaitTime: "Approximately: 10 minutes",
+      WaitTime: 10,
       LastUpdated: "11/12/2016 8:51:27 AM",
       temp: 53
     }
@@ -186,7 +185,6 @@ var Commut = React.createClass({
 
   render: function () {
     var {startingAddress, departureAirport, carrierCode, departureTime, departureGateDelayMinutes, departureRunwayDelayMinutes, arrivalGateDelayMinutes, arrivalRunwayDelayMinutes, flightNumber, departureTerminal, departureGate, arrivalTerminal, arrivalGate, baggage, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
-
 
     return (
       <div className="row">

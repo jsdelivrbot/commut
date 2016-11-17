@@ -15,7 +15,7 @@ module.exports = {
       if (res.data.cod && res.data.message) {
         throw new Error(res.data.message);
       } else {
-        return res.data.departureTime;
+        return (res.data.departureTimeString).match(/T(.*):/).pop();
       }
     }, function (res) {
       throw new Error(res.data.message);

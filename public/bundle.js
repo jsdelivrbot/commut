@@ -25550,7 +25550,6 @@
 	var Commut = _react2.default.createClass({
 	  displayName: 'Commut',
 
-
 	  getInitialState: function getInitialState() {
 	    return {
 	      isLoading: false,
@@ -25563,13 +25562,14 @@
 	      departureRunwayDelayMinutes: " ",
 	      arrivalGateDelayMinutes: " ",
 	      arrivalRunwayDelayMinutes: " ",
+	      departureTime: " ",
 	      departureTerminal: " ",
 	      departureGate: " ",
 	      arrivalGate: " ",
 	      baggage: " ",
 	      apiVar3: 44,
 	      precheck: " ",
-	      WaitTime: "Approximately: 10 minutes",
+	      WaitTime: 10,
 	      LastUpdated: "11/12/2016 8:51:27 AM",
 	      temp: 53
 	    };
@@ -25899,8 +25899,8 @@
 	    _react2.default.createElement(
 	      "h6",
 	      null,
-	      duration,
-	      " + X"
+	      duration + WaitTime,
+	      " "
 	    ),
 	    _react2.default.createElement(
 	      "h6",
@@ -27620,7 +27620,7 @@
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        return res.data.departureTime;
+	        return res.data.departureTimeString.match(/T(.*):/).pop();
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);
