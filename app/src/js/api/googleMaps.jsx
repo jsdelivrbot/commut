@@ -8,11 +8,9 @@ module.exports = {
   getGmap: function (startingAddress, departureAirport) {
     var encodedLocation = encodeURIComponent(startingAddress);
     var encodedDeparture = encodeURIComponent(departureAirport);
-    //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
+
     var requestUrl = `${GMAP_URL}origin=${encodedLocation}&destination=${encodedDeparture}`;
-    //these are called query strings
-    // console.log(requestUrl);
-    //axios.get takes in a URL and fetches it, bringing you back the results
+
     return axios.get(requestUrl).then(function (res) {
       if (res.data.cod && res.data.message) {
         throw new Error(res.data.message);

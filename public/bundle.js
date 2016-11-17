@@ -27558,11 +27558,9 @@
 	  getGmap: function getGmap(startingAddress, departureAirport) {
 	    var encodedLocation = encodeURIComponent(startingAddress);
 	    var encodedDeparture = encodeURIComponent(departureAirport);
-	    //when you use the backtick, you can inject variables inside the string using the dollar sign and curly braces syntax; everything within the dollar sign and curly braces gets convereted into regular javascript
+
 	    var requestUrl = GMAP_URL + 'origin=' + encodedLocation + '&destination=' + encodedDeparture;
-	    //these are called query strings
-	    // console.log(requestUrl);
-	    //axios.get takes in a URL and fetches it, bringing you back the results
+
 	    return _axios2.default.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
@@ -27587,17 +27585,14 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
 	var FLIGHT_URL = 'https://commut-api.herokuapp.com/departureTime/';
 
-	//
 	module.exports = {
 	  getDepartureTime: function getDepartureTime(carrierCode, flightNumber) {
 	    var encodedCarrierCode = encodeURIComponent(carrierCode);
 	    var encodedFlightNumber = encodeURIComponent(flightNumber);
-	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '/flightNumber=' + encodedFlightNumber;
 
-	    //axios.get takes in a URL and fetches it, bringing you back the results
 	    return _axios2.default.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
