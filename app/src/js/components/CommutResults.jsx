@@ -13,11 +13,8 @@ var CommutResults = ({duration, normalizedScore, apiVar3, departureTime, departu
       <h6>Arrival Terminal: {arrivalTerminal}</h6>
       <h6>Arrival Gate: {arrivalGate}</h6>
       <h6>Baggage: {baggage}</h6>
-      <h6 className="details">Delay time: </h6>
-      <h6>Departure Gate Delay Minutes: {departureGateDelayMinutes}</h6>
-      <h6>Departure Runway Delay Minutes: {departureRunwayDelayMinutes}</h6>
-      <h6>Arrival Gate Delay Minutes: {arrivalGateDelayMinutes}</h6>
-      <h6>Arrival Runway Delay Minutes: {arrivalRunwayDelayMinutes}</h6>
+      <h6 className="details">Total Delay time: </h6>
+      <h6>{departureGateDelayMinutes + departureRunwayDelayMinutes + arrivalGateDelayMinutes + arrivalRunwayDelayMinutes} minutes</h6>
       <h6 className="details">Total commute time: </h6>
       <h6>{duration + WaitTime} </h6>
       <h6 className="details">TSA PreCheck: </h6>

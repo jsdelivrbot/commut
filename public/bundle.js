@@ -25865,31 +25865,13 @@
 	    _react2.default.createElement(
 	      "h6",
 	      { className: "details" },
-	      "Delay time: "
+	      "Total Delay time: "
 	    ),
 	    _react2.default.createElement(
 	      "h6",
 	      null,
-	      "Departure Gate Delay Minutes: ",
-	      departureGateDelayMinutes
-	    ),
-	    _react2.default.createElement(
-	      "h6",
-	      null,
-	      "Departure Runway Delay Minutes: ",
-	      departureRunwayDelayMinutes
-	    ),
-	    _react2.default.createElement(
-	      "h6",
-	      null,
-	      "Arrival Gate Delay Minutes: ",
-	      arrivalGateDelayMinutes
-	    ),
-	    _react2.default.createElement(
-	      "h6",
-	      null,
-	      "Arrival Runway Delay Minutes: ",
-	      arrivalRunwayDelayMinutes
+	      departureGateDelayMinutes + departureRunwayDelayMinutes + arrivalGateDelayMinutes + arrivalRunwayDelayMinutes,
+	      " minutes"
 	    ),
 	    _react2.default.createElement(
 	      "h6",
