@@ -27618,14 +27618,14 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var FLIGHT_URL = 'https://commut-api.herokuapp.com/delayTime/';
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/delayTime/?';
 
 	//
 	module.exports = {
 	  getDepartureGateDelayMinutes: function getDepartureGateDelayMinutes(carrierCode, flightNumber) {
 	    var encodedCarrierCode = encodeURIComponent(carrierCode);
 	    var encodedFlightNumber = encodeURIComponent(flightNumber);
-	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    return _axios2.default.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
@@ -27651,14 +27651,14 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var FLIGHT_URL = 'https://commut-api.herokuapp.com/delayTime/';
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/delayTime/?';
 
 	//
 	module.exports = {
 	  getDepartureRunwayDelayMinutes: function getDepartureRunwayDelayMinutes(carrierCode, flightNumber) {
 	    var encodedCarrierCode = encodeURIComponent(carrierCode);
 	    var encodedFlightNumber = encodeURIComponent(flightNumber);
-	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    return _axios2.default.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
@@ -27684,14 +27684,14 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var FLIGHT_URL = 'https://commut-api.herokuapp.com/delayTime/';
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/delayTime/?';
 
 	//
 	module.exports = {
 	  getArrivalGateDelayMinutes: function getArrivalGateDelayMinutes(carrierCode, flightNumber) {
 	    var encodedCarrierCode = encodeURIComponent(carrierCode);
 	    var encodedFlightNumber = encodeURIComponent(flightNumber);
-	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    return _axios2.default.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
@@ -27717,14 +27717,14 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var FLIGHT_URL = 'https://commut-api.herokuapp.com/delayTime/';
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/delayTime/?';
 
 	//
 	module.exports = {
 	  getArrivalRunwayDelayMinutes: function getArrivalRunwayDelayMinutes(carrierCode, flightNumber) {
 	    var encodedCarrierCode = encodeURIComponent(carrierCode);
 	    var encodedFlightNumber = encodeURIComponent(flightNumber);
-	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    return _axios2.default.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
@@ -27751,14 +27751,14 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/';
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/?';
 
 	//
 	module.exports = {
 	  getGetDepartureTerminal: function getGetDepartureTerminal(carrierCode, flightNumber) {
 	    var encodedCarrierCode = encodeURIComponent(carrierCode);
 	    var encodedFlightNumber = encodeURIComponent(flightNumber);
-	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    //axios.get takes in a URL and fetches it, bringing you back the results
 	    return _axios2.default.get(requestUrl).then(function (res) {
@@ -27786,14 +27786,14 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/';
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/?';
 
 	//
 	module.exports = {
 	  getGetDepartureGate: function getGetDepartureGate(carrierCode, flightNumber) {
 	    var encodedCarrierCode = encodeURIComponent(carrierCode);
 	    var encodedFlightNumber = encodeURIComponent(flightNumber);
-	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    //axios.get takes in a URL and fetches it, bringing you back the results
 	    return _axios2.default.get(requestUrl).then(function (res) {
@@ -27821,14 +27821,14 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/';
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/?';
 
 	//
 	module.exports = {
 	  getGetArrivalTerminal: function getGetArrivalTerminal(carrierCode, flightNumber) {
 	    var encodedCarrierCode = encodeURIComponent(carrierCode);
 	    var encodedFlightNumber = encodeURIComponent(flightNumber);
-	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    //axios.get takes in a URL and fetches it, bringing you back the results
 	    return _axios2.default.get(requestUrl).then(function (res) {
@@ -27856,14 +27856,14 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/';
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/?';
 
 	//
 	module.exports = {
 	  getGetArrivalGate: function getGetArrivalGate(carrierCode, flightNumber) {
 	    var encodedCarrierCode = encodeURIComponent(carrierCode);
 	    var encodedFlightNumber = encodeURIComponent(flightNumber);
-	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    //axios.get takes in a URL and fetches it, bringing you back the results
 	    return _axios2.default.get(requestUrl).then(function (res) {
@@ -27891,14 +27891,14 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Makes a variable that cannot be altered. Naming convention for const is upper-case with underscores to separate words
-	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/';
+	var FLIGHT_URL = 'https://commut-api.herokuapp.com/gates/?';
 
 	//
 	module.exports = {
 	  getGetBaggage: function getGetBaggage(carrierCode, flightNumber) {
 	    var encodedCarrierCode = encodeURIComponent(carrierCode);
 	    var encodedFlightNumber = encodeURIComponent(flightNumber);
-	    var requestUrl = FLIGHT_URL + '?carrierCode=' + encodedCarrierCode + '?flightNumber=' + encodedFlightNumber;
+	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    //axios.get takes in a URL and fetches it, bringing you back the results
 	    return _axios2.default.get(requestUrl).then(function (res) {
