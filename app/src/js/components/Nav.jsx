@@ -15,7 +15,7 @@ var Nav = (props) => {
         <ul className="menu" data-dropdown-menu>
           <li className="menu-text">
             <IndexLink to="/" activeClassName="active">
-              commüt
+              <img src="http://i.imgur.com/qjboZ1z.png" alt="logo"></img>
             </IndexLink>
           </li>
         </ul>

@@ -23,5 +23,10 @@ nav {
 }
 
 .top-bar-right {
-  padding-top: .5em;
+  padding-top: 1.5em;
 }
+
+/*.top-bar {
+  padding-top: -1em;
+  padding-bottom: -1em;
+}*/

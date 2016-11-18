@@ -25079,7 +25079,7 @@
 	          _react2.default.createElement(
 	            IndexLink,
 	            { to: '/', activeClassName: 'active' },
-	            'comm\xFCt'
+	            _react2.default.createElement('img', { src: 'http://i.imgur.com/qjboZ1z.png', alt: 'logo' })
 	          )
 	        )
 	      )
@@ -28276,7 +28276,7 @@
 
 
 	// module
-	exports.push([module.id, ".back-img {\n  display: block;\n  position: absolute;\n  background-image: url(\"http://i.imgur.com/97i7CvG.jpg\");\n  opacity: 0.9;\n  width: 100%;\n  height: 100%;\n  background-repeat: no-repeat;\n  background-attachment: fixed;\n}\n\nnav {\n  opacity: .2;\n}\n\n.page-title {\n  margin-top: 1.5rem;\n  margin-bottom: 1.5rem;\n}\n\n.details {\n  font-weight: bold;\n}\n\n.top-bar-right {\n  padding-top: .5em;\n}\n", ""]);
+	exports.push([module.id, ".back-img {\n  display: block;\n  position: absolute;\n  background-image: url(\"http://i.imgur.com/97i7CvG.jpg\");\n  opacity: 0.9;\n  width: 100%;\n  height: 100%;\n  background-repeat: no-repeat;\n  background-attachment: fixed;\n}\n\nnav {\n  opacity: .2;\n}\n\n.page-title {\n  margin-top: 1.5rem;\n  margin-bottom: 1.5rem;\n}\n\n.details {\n  font-weight: bold;\n}\n\n.top-bar-right {\n  padding-top: 1.5em;\n}\n\n/*.top-bar {\n  padding-top: -1em;\n  padding-bottom: -1em;\n}*/\n", ""]);
 
 	// exports
 
