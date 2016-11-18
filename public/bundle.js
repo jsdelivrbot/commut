@@ -25557,18 +25557,18 @@
 	      departureAirport: 'PDX',
 	      carrierCode: 'AA',
 	      flightNumber: '100',
-	      duration: 15,
-	      departureGateDelayMinutes: " ",
+	      duration: "-",
+	      departureGateDelayMinutes: "0",
 	      departureRunwayDelayMinutes: " ",
 	      arrivalGateDelayMinutes: " ",
 	      arrivalRunwayDelayMinutes: " ",
-	      departureTime: " ",
-	      departureTerminal: " ",
-	      departureGate: " ",
-	      arrivalGate: " ",
-	      baggage: " ",
+	      departureTime: "-",
+	      departureTerminal: "-",
+	      departureGate: "-",
+	      arrivalGate: "-",
+	      baggage: "-",
 	      apiVar3: 44,
-	      precheck: " ",
+	      precheck: "-",
 	      WaitTime: 10,
 	      LastUpdated: "11/12/2016 8:51:27 AM",
 	      temp: 53
@@ -25812,7 +25812,7 @@
 	      "Your results:"
 	    ),
 	    _react2.default.createElement(
-	      "h6",
+	      "div",
 	      { className: "details" },
 	      "Travel time: "
 	    ),
@@ -25824,83 +25824,72 @@
 	    _react2.default.createElement(
 	      "h6",
 	      { className: "details" },
-	      "Departure time: "
+	      "Departure Info: "
 	    ),
 	    _react2.default.createElement(
-	      "h6",
+	      "div",
 	      null,
 	      "Departure Time: ",
 	      departureTime
 	    ),
 	    _react2.default.createElement(
-	      "h6",
+	      "div",
 	      null,
 	      "Departure Terminal: ",
 	      departureTerminal
 	    ),
 	    _react2.default.createElement(
-	      "h6",
+	      "div",
 	      null,
 	      "Departure Gate: ",
 	      departureGate
 	    ),
 	    _react2.default.createElement(
-	      "h6",
+	      "div",
 	      null,
 	      "Arrival Terminal: ",
 	      arrivalTerminal
 	    ),
 	    _react2.default.createElement(
-	      "h6",
+	      "div",
 	      null,
 	      "Arrival Gate: ",
 	      arrivalGate
 	    ),
 	    _react2.default.createElement(
-	      "h6",
+	      "div",
 	      null,
 	      "Baggage: ",
 	      baggage
 	    ),
 	    _react2.default.createElement(
-	      "h6",
+	      "div",
 	      { className: "details" },
 	      "Total Delay time: "
 	    ),
 	    _react2.default.createElement(
-	      "h6",
+	      "div",
 	      null,
-	      departureGateDelayMinutes + departureRunwayDelayMinutes + arrivalGateDelayMinutes + arrivalRunwayDelayMinutes,
+	      departureGateDelayMinutes,
 	      " minutes"
 	    ),
 	    _react2.default.createElement(
-	      "h6",
-	      { className: "details" },
-	      "Total commute time: "
-	    ),
-	    _react2.default.createElement(
-	      "h6",
-	      null,
-	      duration + WaitTime,
-	      " "
-	    ),
-	    _react2.default.createElement(
-	      "h6",
+	      "div",
 	      { className: "details" },
 	      "TSA PreCheck: "
 	    ),
 	    _react2.default.createElement(
-	      "h6",
+	      "div",
 	      null,
 	      precheck
 	    ),
 	    _react2.default.createElement(
-	      "h6",
+	      "div",
 	      { className: "details" },
 	      "TSA Wait Time: "
 	    ),
 	    _react2.default.createElement(
-	      "h6",
+	      "div",
 	      null,
 	      WaitTime
 	    ),
@@ -27627,12 +27616,12 @@
 
 	    return _axios2.default.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
-	        throw new Error(res.data.message);
+	        return 0;
 	      } else {
 	        return res.data.departureGateDelayMinutes;
 	      }
 	    }, function (res) {
-	      throw new Error(res.data.message);
+	      return 0;
 	    });
 	  }
 	};
@@ -27659,14 +27648,10 @@
 	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    return _axios2.default.get(requestUrl).then(function (res) {
-	      if (res.data.cod && res.data.message) {
-	        throw new Error(res.data.message);
-	      } else {
+	      if (res.data.cod && res.data.message) {} else {
 	        return res.data.departureRunwayDelayMinutes;
 	      }
-	    }, function (res) {
-	      throw new Error(res.data.message);
-	    });
+	    }, function (res) {});
 	  }
 	};
 
@@ -27692,13 +27677,11 @@
 	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    return _axios2.default.get(requestUrl).then(function (res) {
-	      if (res.data.cod && res.data.message) {
-	        throw new Error(res.data.message);
-	      } else {
+	      if (res.data.cod && res.data.message) {} else {
 	        return res.data.arrivalGateDelayMinutes;
 	      }
 	    }, function (res) {
-	      throw new Error(res.data.message);
+	      return "-";
 	    });
 	  }
 	};
@@ -27725,14 +27708,10 @@
 	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    return _axios2.default.get(requestUrl).then(function (res) {
-	      if (res.data.cod && res.data.message) {
-	        throw new Error(res.data.message);
-	      } else {
+	      if (res.data.cod && res.data.message) {} else {
 	        return res.data.arrivalRunwayDelayMinutes;
 	      }
-	    }, function (res) {
-	      throw new Error(res.data.message);
-	    });
+	    }, function (res) {});
 	  }
 	};
 
@@ -27758,14 +27737,10 @@
 	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    return _axios2.default.get(requestUrl).then(function (res) {
-	      if (res.data.cod && res.data.message) {
-	        throw new Error(res.data.message);
-	      } else {
+	      if (res.data.cod && res.data.message) {} else {
 	        return res.data.departureTerminal;
 	      }
-	    }, function (res) {
-	      throw new Error(res.data.message);
-	    });
+	    }, function (res) {});
 	  }
 	};
 
@@ -27791,14 +27766,10 @@
 	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    return _axios2.default.get(requestUrl).then(function (res) {
-	      if (res.data.cod && res.data.message) {
-	        throw new Error(res.data.message);
-	      } else {
+	      if (res.data.cod && res.data.message) {} else {
 	        return res.data.departureGate;
 	      }
-	    }, function (res) {
-	      throw new Error(res.data.message);
-	    });
+	    }, function (res) {});
 	  }
 	};
 
@@ -27825,12 +27796,12 @@
 
 	    return _axios2.default.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
-	        throw new Error(res.data.message);
+	        return "-";
 	      } else {
 	        return res.data.arrivalTerminal;
 	      }
 	    }, function (res) {
-	      throw new Error(res.data.message);
+	      return "-";
 	    });
 	  }
 	};
@@ -27857,14 +27828,10 @@
 	    var requestUrl = FLIGHT_URL + 'carrierCode=' + encodedCarrierCode + '&flightNumber=' + encodedFlightNumber;
 
 	    return _axios2.default.get(requestUrl).then(function (res) {
-	      if (res.data.cod && res.data.message) {
-	        throw new Error(res.data.message);
-	      } else {
+	      if (res.data.cod && res.data.message) {} else {
 	        return res.data.arrivalGate;
 	      }
-	    }, function (res) {
-	      throw new Error(res.data.message);
-	    });
+	    }, function (res) {});
 	  }
 	};
 
@@ -27891,12 +27858,12 @@
 
 	    return _axios2.default.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
-	        throw new Error(res.data.message);
+	        return "-";
 	      } else {
 	        return res.data.baggage;
 	      }
 	    }, function (res) {
-	      throw new Error(res.data.message);
+	      return "-";
 	    });
 	  }
 	};
