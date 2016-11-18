@@ -4,8 +4,8 @@ var WeatherMessage = ({temp, startingAddress}) => {
   return (
     <div>
       <div>
-        <h6 className="details">Current temperature: </h6>
-        <h6>{temp}&deg;F</h6>
+        <h6 className="details">Current temperature (&deg;F): </h6>
+        <h6>{temp}</h6>
       </div>
     </div>
   )

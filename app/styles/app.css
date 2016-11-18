@@ -21,3 +21,7 @@ nav {
 .details {
   font-weight: bold;
 }
+
+.top-bar-right {
+  padding-top: .5em;
+}

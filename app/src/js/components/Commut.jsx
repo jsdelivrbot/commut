@@ -25,26 +25,26 @@ import flightStats_gateBaggage from 'flightStats_gateBaggage';
 var Commut = React.createClass({
   getInitialState: function () {
     return {
-      isLoading: false,
-      startingAddress: '1425 NE 7th Ave., Portland, OR',
-      departureAirport: 'PDX',
-      carrierCode: 'AA',
-      flightNumber: '100',
-      duration: "-",
-      departureGateDelayMinutes: "0",
-      departureRunwayDelayMinutes: " ",
-      arrivalGateDelayMinutes: " ",
-      arrivalRunwayDelayMinutes: " ",
-      departureTime: "-",
-      departureTerminal: "-",
-      departureGate: "-",
-      arrivalGate: "-",
-      baggage: "-",
-      apiVar3: 44,
-      precheck: "-",
-      WaitTime: 10,
-      LastUpdated: "11/12/2016 8:51:27 AM",
-      temp: 53
+      isLoading: false
+      // startingAddress: '1425 NE 7th Ave., Portland, OR',
+      // departureAirport: 'PDX',
+      // carrierCode: 'AA',
+      // flightNumber: '100',
+      // duration: "-",
+      // departureGateDelayMinutes: "0",
+      // departureRunwayDelayMinutes: " ",
+      // arrivalGateDelayMinutes: " ",
+      // arrivalRunwayDelayMinutes: " ",
+      // departureTime: "-",
+      // departureTerminal: "-",
+      // departureGate: "-",
+      // arrivalGate: "-",
+      // baggage: "-",
+      // apiVar3: 44,
+      // precheck: "-",
+      // WaitTime: 10,
+      // LastUpdated: "11/12/2016 8:51:27 AM",
+      // temp: 53
     }
   },
   handleNewData: function (updates) {
@@ -54,12 +54,16 @@ var Commut = React.createClass({
     //We're setting that to this because the "this" binding get's lost when we set setState below. Setting that to this, fixes that temporarily
     var that = this;
 
+    this.setState({isLoading: true});
+
     openWeatherMap.getTemp(startingAddress).then(function (temp) {
       that.setState({
         startingAddress: startingAddress,
-        temp: temp
+        temp: temp,
+        isLoading: false
       });
     }, function (errorMessage) {
+        that.setState({isLoading: false});
         alert(errorMessage);
     });
 
@@ -67,18 +71,22 @@ var Commut = React.createClass({
       that.setState({
         startingAddress: startingAddress,
         departureAirport: departureAirport,
-        duration: duration
+        duration: duration,
+        isLoading: false
       });
     }, function (errorMessage) {
+        that.setState({isLoading: false});
         alert(errorMessage);
     });
 
     tsa_precheck.getPrecheck(departureAirport).then(function (precheck) {
       that.setState({
         departureAirport: departureAirport,
-        precheck: precheck
+        precheck: precheck,
+        isLoading: false
       });
     }, function (errorMessage) {
+        that.setState({isLoading: false});
         alert(errorMessage);
     });
 
@@ -86,9 +94,11 @@ var Commut = React.createClass({
       that.setState({
         carrierCode: carrierCode,
         flightNumber: flightNumber,
-        departureTime: departureTime
+        departureTime: departureTime,
+        isLoading: false
       });
     }, function (errorMessage) {
+        that.setState({isLoading: false});
         alert(errorMessage);
     });
 
@@ -96,9 +106,11 @@ var Commut = React.createClass({
       that.setState({
         carrierCode: carrierCode,
         flightNumber: flightNumber,
-        departureGateDelayMinutes: departureGateDelayMinutes
+        departureGateDelayMinutes: departureGateDelayMinutes,
+        isLoading: false
       });
     }, function (errorMessage) {
+        that.setState({isLoading: false});
         alert(errorMessage);
     });
 
@@ -106,9 +118,11 @@ var Commut = React.createClass({
       that.setState({
         carrierCode: carrierCode,
         flightNumber: flightNumber,
-        departureRunwayDelayMinutes: departureRunwayDelayMinutes
+        departureRunwayDelayMinutes: departureRunwayDelayMinutes,
+        isLoading: false
       });
     }, function (errorMessage) {
+        that.setState({isLoading: false});
         alert(errorMessage);
     });
 
@@ -116,9 +130,11 @@ var Commut = React.createClass({
       that.setState({
         carrierCode: carrierCode,
         flightNumber: flightNumber,
-        arrivalGateDelayMinutes: arrivalGateDelayMinutes
+        arrivalGateDelayMinutes: arrivalGateDelayMinutes,
+        isLoading: false
       });
     }, function (errorMessage) {
+        that.setState({isLoading: false});
         alert(errorMessage);
     });
 
@@ -126,9 +142,11 @@ var Commut = React.createClass({
       that.setState({
         carrierCode: carrierCode,
         flightNumber: flightNumber,
-        arrivalRunwayDelayMinutes: arrivalRunwayDelayMinutes
+        arrivalRunwayDelayMinutes: arrivalRunwayDelayMinutes,
+        isLoading: false
       });
     }, function (errorMessage) {
+        that.setState({isLoading: false});
         alert(errorMessage);
     });
 
@@ -136,9 +154,11 @@ var Commut = React.createClass({
       that.setState({
         carrierCode: carrierCode,
         flightNumber: flightNumber,
-        departureTerminal: departureTerminal
+        departureTerminal: departureTerminal,
+        isLoading: false
       });
     }, function (errorMessage) {
+        that.setState({isLoading: false});
         alert(errorMessage);
     });
 
@@ -146,9 +166,11 @@ var Commut = React.createClass({
       that.setState({
         carrierCode: carrierCode,
         flightNumber: flightNumber,
-        departureGate: departureGate
+        departureGate: departureGate,
+        isLoading: false
       });
     }, function (errorMessage) {
+        that.setState({isLoading: false});
         alert(errorMessage);
     });
 
@@ -156,9 +178,11 @@ var Commut = React.createClass({
       that.setState({
         carrierCode: carrierCode,
         flightNumber: flightNumber,
-        arrivalTerminal: arrivalTerminal
+        arrivalTerminal: arrivalTerminal,
+        isLoading: false
       });
     }, function (errorMessage) {
+        that.setState({isLoading: false});
         alert(errorMessage);
     });
 
@@ -166,9 +190,11 @@ var Commut = React.createClass({
       that.setState({
         carrierCode: carrierCode,
         flightNumber: flightNumber,
-        arrivalGate: arrivalGate
+        arrivalGate: arrivalGate,
+        isLoading: false
       });
     }, function (errorMessage) {
+        that.setState({isLoading: false});
         alert(errorMessage);
     });
 
@@ -176,15 +202,24 @@ var Commut = React.createClass({
       that.setState({
         carrierCode: carrierCode,
         flightNumber: flightNumber,
-        baggage: baggage
+        baggage: baggage,
+        isLoading: false
       });
     }, function (errorMessage) {
-        alert(errorMessage);
+        that.setState({isLoading: false});
     });
   },
 
   render: function () {
-    var {startingAddress, departureAirport, carrierCode, departureTime, departureGateDelayMinutes, departureRunwayDelayMinutes, arrivalGateDelayMinutes, arrivalRunwayDelayMinutes, flightNumber, departureTerminal, departureGate, arrivalTerminal, arrivalGate, baggage, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
+    var {isLoading, startingAddress, departureAirport, carrierCode, departureTime, departureGateDelayMinutes, departureRunwayDelayMinutes, arrivalGateDelayMinutes, arrivalRunwayDelayMinutes, flightNumber, departureTerminal, departureGate, arrivalTerminal, arrivalGate, baggage, duration, normalizedScore, apiVar3, temp, precheck, WaitTime, LastUpdated} = this.state;
+
+    function renderMessage () {
+      if (isLoading) {
+        return <h6>Loading...</h6>;
+      } else if (startingAddress && departureAirport) {
+        return <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} departureTime={departureTime} departureGateDelayMinutes={departureGateDelayMinutes} departureRunwayDelayMinutes={departureRunwayDelayMinutes} arrivalGateDelayMinutes={arrivalGateDelayMinutes} arrivalRunwayDelayMinutes={arrivalRunwayDelayMinutes} departureTerminal={departureTerminal} departureGate={departureGate} arrivalTerminal={arrivalTerminal} arrivalGate={arrivalGate} baggage={baggage} LastUpdated={LastUpdated}/>;
+      }
+    }
 
     return (
       <div className="row">
@@ -198,7 +233,7 @@ var Commut = React.createClass({
               <WeatherMessage temp={temp} startingAddress={startingAddress}/>
             </div>
             <div className="large-4 columns">
-              <CommutResults duration={duration} normalizedScore={normalizedScore} apiVar3={apiVar3} precheck={precheck} WaitTime={WaitTime} departureTime={departureTime} departureGateDelayMinutes={departureGateDelayMinutes} departureRunwayDelayMinutes={departureRunwayDelayMinutes} arrivalGateDelayMinutes={arrivalGateDelayMinutes} arrivalRunwayDelayMinutes={arrivalRunwayDelayMinutes} departureTerminal={departureTerminal} departureGate={departureGate} arrivalTerminal={arrivalTerminal} arrivalGate={arrivalGate} baggage={baggage} LastUpdated={LastUpdated}/>
+              {renderMessage()}
             </div>
           </div>
         </div>

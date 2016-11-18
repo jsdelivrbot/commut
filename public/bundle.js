@@ -25552,26 +25552,26 @@
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      isLoading: false,
-	      startingAddress: '1425 NE 7th Ave., Portland, OR',
-	      departureAirport: 'PDX',
-	      carrierCode: 'AA',
-	      flightNumber: '100',
-	      duration: "-",
-	      departureGateDelayMinutes: "0",
-	      departureRunwayDelayMinutes: " ",
-	      arrivalGateDelayMinutes: " ",
-	      arrivalRunwayDelayMinutes: " ",
-	      departureTime: "-",
-	      departureTerminal: "-",
-	      departureGate: "-",
-	      arrivalGate: "-",
-	      baggage: "-",
-	      apiVar3: 44,
-	      precheck: "-",
-	      WaitTime: 10,
-	      LastUpdated: "11/12/2016 8:51:27 AM",
-	      temp: 53
+	      isLoading: false
+	      // startingAddress: '1425 NE 7th Ave., Portland, OR',
+	      // departureAirport: 'PDX',
+	      // carrierCode: 'AA',
+	      // flightNumber: '100',
+	      // duration: "-",
+	      // departureGateDelayMinutes: "0",
+	      // departureRunwayDelayMinutes: " ",
+	      // arrivalGateDelayMinutes: " ",
+	      // arrivalRunwayDelayMinutes: " ",
+	      // departureTime: "-",
+	      // departureTerminal: "-",
+	      // departureGate: "-",
+	      // arrivalGate: "-",
+	      // baggage: "-",
+	      // apiVar3: 44,
+	      // precheck: "-",
+	      // WaitTime: 10,
+	      // LastUpdated: "11/12/2016 8:51:27 AM",
+	      // temp: 53
 	    };
 	  },
 	  handleNewData: function handleNewData(updates) {
@@ -25581,12 +25581,16 @@
 	    //We're setting that to this because the "this" binding get's lost when we set setState below. Setting that to this, fixes that temporarily
 	    var that = this;
 
+	    this.setState({ isLoading: true });
+
 	    _openWeatherMap2.default.getTemp(startingAddress).then(function (temp) {
 	      that.setState({
 	        startingAddress: startingAddress,
-	        temp: temp
+	        temp: temp,
+	        isLoading: false
 	      });
 	    }, function (errorMessage) {
+	      that.setState({ isLoading: false });
 	      alert(errorMessage);
 	    });
 
@@ -25594,18 +25598,22 @@
 	      that.setState({
 	        startingAddress: startingAddress,
 	        departureAirport: departureAirport,
-	        duration: duration
+	        duration: duration,
+	        isLoading: false
 	      });
 	    }, function (errorMessage) {
+	      that.setState({ isLoading: false });
 	      alert(errorMessage);
 	    });
 
 	    _tsa_precheck2.default.getPrecheck(departureAirport).then(function (precheck) {
 	      that.setState({
 	        departureAirport: departureAirport,
-	        precheck: precheck
+	        precheck: precheck,
+	        isLoading: false
 	      });
 	    }, function (errorMessage) {
+	      that.setState({ isLoading: false });
 	      alert(errorMessage);
 	    });
 
@@ -25613,9 +25621,11 @@
 	      that.setState({
 	        carrierCode: carrierCode,
 	        flightNumber: flightNumber,
-	        departureTime: departureTime
+	        departureTime: departureTime,
+	        isLoading: false
 	      });
 	    }, function (errorMessage) {
+	      that.setState({ isLoading: false });
 	      alert(errorMessage);
 	    });
 
@@ -25623,9 +25633,11 @@
 	      that.setState({
 	        carrierCode: carrierCode,
 	        flightNumber: flightNumber,
-	        departureGateDelayMinutes: departureGateDelayMinutes
+	        departureGateDelayMinutes: departureGateDelayMinutes,
+	        isLoading: false
 	      });
 	    }, function (errorMessage) {
+	      that.setState({ isLoading: false });
 	      alert(errorMessage);
 	    });
 
@@ -25633,9 +25645,11 @@
 	      that.setState({
 	        carrierCode: carrierCode,
 	        flightNumber: flightNumber,
-	        departureRunwayDelayMinutes: departureRunwayDelayMinutes
+	        departureRunwayDelayMinutes: departureRunwayDelayMinutes,
+	        isLoading: false
 	      });
 	    }, function (errorMessage) {
+	      that.setState({ isLoading: false });
 	      alert(errorMessage);
 	    });
 
@@ -25643,9 +25657,11 @@
 	      that.setState({
 	        carrierCode: carrierCode,
 	        flightNumber: flightNumber,
-	        arrivalGateDelayMinutes: arrivalGateDelayMinutes
+	        arrivalGateDelayMinutes: arrivalGateDelayMinutes,
+	        isLoading: false
 	      });
 	    }, function (errorMessage) {
+	      that.setState({ isLoading: false });
 	      alert(errorMessage);
 	    });
 
@@ -25653,9 +25669,11 @@
 	      that.setState({
 	        carrierCode: carrierCode,
 	        flightNumber: flightNumber,
-	        arrivalRunwayDelayMinutes: arrivalRunwayDelayMinutes
+	        arrivalRunwayDelayMinutes: arrivalRunwayDelayMinutes,
+	        isLoading: false
 	      });
 	    }, function (errorMessage) {
+	      that.setState({ isLoading: false });
 	      alert(errorMessage);
 	    });
 
@@ -25663,9 +25681,11 @@
 	      that.setState({
 	        carrierCode: carrierCode,
 	        flightNumber: flightNumber,
-	        departureTerminal: departureTerminal
+	        departureTerminal: departureTerminal,
+	        isLoading: false
 	      });
 	    }, function (errorMessage) {
+	      that.setState({ isLoading: false });
 	      alert(errorMessage);
 	    });
 
@@ -25673,9 +25693,11 @@
 	      that.setState({
 	        carrierCode: carrierCode,
 	        flightNumber: flightNumber,
-	        departureGate: departureGate
+	        departureGate: departureGate,
+	        isLoading: false
 	      });
 	    }, function (errorMessage) {
+	      that.setState({ isLoading: false });
 	      alert(errorMessage);
 	    });
 
@@ -25683,9 +25705,11 @@
 	      that.setState({
 	        carrierCode: carrierCode,
 	        flightNumber: flightNumber,
-	        arrivalTerminal: arrivalTerminal
+	        arrivalTerminal: arrivalTerminal,
+	        isLoading: false
 	      });
 	    }, function (errorMessage) {
+	      that.setState({ isLoading: false });
 	      alert(errorMessage);
 	    });
 
@@ -25693,9 +25717,11 @@
 	      that.setState({
 	        carrierCode: carrierCode,
 	        flightNumber: flightNumber,
-	        arrivalGate: arrivalGate
+	        arrivalGate: arrivalGate,
+	        isLoading: false
 	      });
 	    }, function (errorMessage) {
+	      that.setState({ isLoading: false });
 	      alert(errorMessage);
 	    });
 
@@ -25703,15 +25729,17 @@
 	      that.setState({
 	        carrierCode: carrierCode,
 	        flightNumber: flightNumber,
-	        baggage: baggage
+	        baggage: baggage,
+	        isLoading: false
 	      });
 	    }, function (errorMessage) {
-	      alert(errorMessage);
+	      that.setState({ isLoading: false });
 	    });
 	  },
 
 	  render: function render() {
 	    var _state = this.state,
+	        isLoading = _state.isLoading,
 	        startingAddress = _state.startingAddress,
 	        departureAirport = _state.departureAirport,
 	        carrierCode = _state.carrierCode,
@@ -25734,6 +25762,18 @@
 	        WaitTime = _state.WaitTime,
 	        LastUpdated = _state.LastUpdated;
 
+
+	    function renderMessage() {
+	      if (isLoading) {
+	        return _react2.default.createElement(
+	          'h6',
+	          null,
+	          'Loading...'
+	        );
+	      } else if (startingAddress && departureAirport) {
+	        return _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, departureGateDelayMinutes: departureGateDelayMinutes, departureRunwayDelayMinutes: departureRunwayDelayMinutes, arrivalGateDelayMinutes: arrivalGateDelayMinutes, arrivalRunwayDelayMinutes: arrivalRunwayDelayMinutes, departureTerminal: departureTerminal, departureGate: departureGate, arrivalTerminal: arrivalTerminal, arrivalGate: arrivalGate, baggage: baggage, LastUpdated: LastUpdated });
+	      }
+	    }
 
 	    return _react2.default.createElement(
 	      'div',
@@ -25758,7 +25798,7 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'large-4 columns' },
-	            _react2.default.createElement(_CommutResults2.default, { duration: duration, normalizedScore: normalizedScore, apiVar3: apiVar3, precheck: precheck, WaitTime: WaitTime, departureTime: departureTime, departureGateDelayMinutes: departureGateDelayMinutes, departureRunwayDelayMinutes: departureRunwayDelayMinutes, arrivalGateDelayMinutes: arrivalGateDelayMinutes, arrivalRunwayDelayMinutes: arrivalRunwayDelayMinutes, departureTerminal: departureTerminal, departureGate: departureGate, arrivalTerminal: arrivalTerminal, arrivalGate: arrivalGate, baggage: baggage, LastUpdated: LastUpdated })
+	            renderMessage()
 	          )
 	        )
 	      )
@@ -25882,22 +25922,6 @@
 	      "div",
 	      null,
 	      precheck
-	    ),
-	    _react2.default.createElement(
-	      "div",
-	      { className: "details" },
-	      "TSA Wait Time: "
-	    ),
-	    _react2.default.createElement(
-	      "div",
-	      null,
-	      WaitTime
-	    ),
-	    _react2.default.createElement(
-	      "h8",
-	      null,
-	      "Last updated: ",
-	      LastUpdated
 	    )
 	  );
 	};
@@ -25929,13 +25953,12 @@
 	      _react2.default.createElement(
 	        "h6",
 	        { className: "details" },
-	        "Current temperature: "
+	        "Current temperature (\xB0F): "
 	      ),
 	      _react2.default.createElement(
 	        "h6",
 	        null,
-	        temp,
-	        "\xB0F"
+	        temp
 	      )
 	    )
 	  );
@@ -25971,7 +25994,7 @@
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        return res.data.main.temp;
+	        return Math.round(res.data.main.temp);
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);
@@ -28253,7 +28276,7 @@
 
 
 	// module
-	exports.push([module.id, ".back-img {\n  display: block;\n  position: absolute;\n  background-image: url(\"http://i.imgur.com/97i7CvG.jpg\");\n  opacity: 0.9;\n  width: 100%;\n  height: 100%;\n  background-repeat: no-repeat;\n  background-attachment: fixed;\n}\n\nnav {\n  opacity: .2;\n}\n\n.page-title {\n  margin-top: 1.5rem;\n  margin-bottom: 1.5rem;\n}\n\n.details {\n  font-weight: bold;\n}\n", ""]);
+	exports.push([module.id, ".back-img {\n  display: block;\n  position: absolute;\n  background-image: url(\"http://i.imgur.com/97i7CvG.jpg\");\n  opacity: 0.9;\n  width: 100%;\n  height: 100%;\n  background-repeat: no-repeat;\n  background-attachment: fixed;\n}\n\nnav {\n  opacity: .2;\n}\n\n.page-title {\n  margin-top: 1.5rem;\n  margin-bottom: 1.5rem;\n}\n\n.details {\n  font-weight: bold;\n}\n\n.top-bar-right {\n  padding-top: .5em;\n}\n", ""]);
 
 	// exports
 

@@ -17,9 +17,6 @@ var CommutResults = ({duration, normalizedScore, apiVar3, departureTime, departu
       <div>{departureGateDelayMinutes} minutes</div>
       <div className="details">TSA PreCheck: </div>
       <div>{precheck}</div>
-      <div className="details">TSA Wait Time: </div>
-      <div>{WaitTime}</div>
-      <h8>Last updated: {LastUpdated}</h8>
     </div>
   )
 };
